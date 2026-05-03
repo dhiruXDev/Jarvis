@@ -12,6 +12,8 @@ def main():
         if not command:
             continue
 
+        speak("I heard you")   # ✅ ADD THIS
+
         intent = process(command)
 
         if intent["intent"] == "exit":
