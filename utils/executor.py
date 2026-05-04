@@ -120,16 +120,17 @@ def execute(intent, lang=None):
 
         elif action == "check_battery":
             print("CHECKING BATTERY")
-            # battery = check_battery()
-            # return f"Battery is {battery} percent"
-            return battery
+            return check_battery
+
         elif intent["intent"] == "brightness_control":
-
             level = intent["level"]
-
             brightness(level)
-
-            return f"Setting brightness to {level} percent"
+            return f"Setting brightness to {level}"
+        
+        elif intent["intent"] == "volume_control":
+            level = intent["level"]
+            volume(level)
+            return f"Setting volume to {level} "
 
     else:
         return "I did not understand the command"

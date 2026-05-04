@@ -108,3 +108,12 @@
 2026-05-04 17:14:28,189 - INFO - decrease brightness to 40
 2026-05-04 17:14:28,189 - INFO - AFC is enabled with max remote calls: 10.
 2026-05-04 17:14:38,443 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-04 17:18:33,945 - INFO - brightness 10
+2026-05-04 17:18:33,945 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-04 17:18:36,630 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-04 17:18:47,181 - INFO - set brightness to 10%
+2026-05-04 17:18:47,182 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-04 17:18:48,129 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 403 Forbidden"
+2026-05-04 17:21:48,047 - INFO - brightness 30
+2026-05-04 17:21:48,048 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-04 17:21:49,315 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 403 Forbidden"
