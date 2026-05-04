@@ -73,8 +73,11 @@
 from commands.open_app import open_application
 from commands.search_web import search_google
 from commands.open_website import open_website
+from commands.coding import open_potd_leetcode, open_potd_gfg
+from commands.system import shutdown_pc, restart_pc, sleep_pc, lock, volume, check_battery, brightness
 
 def execute(intent, lang=None):
+    print(intent)
     if intent["intent"] == "open_app":
         target = intent["target"]
         open_application(target)
@@ -90,9 +93,43 @@ def execute(intent, lang=None):
         open_website(target)
         return f"Opening {target}"
 
-    elif intent["intent"] == "exit":
-        return "Goodbye"
+    elif intent["intent"] == "open_potd_leetcode":
+        return open_potd_leetcode()
+    
+    elif intent["intent"] == "open_potd_gfg":
+        return open_potd_gfg()
+
+    elif intent["intent"] == "system_control":
+        print("SYSTEM CONTROL DETECTED")
+        action = intent["action"]
+        if action == "shutdown":
+            shutdown_pc()
+            return "Shutting down PC"
+
+        elif action == "restart":
+            restart_pc()
+            return "Restarting PC"
+
+        elif action == "sleep":
+            sleep_pc()
+            return "Putting PC to sleep"
+
+        elif action == "lock":
+            lock()
+            return "Locking PC"
+
+        elif action == "check_battery":
+            print("CHECKING BATTERY")
+            # battery = check_battery()
+            # return f"Battery is {battery} percent"
+            return battery
+        elif intent["intent"] == "brightness_control":
+
+            level = intent["level"]
+
+            brightness(level)
+
+            return f"Setting brightness to {level} percent"
 
     else:
-
         return "I did not understand the command"

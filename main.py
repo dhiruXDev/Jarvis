@@ -26,17 +26,18 @@ def main():
 
         # ⚙️ execute (you can return a message from execute)
         result = execute(intent, lang)
+        print('Jarvis: ', result)
 
         # 🔊 speak result (translate back)
-        # if isinstance(result, str):
-        #     final = translator.from_english(result, lang)
-        #     translator.speak(final, lang)
+        if isinstance(result, str):
+            final = translator.from_english(result, lang)
+            translator.speak(final, lang)
         # else:
         #     # fallback message
         #     translator.speak(
         #         translator.from_english("Done.", lang),
         #         lang
-            # )
+        #     )
 
 if __name__ == "__main__":
     main()

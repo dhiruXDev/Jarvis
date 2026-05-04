@@ -58,63 +58,179 @@ def process(command):
     log_command(cleaned)
 
     prompt = f"""
-    Convert this command into STRICT JSON.
+    You are an AI intent parser for a desktop assistant called Jarvis.
 
-    Possible intents:
-    - open_app
-    - open_website
-    - search_web
-    - exit
-    AVAILABLE INTENTS:
+    Your job is to convert user commands into STRICT JSON.
+
+    ━━━━━━━━━━━━━━━━━━━━
+    ALLOWED INTENTS
+    ━━━━━━━━━━━━━━━━━━━━
 
     1. open_app
-    Use ONLY for desktop applications installed on the PC.
+    Use ONLY for desktop applications installed on the computer.
 
-    Examples:
-    - open chrome
-    - open vscode
-    - open spotify app
-
-    2. open_website
-    Use for websites/platforms.
-
-    Examples:
-    - youtube
-    - open github
-    - gmail
-    - leetcode
-    - chatgpt
-    - facebook
-
-    3. search_web
-    Use when user wants to search something.
-
-    Examples:
-    - search python tutorials
-    - search ai news
-    Examples:
-
-    open chrome
+    Schema:
     {{
       "intent": "open_app",
-      "target": "chrome"
+      "target": "app_name"
     }}
 
-    search youtube ai agents
+    Examples:
+    open chrome
+    open vscode
+    launch spotify
+    chrome kholna
+
+
+    ━━━━━━━━━━━━━━━━━━━━
+
+    2. open_website
+    Use for websites, online platforms, and browser services.
+
+    Schema:
+    {{
+      "intent": "open_website",
+      "target": "website_name"
+    }}
+
+    Examples:
+    youtube
+    open github
+    gmail
+    leetcode
+    chatgpt
+    facebook
+    github kholo
+
+
+    ━━━━━━━━━━━━━━━━━━━━
+
+    3. search_web
+    Use when the user wants to search something online.
+
+    Schema:
     {{
       "intent": "search_web",
-      "query": "youtube ai agents"
+      "query": "search query"
     }}
 
-    exit
+    Examples:
+    search python tutorials
+    search ai news
+    search youtube transformers
+    google machine learning roadmap
+
+
+    ━━━━━━━━━━━━━━━━━━━━
+
+    4. open_potd
+    Use when the user wants LeetCode Problem of the Day.
+
+    Schema:
+    {{
+      "intent": "open_potd"
+    }}
+
+    Examples:
+    open problem of the day
+    leetcode potd
+    potd kholo
+    daily coding problem
+
+
+    ━━━━━━━━━━━━━━━━━━━━
+
+    5. system_control
+    Use for system-level commands.
+
+    Schema:
+    {{
+      "intent": "system_control",
+      "action": "action_name"
+    }}
+
+    AVAILABLE ACTIONS:
+    - shutdown
+    - restart
+    - sleep
+    - lock
+    - check_battery
+
+    Examples:
+    shutdown pc
+    restart computer
+    lock system
+    sleep pc
+    battery check
+
+
+    ━━━━━━━━━━━━━━━━━━━━
+
+    6. volume_control
+    Use for volume changes.
+
+    Schema:
+    {{
+      "intent": "volume_control",
+      "level": number
+    }}
+
+    Examples:
+    set volume to 50
+    volume 80 percent
+    increase volume to 70
+
+
+    ━━━━━━━━━━━━━━━━━━━━
+
+    7. brightness_control
+    Use for brightness changes.
+
+    Schema:
+    {{
+      "intent": "brightness_control",
+      "level": number
+    }}
+
+    Examples:
+    set brightness to 40
+    brightness 70 percent
+
+
+    ━━━━━━━━━━━━━━━━━━━━
+
+    8. exit
+
+    Schema:
     {{
       "intent": "exit"
     }}
 
-    Command:
-    {cleaned}
+    Examples:
+    exit
+    quit
+    goodbye
+    stop jarvis
 
-    Return ONLY JSON.
+
+    ━━━━━━━━━━━━━━━━━━━━
+    IMPORTANT RULES
+    ━━━━━━━━━━━━━━━━━━━━
+
+    - Return ONLY valid JSON.
+    - Do NOT use markdown.
+    - Do NOT use ```json.
+    - Never explain anything.
+    - Never invent new intents.
+    - Never invent new fields.
+    - Use ONLY the intents listed above.
+    - Commands may be multilingual.
+    - "gmail", "youtube", "github", "leetcode", and "chatgpt" are websites, NOT apps.
+
+    ━━━━━━━━━━━━━━━━━━━━
+
+    USER COMMAND:
+    {cleaned}
     """
 
     try:

@@ -1,7 +1,7 @@
 from commands.open_app import open_application
 from commands.search_web import search_google
 from commands.whatsapp import send_whatsapp_message
-from commands.coding import leetcode_open_potd, gfg_open_potd
+from commands.coding import open_potd_leetcode, open_potd_gfg 
 
 def route_command(command):
     if command["intent"] == "open_application":

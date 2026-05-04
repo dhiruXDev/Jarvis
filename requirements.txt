@@ -9,3 +9,4 @@ pyautogui
 pyaudio
 AppOpener
 pywhatkit
+psutil
