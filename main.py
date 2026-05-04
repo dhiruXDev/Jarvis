@@ -1,26 +1,66 @@
-from core.listener import listen
-from core.speaker import speak
+# from core.listener import listen
+# from core.speaker import speak
+# from core.brain import process
+# from utils.executor import execute
+
+# def main():
+#     speak("Jarvis is ready")
+
+#     while True:
+#         command = listen()
+
+#         if not command:
+#             continue
+
+#         speak("I heard you")   # ✅ ADD THIS
+
+#         intent = process(command)
+
+#         if intent["intent"] == "exit":
+#             speak("Goodbye")
+#             break
+
+#         execute(intent)
+
+# if __name__ == "__main__":
+#     main()
+from modules.multilang import translator
 from core.brain import process
 from utils.executor import execute
 
 def main():
-    speak("Jarvis is ready")
+    translator.speak("Jarvis is ready", "en")
 
     while True:
-        command = listen()
+        user_text = translator.listen()
 
-        if not command:
+        if not user_text:
             continue
 
-        speak("I heard you")   # ✅ ADD THIS
+        # 🌍 detect + translate
+        lang = translator.detect_lang(user_text)
+        text_en = translator.to_english(user_text)
 
-        intent = process(command)
+        # 🧠 AI intent
+        intent = process(text_en)
 
         if intent["intent"] == "exit":
-            speak("Goodbye")
+            translator.speak("Goodbye", lang)
             break
 
-        execute(intent)
+        # ⚙️ execute (you can return a message from execute)
+        result = execute(intent, lang)
+
+        # 🔊 speak result (translate back)
+        if isinstance(result, str):
+            final = translator.from_english(result, lang)
+            translator.speak(final, lang)
+        else:
+            # fallback message
+            translator.speak(
+                translator.from_english("Done.", lang),
+                lang
+            )
 
 if __name__ == "__main__":
     main()
