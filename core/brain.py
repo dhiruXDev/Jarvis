@@ -1,60 +1,11 @@
- 
-# def process(command):
-#     command = command.lower()
-
-#     if "notepad" in command:
-#         return {"intent": "open_app", "target": "notepad"}
-
-#     elif "chrome" in command:
-#         return {"intent": "open_app", "target": "chrome"}
-
-#     elif "type" in command:
-#         text = command.replace("type", "").strip()
-#         return {"intent": "type", "text": text}
-
-#     elif "exit" in command or "stop" in command:
-#         return {"intent": "exit"}
-
-#     return {"intent": "unknown"}
-
-# import google.generativeai as genai
-# import os
-# import json
-# from dotenv import load_dotenv
-
-# load_dotenv()
-
-# genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-
-# model = genai.GenerativeModel("gemini-pro")
-
-# def process(command):
-#     prompt = f"""
-#     Convert the following command into STRICT JSON.
-
-#     Command: {command}
-
-#     Examples:
-#     open chrome → {{"intent": "open_app", "target": "chrome"}}
-#     type hello world → {{"intent": "type", "text": "hello world"}}
-#     search python → {{"intent": "search", "query": "python"}}
-
-#     Only return JSON. No explanation.
-#     """
-
-#     try:
-#         response = model.generate_content(prompt)
-#         text = response.text.strip()
-
-#         return json.loads(text)
-
-#     except:
-#         return {"intent": "unknown"}
 import os
 import json
 import re
 from dotenv import load_dotenv
 from google import genai
+from utils.cleaner import clean_command
+from core.router import route_command
+from core.logger import log_command
 
 load_dotenv()
 
@@ -71,31 +22,118 @@ def extract_json(text):
     return {"intent": "unknown"}
 
 
+# def process(command):
+#     prompt = f"""
+#     Convert this command into STRICT JSON.
+
+#     Command: {command}
+
+#     Examples:
+#     open chrome → {{"intent": "open_app", "target": "chrome"}}
+#     open youtube → {{"intent": "search", "query": "youtube"}}
+#     type hello → {{"intent": "type", "text": "hello"}}
+
+#     Only return JSON.
+#     """
+
+#     try:
+#         response = client.models.generate_content(
+#             model="gemini-2.5-flash",   # ✅ FIXED MODEL
+#             contents=prompt
+#         )
+
+#         text = response.text.strip()
+#         print("AI RAW:", text)
+
+#         return extract_json(text)
+
+#     except Exception as e:
+#         print("AI Error:", e)
+#         return {"intent": "unknown"}
+
 def process(command):
+
+    cleaned = clean_command(command)
+
+    log_command(cleaned)
+
     prompt = f"""
     Convert this command into STRICT JSON.
 
-    Command: {command}
+    Possible intents:
+    - open_app
+    - open_website
+    - search_web
+    - exit
+    AVAILABLE INTENTS:
+
+    1. open_app
+    Use ONLY for desktop applications installed on the PC.
 
     Examples:
-    open chrome → {{"intent": "open_app", "target": "chrome"}}
-    open youtube → {{"intent": "search", "query": "youtube"}}
-    type hello → {{"intent": "type", "text": "hello"}}
+    - open chrome
+    - open vscode
+    - open spotify app
 
-    Only return JSON.
+    2. open_website
+    Use for websites/platforms.
+
+    Examples:
+    - youtube
+    - open github
+    - gmail
+    - leetcode
+    - chatgpt
+    - facebook
+
+    3. search_web
+    Use when user wants to search something.
+
+    Examples:
+    - search python tutorials
+    - search ai news
+    Examples:
+
+    open chrome
+    {{
+      "intent": "open_app",
+      "target": "chrome"
+    }}
+
+    search youtube ai agents
+    {{
+      "intent": "search_web",
+      "query": "youtube ai agents"
+    }}
+
+    exit
+    {{
+      "intent": "exit"
+    }}
+
+    Command:
+    {cleaned}
+
+    Return ONLY JSON.
     """
 
     try:
+
         response = client.models.generate_content(
-            model="gemini-2.5-flash",   # ✅ FIXED MODEL
+            model="gemini-2.5-flash",
             contents=prompt
         )
 
         text = response.text.strip()
+
         print("AI RAW:", text)
 
-        return extract_json(text)
+        data = extract_json(text)
+
+        return data
 
     except Exception as e:
+
         print("AI Error:", e)
+
         return {"intent": "unknown"}

@@ -1,39 +1,15 @@
-# from core.listener import listen
-# from core.speaker import speak
-# from core.brain import process
-# from utils.executor import execute
-
-# def main():
-#     speak("Jarvis is ready")
-
-#     while True:
-#         command = listen()
-
-#         if not command:
-#             continue
-
-#         speak("I heard you")   # ✅ ADD THIS
-
-#         intent = process(command)
-
-#         if intent["intent"] == "exit":
-#             speak("Goodbye")
-#             break
-
-#         execute(intent)
-
-# if __name__ == "__main__":
-#     main()
+from core.listener import listen
+from core.speaker import speak
 from modules.multilang import translator
 from core.brain import process
 from utils.executor import execute
 
 def main():
-    translator.speak("Jarvis is ready", "en")
+    speak("Jarvis is ready")
 
     while True:
-        user_text = translator.listen()
-
+        # user_text = translator.listen()
+        user_text = input("User: ")
         if not user_text:
             continue
 
@@ -52,15 +28,15 @@ def main():
         result = execute(intent, lang)
 
         # 🔊 speak result (translate back)
-        if isinstance(result, str):
-            final = translator.from_english(result, lang)
-            translator.speak(final, lang)
-        else:
-            # fallback message
-            translator.speak(
-                translator.from_english("Done.", lang),
-                lang
-            )
+        # if isinstance(result, str):
+        #     final = translator.from_english(result, lang)
+        #     translator.speak(final, lang)
+        # else:
+        #     # fallback message
+        #     translator.speak(
+        #         translator.from_english("Done.", lang),
+        #         lang
+            # )
 
 if __name__ == "__main__":
     main()

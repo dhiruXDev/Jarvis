@@ -1,0 +1,11 @@
+SpeechRecognition
+langdetect
+deep_translator
+gtts
+pyttsx3
+dotenv
+google-genai
+pyautogui
+pyaudio
+AppOpener
+pywhatkit
