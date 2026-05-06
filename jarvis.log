@@ -181,3 +181,6 @@
 2026-05-04 19:42:16,973 - INFO - open leetcode potd
 2026-05-04 19:42:16,974 - INFO - AFC is enabled with max remote calls: 10.
 2026-05-04 19:42:19,421 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-06 13:14:04,736 - INFO - send whatsapp message to dhiraj i am 
+2026-05-06 13:14:04,737 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 13:14:06,064 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 403 Forbidden"

@@ -11,6 +11,7 @@ from commands.system import (
     check_battery,
     brightness,
 )
+from commands.whatsapp import send_whatsapp_message
 
 def execute(intent, lang=None):
     print(intent)
@@ -80,5 +81,9 @@ def execute(intent, lang=None):
         volume(level)
         return f"Setting volume to {level}%"
 
+    elif command_type == "send_whatsapp_message":
+        contact = intent.get("contact")
+        message = intent.get("message")
+        return send_whatsapp_message(contact, message)
     else:
         return "I did not understand the command"

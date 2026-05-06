@@ -12,6 +12,7 @@ def route_command(command):
         whatsapp(command)
     elif command["intent"] == "coding":
         coding(command)
+        
     elif command["intent"] == "system":
         system(command)
     else:

@@ -1,83 +1,41 @@
-# import pywhatkit 
-
-# def send_whatsapp_message(phone_number, message):
-#     try:
-#         pywhatkit.sendwhatmsg(phone_number, message, 0, 0)
-#         print("Message sent successfully")
-#     except:
-#         print("Failed to send message")
-
-# # def whatsapp(command):
-
-# #     number = command.get("number")
-# #     message = command.get("message")
-
-# #     if not number or not message:
-# #         return "Missing phone or message"
-
-# #     pywhatkit.sendwhatmsg_instantly(number, message)
-
-# #     return "Message sent on WhatsApp"
-from playwright.sync_api import sync_playwright
+import subprocess
 import time
+import pyautogui
+import pyperclip
 
-# Persistent browser session
-USER_DATA_DIR = "playwright_whatsapp_session"
 
-
-def send_whatsapp_message(contact_name, message):
-
+def send_whatsapp_message(contact, message):
     try:
+        # Open WhatsApp Desktop
+        subprocess.Popen("start whatsapp:", shell=True)
+        time.sleep(5)
+        # Open search
+        pyautogui.hotkey("ctrl", "f")
+        time.sleep(1)
+        # Paste contact name
+        pyperclip.copy(contact)
 
-        with sync_playwright() as p:
+        pyautogui.hotkey("ctrl", "v")
 
-            browser = p.chromium.launch_persistent_context(
-                USER_DATA_DIR,
-                headless=False
-            )
+        time.sleep(2)
 
-            page = browser.new_page()
+        # Open chat
+        pyautogui.press("enter")
 
-            print("Opening WhatsApp Web...")
+        time.sleep(1)
 
-            page.goto("https://web.whatsapp.com")
+        # Paste message
+        pyperclip.copy(message)
 
-            print("Waiting for WhatsApp to load...")
-            page.wait_for_timeout(10000)
+        pyautogui.hotkey("ctrl", "v")
 
-            # Search box
-            search_box = page.locator('div[contenteditable="true"]').nth(0)
+        time.sleep(1)
 
-            search_box.click()
+        # Send message
+        pyautogui.press("enter")
 
-            search_box.fill(contact_name)
-
-            page.wait_for_timeout(3000)
-
-            # Click contact
-            page.locator(f'text="{contact_name}"').click()
-
-            page.wait_for_timeout(2000)
-
-            # Message box
-            message_box = page.locator('div[contenteditable="true"]').nth(1)
-
-            message_box.click()
-
-            message_box.fill(message)
-
-            page.keyboard.press("Enter")
-
-            print(f"Message sent to {contact_name}")
-
-            page.wait_for_timeout(3000)
-
-            browser.close()
-
-            return True
+        return f"Message sent to {contact}"
 
     except Exception as e:
 
-        print(f"WhatsApp Error: {e}")
-
-        return False
+        return f"WhatsApp automation failed: {str(e)}"
