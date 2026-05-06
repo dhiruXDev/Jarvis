@@ -10,3 +10,6 @@ pyaudio
 AppOpener
 pywhatkit
 psutil
+screen-brightness-control
+pycaw==20230407
+playwright
