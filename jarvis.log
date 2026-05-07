@@ -184,3 +184,82 @@
 2026-05-06 13:14:04,736 - INFO - send whatsapp message to dhiraj i am 
 2026-05-06 13:14:04,737 - INFO - AFC is enabled with max remote calls: 10.
 2026-05-06 13:14:06,064 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 403 Forbidden"
+2026-05-06 13:17:26,375 - INFO - volume 0
+2026-05-06 13:17:26,375 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 13:17:27,637 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 403 Forbidden"
+2026-05-06 13:20:05,161 - INFO - send whatsapp message hi to dhiraj ab
+2026-05-06 13:20:05,162 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 13:20:18,317 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-06 13:23:28,756 - INFO - send whatsapp message hi to dhiraj ab
+2026-05-06 13:23:28,757 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 16:07:37,996 - INFO - message dhiraj ab 
+2026-05-06 16:07:37,997 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 16:07:49,666 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-06 16:08:33,964 - INFO - open whatsapp and message dhiraj ab hi it is jrvis
+2026-05-06 16:08:33,964 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 16:08:43,272 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-06 17:21:17,909 - INFO - open whatsapp send hi to dhiraj ab
+2026-05-06 17:21:17,909 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 17:21:19,943 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-06 17:22:50,575 - INFO - open whatsapp
+2026-05-06 17:22:50,577 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 17:22:52,383 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-06 17:24:14,774 - INFO - open whatsapp and send hi to dhiraj ab
+2026-05-06 17:24:14,776 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 17:24:20,853 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-06 17:37:30,039 - INFO - send hi whatsapp message   to dhiraj ab
+2026-05-06 17:37:30,040 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 17:37:34,228 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-06 17:44:38,885 - INFO - open whatsapp and send  to dhiraj ab
+2026-05-06 17:44:38,886 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 17:44:41,365 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-06 17:45:28,158 - INFO - open whatsapp and send  to dhiraj ab
+2026-05-06 17:45:28,159 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 17:45:34,532 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-06 17:45:59,131 - INFO - open whatsapp and send  to dhiraj ab
+2026-05-06 17:45:59,132 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 17:46:07,084 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-06 17:54:51,672 - INFO - open whatsapp and send  to dhiraj ab
+2026-05-06 17:56:43,994 - INFO - send  to dhiraj on whatsapp
+2026-05-06 17:56:43,994 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 17:56:47,136 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-06 18:01:56,879 - INFO - open whatsapp and send  to dhiraj ab
+2026-05-06 18:01:56,880 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 18:02:02,162 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-06 18:04:57,547 - INFO - send hi to dhiraj on whatsapp
+2026-05-06 18:04:57,547 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 18:04:59,766 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-06 18:10:03,807 - INFO - open whatsapp and send hi to dhiraj ab
+2026-05-06 18:10:03,807 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-06 18:10:06,303 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-07 16:21:20,970 - INFO - send hello message to dhiraj ab on whatsapp
+2026-05-07 16:21:20,971 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-07 16:21:26,242 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-07 16:22:19,340 - INFO - send hi to utkarsh r chopra on whatsapp
+2026-05-07 16:22:19,341 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-07 16:22:27,996 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-07 16:23:10,324 - INFO - brightness 50
+2026-05-07 16:23:10,324 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-07 16:23:14,301 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-07 16:23:14,451 - WARNING - exception parsing edid str for DISPLAY\AUO7EAD\4&300ab7d&0&UID8388688_0 - EDIDParseError: parsed EDID returned invalid display name
+2026-05-07 16:26:09,774 - INFO - send dhiraj ab tum ho ho abhi hai
+2026-05-07 16:26:09,775 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-07 16:26:12,454 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-07 16:27:17,950 - INFO - brightness 80
+2026-05-07 16:27:17,950 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-07 16:27:20,080 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-07 16:27:20,172 - WARNING - exception parsing edid str for DISPLAY\AUO7EAD\4&300ab7d&0&UID8388688_0 - EDIDParseError: parsed EDID returned invalid display name
+2026-05-07 16:27:51,222 - INFO - brightness 0
+2026-05-07 16:27:51,223 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-07 16:27:53,334 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-07 16:27:53,428 - WARNING - exception parsing edid str for DISPLAY\AUO7EAD\4&300ab7d&0&UID8388688_0 - EDIDParseError: parsed EDID returned invalid display name
+2026-05-07 16:28:05,143 - INFO - brightess 50
+2026-05-07 16:28:05,143 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-07 16:28:08,757 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-07 16:28:08,852 - WARNING - exception parsing edid str for DISPLAY\AUO7EAD\4&300ab7d&0&UID8388688_0 - EDIDParseError: parsed EDID returned invalid display name
+2026-05-07 16:28:44,521 - INFO - tell battery percentage
+2026-05-07 16:28:44,521 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-07 16:29:00,839 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"
+2026-05-07 16:30:02,572 - INFO - volume 50
+2026-05-07 16:30:02,572 - INFO - AFC is enabled with max remote calls: 10.
+2026-05-07 16:30:05,209 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent "HTTP/1.1 200 OK"

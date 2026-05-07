@@ -85,5 +85,17 @@ def execute(intent, lang=None):
         contact = intent.get("contact")
         message = intent.get("message")
         return send_whatsapp_message(contact, message)
+        # if "message" in intent:
+        #     return send_whatsapp_message(intent["message"])
+        # elif "contact" in intent:
+        #     return send_whatsapp_message(intent["contact"])
+        # elif "add" in intent:
+        #     return AddContact()
+        # elif "search" in intent:
+        #     return SearchCont(intent["search"])
+        # elif "display" in intent:
+        #     return Display()
+        # # elif "number in contacts" in intent:
+        # #     return NameIntheContDataBase(intent["number in contacts"])
     else:
         return "I did not understand the command"

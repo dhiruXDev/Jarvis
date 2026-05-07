@@ -13,12 +13,19 @@ client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 
 def extract_json(text):
-    match = re.search(r"\{.*\}", text, re.DOTALL)
-    if match:
-        try:
-            return json.loads(match.group())
-        except:
-            return {"intent": "unknown"}
+    try:
+        return json.loads(text)
+    except:
+        match = re.search(
+            r"\{[\s\S]*\}",
+            text
+        )
+        if match:
+            try:
+                return json.loads(match.group())
+            except:
+                print('Something invalid and went wrong')
+                pass
     return {"intent": "unknown"}
 
 
@@ -53,11 +60,12 @@ def extract_json(text):
 
 def process(command):
 
-    cleaned = clean_command(command)
+    cleaned = command.lower().strip()
+    print("cleaned text:", cleaned)
 
     log_command(cleaned)
 
-    prompt = f"""
+    prompt = """
     You are an AI intent parser for a desktop assistant called Jarvis.
 
     Your job is to convert user commands into STRICT JSON.
@@ -70,10 +78,10 @@ def process(command):
     Use ONLY for desktop applications installed on the computer.
 
     Schema:
-    {{
+    {
       "intent": "open_app",
       "target": "app_name"
-    }}
+    }
 
     Examples:
     open chrome
@@ -88,10 +96,10 @@ def process(command):
     Use for websites, online platforms, and browser services.
 
     Schema:
-    {{
+    {
       "intent": "open_website",
       "target": "website_name"
-    }}
+    }
 
     Examples:
     youtube
@@ -109,10 +117,10 @@ def process(command):
     Use when the user wants to search something online.
 
     Schema:
-    {{
+    {
       "intent": "search_web",
       "query": "search query"
-    }}
+    }
 
     Examples:
     search python tutorials
@@ -127,9 +135,9 @@ def process(command):
     Use when the user wants LeetCode Problem of the Day.
 
     Schema:
-    {{
+    {
       "intent": "open_potd"
-    }}
+    }
 
     Examples:
     open problem of the day
@@ -144,10 +152,10 @@ def process(command):
     Use for system-level commands.
 
     Schema:
-    {{
+    {
       "intent": "system_control",
       "action": "action_name"
-    }}
+    }
 
     AVAILABLE ACTIONS:
     - shutdown
@@ -170,10 +178,10 @@ def process(command):
     Use for volume changes.
 
     Schema:
-    {{
+    {
       "intent": "volume_control",
       "level": number
-    }}
+    }
 
     Examples:
     set volume to 50
@@ -187,24 +195,68 @@ def process(command):
     Use for brightness changes.
 
     Schema:
-    {{
+    {
       "intent": "brightness_control",
       "level": number
-    }}
+    }
 
     Examples:
     set brightness to 40
     brightness 70 percent
 
+    ━━━━━━━━━━━━━━━━━━━━
+
+8. send_whatsapp_message
+Use when the user wants to send a WhatsApp message.
+
+Schema:
+{
+  "intent": "send_whatsapp_message",
+  "contact": "person_name",
+  "message": "message_text"
+}
+
+Examples:
+send hi to dhiraj on whatsapp
+send hello to aman
+whatsapp rahul good morning
+send good night to rohan
+message priya hello
+
+Examples:
+
+send hello to dhiraj
+Output:
+{
+  "intent": "send_whatsapp_message",
+  "contact": "dhiraj",
+  "message": "hello"
+}
+
+send good morning to aman
+Output:
+{
+  "intent": "send_whatsapp_message",
+  "contact": "aman",
+  "message": "good morning"
+}
+
+open whatsapp and send hi to rahul
+Output:
+{
+  "intent": "send_whatsapp_message",
+  "contact": "rahul",
+  "message": "hi"
+}
 
     ━━━━━━━━━━━━━━━━━━━━
 
-    8. exit
+    9. exit
 
     Schema:
-    {{
+    {
       "intent": "exit"
-    }}
+    }
 
     Examples:
     exit
@@ -225,6 +277,8 @@ def process(command):
     - Never invent new fields.
     - Use ONLY the intents listed above.
     - Commands may be multilingual.
+    - Return only valid json 
+    - Never use markdown
     - "gmail", "youtube", "github", "leetcode", and "chatgpt" are websites, NOT apps.
 
     ━━━━━━━━━━━━━━━━━━━━
@@ -232,7 +286,7 @@ def process(command):
     USER COMMAND:
     {cleaned}
     """
-
+    prompt = prompt + f"\n\nUSER COMMAND: {cleaned}"
     try:
 
         response = client.models.generate_content(
