@@ -1,10 +1,8 @@
-import os
-import time
+
 import threading
 import speech_recognition as sr
 from langdetect import detect
 from deep_translator import GoogleTranslator
-from gtts import gTTS
 import pyttsx3
 
 # ---------------------------
@@ -15,7 +13,7 @@ _engine.setProperty('rate', 165)
 _engine.setProperty('volume', 1.0)
 try:
     voices = _engine.getProperty('voices')
-    _engine.setProperty('voice', voices[0].id)  # 0=male, 1=female (try both)
+    _engine.setProperty('voice', voices[1].id)  # 0=male, 1=female (try both)
 except:
     pass
 
@@ -80,26 +78,26 @@ def from_english(text, lang):
 # others → gTTS (multilang)
 # ---------------------------
 def speak(text, lang="en"):
+
     print("🤖 Jarvis:", text)
 
-    if lang == "en":
-        # run in thread so it doesn't block mic loop
-        threading.Thread(target=_speak_local, args=(text,), daemon=True).start()
-    else:
-        # gTTS (slower but supports languages)
-        try:
-            fname = "jarvis.mp3"
-            if os.path.exists(fname):
-                try:
-                    os.remove(fname)
-                except:
-                    pass
+    try:
 
-            tts = gTTS(text=text, lang=lang)
-            tts.save(fname)
+        _engine.stop()
 
-            # slight delay helps file lock issues
-            time.sleep(0.1)
-            os.system(f'start {fname}')
-        except Exception as e:
-            print("gTTS error:", e)
+        voices = _engine.getProperty("voices")
+
+        # English voice
+        if lang == "en":
+            _engine.setProperty(
+                "voice",
+                voices[1].id
+            )
+
+        _engine.say(text)
+
+        _engine.runAndWait()
+
+    except Exception as e:
+
+        print("Speak Error:", e)

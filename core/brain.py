@@ -1,306 +1,145 @@
-import os
 import json
 import re
-from dotenv import load_dotenv
-from google import genai
-from utils.cleaner import clean_command
-from core.router import route_command
+import requests
 from core.logger import log_command
+from core.local_parser import local_parse
 
-load_dotenv()
-
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-
+OLLAMA_URL = "http://localhost:11434/api/generate"
+MODEL_NAME = "qwen2.5:1.5b"
 
 def extract_json(text):
+
     try:
         return json.loads(text)
-    except:
-        match = re.search(
-            r"\{[\s\S]*\}",
-            text
-        )
+
+    except json.JSONDecodeError:
+
+        match = re.search(r"\{.*?\}", text, re.DOTALL)
+
         if match:
             try:
                 return json.loads(match.group())
             except:
-                print('Something invalid and went wrong')
                 pass
-    return {"intent": "unknown"}
+
+    return {"intent": "chat", "message": text}
 
 
-# def process(command):
-#     prompt = f"""
-#     Convert this command into STRICT JSON.
+def ask_ollama(prompt):
 
-#     Command: {command}
+    response = requests.post(
+        OLLAMA_URL,
+        json={
+            "model": MODEL_NAME,
+            "prompt": prompt,
+            "stream": False
+        },
+        timeout=30
+    )
 
-#     Examples:
-#     open chrome → {{"intent": "open_app", "target": "chrome"}}
-#     open youtube → {{"intent": "search", "query": "youtube"}}
-#     type hello → {{"intent": "type", "text": "hello"}}
+    response.raise_for_status()
 
-#     Only return JSON.
-#     """
+    result = response.json()
 
-#     try:
-#         response = client.models.generate_content(
-#             model="gemini-2.5-flash",   # ✅ FIXED MODEL
-#             contents=prompt
-#         )
+    return result.get("response", "").strip()
 
-#         text = response.text.strip()
-#         print("AI RAW:", text)
-
-#         return extract_json(text)
-
-#     except Exception as e:
-#         print("AI Error:", e)
-#         return {"intent": "unknown"}
 
 def process(command):
-
     cleaned = command.lower().strip()
-    print("cleaned text:", cleaned)
-
+    print("Cleaned Text:", cleaned)
     log_command(cleaned)
 
-    prompt = """
-    You are an AI intent parser for a desktop assistant called Jarvis.
+    # FIRST TRY LOCAL PARSER
+    local_result = local_parse(cleaned)
 
-    Your job is to convert user commands into STRICT JSON.
-
-    ━━━━━━━━━━━━━━━━━━━━
-    ALLOWED INTENTS
-    ━━━━━━━━━━━━━━━━━━━━
-
-    1. open_app
-    Use ONLY for desktop applications installed on the computer.
-
-    Schema:
-    {
-      "intent": "open_app",
-      "target": "app_name"
-    }
-
-    Examples:
-    open chrome
-    open vscode
-    launch spotify
-    chrome kholna
+    if local_result:
+        print("Done by local parser:", local_result)
+        return local_result
 
 
-    ━━━━━━━━━━━━━━━━━━━━
-
-    2. open_website
-    Use for websites, online platforms, and browser services.
-
-    Schema:
-    {
-      "intent": "open_website",
-      "target": "website_name"
-    }
-
-    Examples:
-    youtube
-    open github
-    gmail
-    leetcode
-    chatgpt
-    facebook
-    github kholo
-
-
-    ━━━━━━━━━━━━━━━━━━━━
-
-    3. search_web
-    Use when the user wants to search something online.
-
-    Schema:
-    {
-      "intent": "search_web",
-      "query": "search query"
-    }
-
-    Examples:
-    search python tutorials
-    search ai news
-    search youtube transformers
-    google machine learning roadmap
-
-
-    ━━━━━━━━━━━━━━━━━━━━
-
-    4. open_potd
-    Use when the user wants LeetCode Problem of the Day.
-
-    Schema:
-    {
-      "intent": "open_potd"
-    }
-
-    Examples:
-    open problem of the day
-    leetcode potd
-    potd kholo
-    daily coding problem
-
-
-    ━━━━━━━━━━━━━━━━━━━━
-
-    5. system_control
-    Use for system-level commands.
-
-    Schema:
-    {
-      "intent": "system_control",
-      "action": "action_name"
-    }
-
-    AVAILABLE ACTIONS:
-    - shutdown
-    - restart
-    - sleep
-    - lock
-    - check_battery
-
-    Examples:
-    shutdown pc
-    restart computer
-    lock system
-    sleep pc
-    battery check
-
-
-    ━━━━━━━━━━━━━━━━━━━━
-
-    6. volume_control
-    Use for volume changes.
-
-    Schema:
-    {
-      "intent": "volume_control",
-      "level": number
-    }
-
-    Examples:
-    set volume to 50
-    volume 80 percent
-    increase volume to 70
-
-
-    ━━━━━━━━━━━━━━━━━━━━
-
-    7. brightness_control
-    Use for brightness changes.
-
-    Schema:
-    {
-      "intent": "brightness_control",
-      "level": number
-    }
-
-    Examples:
-    set brightness to 40
-    brightness 70 percent
-
-    ━━━━━━━━━━━━━━━━━━━━
-
-8. send_whatsapp_message
-Use when the user wants to send a WhatsApp message.
-
-Schema:
-{
-  "intent": "send_whatsapp_message",
-  "contact": "person_name",
-  "message": "message_text"
-}
+    prompt = f"""
+Convert the user command into JSON.
+ONLY return valid JSON.
 
 Examples:
-send hi to dhiraj on whatsapp
+Search_web - Use ONLY when the user explicitly wants
+to search on Google, browser, YouTube, or internet.
+
+Examples:
+- search python tutorials
+- google linked list
+- search ai news
+- find laptop reviews online
+
+Output:
+{{"intent":"search_web","query":"user query"}}
+
+
+chat - Use when the user wants explanation,
+conversation, learning, coding help,
+or general discussion.
+
+Examples:
+- explain linked list
+- what is python
+- teach me recursion
+- who is elon musk
+- tell me a joke
+
+Output:
+{{"intent":"chat","message":"user message"}}
+open chrome
+{{"intent":"open_app","target":"chrome"}}
+
+open youtube
+{{"intent":"open_website","target":"youtube"}}
+
+volume 50
+{{"intent":"volume_control","level":50}}
+
+search python tutorials
+{{"intent":"search_web","query":"python tutorials"}}
+
 send hello to aman
-whatsapp rahul good morning
-send good night to rohan
-message priya hello
+{{"intent":"send_whatsapp_message","contact":"aman","message":"hello"}}
 
-Examples:
+search python tutorials
+{"intent":"search_web","query":"python tutorials"}
 
-send hello to dhiraj
-Output:
-{
-  "intent": "send_whatsapp_message",
-  "contact": "dhiraj",
-  "message": "hello"
-}
+close chrome
+{{"intent":"close_app","target":"chrome"}}
 
-send good morning to aman
-Output:
-{
-  "intent": "send_whatsapp_message",
-  "contact": "aman",
-  "message": "good morning"
-}
+exit
+{{"intent":"exit"}}
 
-open whatsapp and send hi to rahul
-Output:
-{
-  "intent": "send_whatsapp_message",
-  "contact": "rahul",
-  "message": "hi"
-}
+If command is normal conversation, Send funny answers:
+{{"intent":"chat","message":"user_message"}}
 
-    ━━━━━━━━━━━━━━━━━━━━
+USER COMMAND:
+{cleaned}
+"""
 
-    9. exit
-
-    Schema:
-    {
-      "intent": "exit"
-    }
-
-    Examples:
-    exit
-    quit
-    goodbye
-    stop jarvis
-
-
-    ━━━━━━━━━━━━━━━━━━━━
-    IMPORTANT RULES
-    ━━━━━━━━━━━━━━━━━━━━
-
-    - Return ONLY valid JSON.
-    - Do NOT use markdown.
-    - Do NOT use ```json.
-    - Never explain anything.
-    - Never invent new intents.
-    - Never invent new fields.
-    - Use ONLY the intents listed above.
-    - Commands may be multilingual.
-    - Return only valid json 
-    - Never use markdown
-    - "gmail", "youtube", "github", "leetcode", and "chatgpt" are websites, NOT apps.
-
-    ━━━━━━━━━━━━━━━━━━━━
-
-    USER COMMAND:
-    {cleaned}
-    """
-    prompt = prompt + f"\n\nUSER COMMAND: {cleaned}"
     try:
 
-        response = client.models.generate_content(
-            model="gemini-2.5-flash",
-            contents=prompt
-        )
-
-        text = response.text.strip()
+        text = ask_ollama(prompt)
 
         print("AI RAW:", text)
 
         data = extract_json(text)
 
+        print("AI PARSED:", data)
+
         return data
+
+    except requests.exceptions.Timeout:
+
+        print("AI Error: Request timed out")
+        return {"intent": "unknown"}
+
+    except requests.exceptions.ConnectionError:
+
+        print("AI Error: Ollama not running")
+        return {"intent": "unknown"}
 
     except Exception as e:
 

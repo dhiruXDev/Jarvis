@@ -2,21 +2,13 @@ from commands.open_app import open_application
 from commands.search_web import search_google
 from commands.whatsapp import send_whatsapp_message
 from commands.coding import open_potd_leetcode, open_potd_gfg 
-from commands.system import shutdown_pc, restart_pc, sleep_pc, lock, check_battery, brightness, volume
+from commands.system import shutdown_pc, restart_pc, sleep_pc, lock, check_battery, brightness, volume, current_date, current_time, mute_volume, unmute_volume, keep_quiet
+from commands.close_app import close_application
+
 def route_command(command):
     if command["intent"] == "whatsapp": 
         if "message" in command and "contact" in command:
             return send_whatsapp_message(command["contact"], command["message"])
-        # elif "contact" in command:
-        #     return send_whatsapp_message(command["contact"])
-        # elif "add" in command:    
-        #     return AddContact()
-        # elif "search" in command:
-        #     return SearchCont(command["search"])
-        # elif "display" in command:
-        #     return Display()
-        # elif "number in contacts" in command:
-        #     return NameIntheContDataBase(command["number in contacts"])
     if command["intent"] == "open_application":
         open_application(command)
     elif command["intent"] == "search_web":
@@ -42,5 +34,18 @@ def route_command(command):
             return brightness(command["brightness"])
         elif "volume" in command:
             return volume(command["volume"])
+        elif "time" in command:
+            return current_time()
+        elif "date" in command:
+            return current_date()
+        elif "mute" in command:
+            return mute_volume()
+        elif "unmute" in command:
+            return unmute_volume()
+        elif "keep quiet" in command:
+            return keep_quiet(command["minutes"])
+    elif command["intent"] == "close_app":
+        target = command.get("target")
+        return close_application(target)
     else:
         print("Command not recognized ")

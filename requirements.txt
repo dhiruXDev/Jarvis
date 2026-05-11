@@ -17,3 +17,7 @@ pyautogui
 # pygetwindow 
 # pyperclip
 playwright
+selenium
+webdriver-manager
+ollama
+rapidfuzz
