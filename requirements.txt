@@ -21,3 +21,4 @@ selenium
 webdriver-manager
 ollama
 rapidfuzz
+python-Levenshtein

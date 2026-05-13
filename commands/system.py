@@ -3,8 +3,11 @@ import psutil
 import screen_brightness_control as sbc
 from datetime import datetime
 import time
-import pyautogui
+
 import pygetwindow as gw
+from fuzzywuzzy import fuzz
+import os
+
 from ctypes import cast, POINTER
 from comtypes import CLSCTX_ALL
 from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
@@ -59,28 +62,6 @@ def lock():
     except Exception as e:
         print(f"Lock Error: {e}")
         return False
-
-
-# def volume(level):
-
-#     try:
-
-#         # Keep value between 0 and 100
-#         level = max(0, min(int(level), 100))
-
-#         # Convert to Windows scale
-#         volume_value = int((level / 100) * 65535)
-
-#         subprocess.run(
-#             ["nircmd.exe", "setsysvolume", str(volume_value)],
-#             check=True
-#         )
-
-#         return True
-
-#     except Exception as e:
-#         print(f"Volume Error: {e}")
-#         return False
 
 def volume(level):
     try:
@@ -364,68 +345,4 @@ def close_window(app_name):
 
         return "Unable to close window"
 
-def take_screenshot(filename):
 
-    try:
-
-        time.sleep(1)  # small delay for clean shot
-
-        img = pyautogui.screenshot()
-
-        img.save(filename)
-
-        return f"Screenshot saved as {filename}"
-
-    except Exception as e:
-
-        print(f"Screenshot Error: {e}")
-
-        return "Unable to take screenshot"
-
-
-def find_file(filename):
-    try:
-        # Check current directory
-        current_dir = os.getcwd()
-        for root, dirs, files in os.walk(current_dir):
-            if filename in files:
-                return os.path.join(root, filename)
-
-        # If not found, check Desktop
-        desktop = os.path.join(os.environ['USERPROFILE'], 'Desktop')
-        for root, dirs, files in os.walk(desktop):
-            if filename in files:
-                return os.path.join(root, filename)
-
-        return None
-    except Exception as e:
-        print(f"File search error: {e}")
-        return None
-
-def open_file(filename):
-    try:
-        # Find the file
-        file_path = find_file(filename)
-
-        if file_path:
-            os.startfile(file_path)
-            return f"Opened {filename}"
-        else:
-            return f"File '{filename}' not found"
-    except Exception as e:
-        print(f"Open file error: {e}")
-        return "Unable to open file"
-
-def delete_file(filename):
-    try:
-        # Find the file
-        file_path = find_file(filename)
-
-        if file_path:
-            os.remove(file_path)
-            return f"Deleted {filename}"
-        else:
-            return f"File '{filename}' not found"
-    except Exception as e:
-        print(f"Delete file error: {e}")
-        return "Unable to delete file"
