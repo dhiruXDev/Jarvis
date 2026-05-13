@@ -1,18 +1,27 @@
 import os
 def find_file(filename):
     try:
-        # Check current directory
-        current_dir = os.getcwd()
-        for root, dirs, files in os.walk(current_dir):
-            if filename in files:
-                return os.path.join(root, filename)
-
-        # If not found, check Desktop
-        desktop = os.path.join(os.environ['USERPROFILE'], 'Desktop')
-        for root, dirs, files in os.walk(desktop):
-            if filename in files:
-                return os.path.join(root, filename)
-
+        filename = filename.lower()
+        search_locations = [
+            os.getcwd(),
+            os.path.join(
+                os.environ['USERPROFILE'],
+                'Desktop'
+            ),
+            os.path.join(
+                os.environ['USERPROFILE'],
+                'Downloads'
+            ),
+            os.path.join(
+                os.environ['USERPROFILE'],
+                'Documents'
+            )
+        ]
+        for location in search_locations:
+            for root, dirs, files in os.walk(location):
+                for file in files:
+                    if filename in file.lower():
+                        return os.path.join(root, file)
         return None
     except Exception as e:
         print(f"File search error: {e}")

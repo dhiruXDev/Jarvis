@@ -1,9 +1,6 @@
 import webbrowser
-import webbrowser
 
 def search_google(query):
     url = f"https://www.google.com/search?q={query}"
     webbrowser.open(url)
 
-def open_youtube():
-    webbrowser.open("https://youtube.com")

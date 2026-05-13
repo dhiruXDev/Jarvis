@@ -79,7 +79,7 @@ def process_command(command):
         # EXIT
         # -------------------------
 
-        if intent.get("intent") == "exit":
+        if intent.get("intent") == "system" and intent.get("action") == "exit":
 
             final = translator.from_english(
                 "Goodbye",

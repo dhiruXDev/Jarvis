@@ -92,3 +92,71 @@
 2026-05-13 17:49:38,478 - INFO - take screenshot as hello
 2026-05-13 17:52:39,856 - INFO - take screenshot as hello
 2026-05-13 17:53:17,647 - INFO - take screenshot as hello
+2026-05-13 17:59:23,241 - INFO - take screenshot as hello
+2026-05-13 18:32:34,400 - INFO - open settings
+2026-05-13 18:34:34,310 - INFO - hi bro
+2026-05-13 18:34:40,319 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-13 18:34:49,947 - INFO - open chrome
+2026-05-13 18:41:23,930 - INFO - big chrome
+2026-05-13 18:41:29,322 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-13 18:44:43,102 - INFO - open youtube
+2026-05-13 18:48:56,608 - INFO - youtube open jara
+2026-05-13 18:49:02,577 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-13 18:51:26,049 - INFO - youtube open jara
+2026-05-13 18:51:26,962 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-13 18:51:38,688 - INFO - python tutorials
+2026-05-13 18:51:43,581 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-13 18:55:25,553 - INFO - open youtube
+2026-05-13 18:55:49,456 - INFO - open youtube pe python tutorials
+2026-05-13 18:57:42,966 - INFO - play lamborgini song
+2026-05-13 18:57:48,437 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-13 18:59:32,069 - INFO - brightness 10
+2026-05-13 18:59:32,346 - WARNING - exception parsing edid str for DISPLAY\AUO7EAD\4&300ab7d&0&UID8388688_0 - EDIDParseError: parsed EDID returned invalid display name
+2026-05-13 18:59:37,635 - INFO - brightness 70
+2026-05-13 18:59:37,835 - WARNING - exception parsing edid str for DISPLAY\AUO7EAD\4&300ab7d&0&UID8388688_0 - EDIDParseError: parsed EDID returned invalid display name
+2026-05-13 18:59:43,706 - INFO - volume 50
+2026-05-13 19:08:00,772 - INFO - open youtube
+2026-05-13 19:08:34,889 - INFO - how much is the battery
+2026-05-13 19:16:43,394 - INFO - increase the volume
+2026-05-13 19:16:49,040 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-13 19:17:01,018 - INFO - unmute the volume
+2026-05-13 19:19:34,208 - INFO - unmute cry
+2026-05-13 19:19:54,264 - INFO - unmute cry
+2026-05-13 19:22:07,323 - INFO - mute cry
+2026-05-13 19:23:14,192 - INFO - mute cry
+2026-05-13 19:43:10,618 - INFO - volume 80
+2026-05-13 19:55:25,142 - INFO - increase volume
+2026-05-13 19:57:05,699 - INFO - decrease volume
+2026-05-13 19:57:38,931 - INFO - open file resumeai
+2026-05-13 20:04:23,267 - INFO - volume check
+2026-05-13 20:04:30,312 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-13 20:05:00,937 - INFO - check volume
+2026-05-13 20:08:03,520 - INFO - check volume
+2026-05-13 20:09:26,978 - INFO - check volume
+2026-05-13 20:10:05,994 - INFO - decrease volume
+2026-05-13 20:10:19,918 - INFO - set volume 50
+2026-05-13 20:10:37,301 - INFO - decrease brightness
+2026-05-13 20:10:37,474 - WARNING - exception parsing edid str for DISPLAY\AUO7EAD\4&300ab7d&0&UID8388688_0 - EDIDParseError: parsed EDID returned invalid display name
+2026-05-13 20:10:51,664 - INFO - get brightness
+2026-05-13 20:10:59,834 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-13 20:11:32,251 - INFO - check brightness
+2026-05-13 20:11:32,378 - WARNING - exception parsing edid str for DISPLAY\AUO7EAD\4&300ab7d&0&UID8388688_0 - EDIDParseError: parsed EDID returned invalid display name
+2026-05-13 20:11:45,078 - INFO - lock my pc
+2026-05-13 20:11:47,914 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-13 20:12:15,399 - INFO - lock pc
+2026-05-13 20:12:27,537 - INFO - check battery
+2026-05-13 20:12:35,905 - INFO - maximize window
+2026-05-13 20:12:50,725 - INFO - maximize window antigravity
+2026-05-13 20:13:03,658 - INFO - find file resumeai
+2026-05-13 20:13:18,708 - INFO - open file resumeai.pdf
+2026-05-13 20:13:29,768 - INFO - open file resumeai
+2026-05-13 20:13:59,843 - INFO - take screenshot
+2026-05-13 20:14:09,678 - INFO - search apple
+2026-05-13 20:14:22,095 - INFO - play song play song
+2026-05-13 20:15:08,157 - INFO - play 8 parche
+2026-05-13 20:15:29,548 - INFO - whatsapp utkarsh hi
+2026-05-13 20:17:30,424 - INFO - what is the brightness
+2026-05-13 20:17:30,958 - WARNING - exception parsing edid str for DISPLAY\AUO7EAD\4&300ab7d&0&UID8388688_0 - EDIDParseError: parsed EDID returned invalid display name
+2026-05-13 20:18:08,810 - INFO - open file documents
+2026-05-13 20:19:11,069 - INFO - open resume
+2026-05-13 20:19:23,461 - INFO - open file resume

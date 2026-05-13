@@ -1,6 +1,10 @@
+# pyrefly: ignore [missing-import]
 from selenium import webdriver
+# pyrefly: ignore [missing-import]
 from selenium.webdriver.common.by import By
+# pyrefly: ignore [missing-import]
 from selenium.webdriver.support.ui import WebDriverWait
+# pyrefly: ignore [missing-import]
 from selenium.webdriver.support import expected_conditions as EC
 import urllib.parse
 
