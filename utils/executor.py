@@ -1,5 +1,7 @@
 # pyrefly: ignore [missing-import]
-import ollama
+from commands.productivity.notes import open_notepad, read_notepad
+# pyrefly: ignore [missing-import]
+import ollama  
 
 from commands.apps.open_app import open_application
 from commands.apps.close_app import close_application
@@ -19,7 +21,11 @@ from commands.coding import open_potd_leetcode, open_potd_gfg
 from core.task_manager import task_manager
 from modules.agent.worker import handle_agentic_task
 from commands.handlers.chat_handler import handle_chat
-
+from commands.productivity.notes import read_notepad, open_notepad, write_note, append_note, save_note, clear_notepad, open_notepad, close_notepad
+from commands.networks.bluetooth import show_bluetooth_devices, connect_bluetooth_device, disconnect_bluetooth_device, turn_on_bluetooth, turn_off_bluetooth, get_connected_devices, open_bluetooth_settings
+from commands.networks.wifi import turn_on_wifi, turn_off_wifi, show_wifi_password, connect_wifi, show_wifi_networks, connect_wifi_password, show_wifi_settings, disconnect_wifi, check_wifi_status
+from commands.networks.hotspot import turn_on_hotspot, turn_off_hotspot, show_hotspot_password, connect_hotspot, open_hotspot_settings, disconnect_hotspot, check_hotspot_status
+from commands.networks.internet_speed import check_internet_speed, ping_google
 
 def execute(intent, lang=None):
     print(f"[EXECUTOR] Intent: {intent}")
@@ -196,6 +202,97 @@ def execute(intent, lang=None):
     elif command_type == "chat":
         message = intent.get("message", "")
         return handle_chat(message)
+
+    # =========================
+    # BLUETOOTH
+    # =========================
+    elif command_type == "bluetooth":
+        if action in ("show", "show_devices"):
+            return show_bluetooth_devices()
+        elif action in ("settings", "open_settings"): 
+            return open_bluetooth_settings()
+        elif action in ("connect", "connect_device"):
+            return connect_bluetooth_device(intent.get("device_name", ""))
+        elif action == "turn_on":
+            return turn_on_bluetooth()
+        elif action == "turn_off":
+            return turn_off_bluetooth()
+        elif action in ("disconnect", "disconnect_device"):
+            return disconnect_bluetooth_device(intent.get("device_name", ""))
+        elif action == "get_connected_devices":
+            return get_connected_devices()
+
+    # =========================
+    # NOTES
+    # =========================
+    elif command_type == "note":
+        if action == "open":
+            return open_notepad()
+        elif action == "write":
+            return write_note(intent.get("content", ""))
+        elif action == "append":
+            return append_note(intent.get("content", ""))
+        elif action == "save":
+            return save_note(intent.get("filename", "note.txt"))
+        elif action == "read":
+            return read_notepad()
+        elif action == "clear":
+            return clear_notepad()
+        elif action == "close":
+            return close_notepad()
+
+    # =========================
+    # WIFI
+    # =========================
+    elif command_type == "wifi":
+        if action == "turn_on":
+            return turn_on_wifi()
+        elif action == "turn_off":
+            return turn_off_wifi()
+        elif action == "show_password":
+            return show_wifi_password()
+        elif action == "connect":
+            return connect_wifi(intent.get("ssid", ""))
+        elif action == "show_networks":
+            return show_wifi_networks()
+        elif action == "connect_password":
+            return connect_wifi_password(intent.get("ssid", ""), intent.get("password", ""))
+        elif action == "open_settings":
+            return show_wifi_settings()
+        elif action == "disconnect":
+            return disconnect_wifi()
+        elif action == "check_status":
+            return check_wifi_status()
+
+    # =========================
+    # INTERNET SPEED TEST 
+    # =========================
+    elif command_type == "internet_speed":
+        if action in ("check", "check_speed"):
+            return check_internet_speed()
+        elif action == "ping":
+            return ping_google()
+
+    # =========================
+    # HOTSPOT
+    # =========================
+    elif command_type == "hotspot":
+        if action in ("on", "turn_on"):
+            return turn_on_hotspot()
+        elif action in ("off", "turn_off"):
+            return turn_off_hotspot()
+        elif action == "show_password":
+            return show_hotspot_password()
+        elif action in ("settings", "open_settings"):
+            return open_hotspot_settings()
+        elif action == "check_status":
+            return check_hotspot_status()
+        elif action == "disconnect":
+            return disconnect_hotspot()
+        elif action == "connect":
+            return connect_hotspot(intent.get("ssid", ""), intent.get("password", ""))
+
+
 
     # =========================
     # SYSTEM EXIT / UNKNOWN

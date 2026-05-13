@@ -1,3 +1,4 @@
+# pyrefly: ignore [missing-import]
 import pygetwindow as gw
 import pyautogui
 import time

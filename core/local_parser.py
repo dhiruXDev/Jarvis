@@ -1,3 +1,4 @@
+from ast import Return
 import re
 
 def local_parse(command):
@@ -40,6 +41,89 @@ def local_parse(command):
         query = text.replace("open ", "").replace("search ", "").replace("play ", "").replace("youtube", "").replace(" on ", " ").replace(" pe ", " ").strip()
         if query and query != "youtube":
             return {"intent": "media", "action": "play_song", "song_name": query}
+
+    # =========================
+    # BLUETOOTH
+    # =========================
+    if "bluetooth" in text:
+        if "show" in text:
+            return {"intent": "bluetooth", "action": "show_devices"}
+        if "settings" in text:
+            return {"intent": "bluetooth", "action": "open_settings"}
+        if "disconnect" in text:
+            return {"intent": "bluetooth", "action": "disconnect_device", "device_name": text.replace("disconnect bluetooth device", "").replace("disconnect", "").replace("bluetooth", "").strip()}
+        if "connected" in text:
+            return {"intent": "bluetooth", "action": "get_connected_devices"}
+        if "connect" in text:
+            return {"intent": "bluetooth", "action": "connect_device", "device_name": text.replace("connect bluetooth device", "").replace("connect", "").replace("bluetooth", "").strip()}
+        if "off" in text.split() or "disable" in text:
+            return {"intent": "bluetooth", "action": "turn_off"}
+        if "on" in text.split() or "enable" in text:
+            return {"intent": "bluetooth", "action": "turn_on"}
+
+    # =========================
+    # WIFI
+    # =========================
+    if "wifi" in text:
+        if "off" in text.split() or "disable" in text:
+            return {"intent": "wifi", "action": "turn_off"}
+        if "on" in text.split() or "enable" in text:
+            return {"intent": "wifi", "action": "turn_on"}
+        if "password" in text:
+            if "connect" in text:
+                return {"intent": "wifi", "action": "connect_password", "ssid": text.replace("connect to wifi", "").replace("connect", "").replace("password", "").replace("wifi", "").strip()}
+            return {"intent": "wifi", "action": "show_password"}
+        if "networks" in text or "available" in text:
+            return {"intent": "wifi", "action": "show_networks"}
+        if "settings" in text:
+            return {"intent": "wifi", "action": "open_settings"}
+        if "disconnect" in text:
+            return {"intent": "wifi", "action": "disconnect"}
+        if "status" in text:
+            return {"intent": "wifi", "action": "check_status"}
+        if "connect" in text:
+            return {"intent": "wifi", "action": "connect", "ssid": text.replace("connect to wifi", "").replace("connect", "").replace("wifi", "").strip()}
+
+    # =========================
+    # HOTSPOT
+    # =========================
+    if "hotspot" in text:
+        if "on" in text.split() or "enable" in text:
+            return {"intent": "hotspot", "action": "turn_on"}
+        if "off" in text.split() or "disable" in text:
+            return {"intent": "hotspot", "action": "turn_off"}
+        if "password" in text:
+            return {"intent": "hotspot", "action": "show_password"}
+        if "settings" in text:
+            return {"intent": "hotspot", "action": "open_settings"}
+        if "disconnect" in text:
+            return {"intent": "hotspot", "action": "disconnect"}
+        if "status" in text:
+            return {"intent": "hotspot", "action": "check_status"}
+        if "connect" in text:
+            return {"intent": "hotspot", "action": "connect", "ssid": text.replace("connect to hotspot", "").replace("connect", "").replace("hotspot", "").strip()}
+
+    # =========================
+    # NOTES 
+    # =========================
+    if "note" in text:
+        if "open" in text:
+            return {"intent": "note", "action": "open"}
+        elif "write" in text or "type" in text:
+            content = text.replace("write on notepad", "").replace("write in notepad", "").replace("write note", "").replace("write", "").replace("type on notepad", "").replace("type in notepad", "").replace("type note", "").replace("type", "").strip()
+            return {"intent": "note", "action": "write", "content": content}
+        elif "add" in text or "append" in text:
+            content = text.replace("add to notepad", "").replace("add to note", "").replace("add note", "").replace("append to notepad", "").replace("append note", "").replace("add", "").replace("append", "").strip()
+            return {"intent": "note", "action": "append", "content": content}
+        elif "save" in text:
+            filename = text.replace("save note as", "").replace("save note", "").replace("save", "").strip()
+            return {"intent": "note", "action": "save", "filename": filename if filename else "note.txt"}
+        elif "read" in text:
+            return {"intent": "note", "action": "read"}
+        elif "clear" in text:
+            return {"intent": "note", "action": "clear"}
+        elif "close" in text:
+            return {"intent": "note", "action": "close"}
 
     # =========================
     # OPEN APP
@@ -152,6 +236,22 @@ def local_parse(command):
     # =========================
     if text in ["exit", "quit", "stop jarvis", "goodbye"]:
         return {"intent": "system", "action": "exit"}
+
+
+
+    # =========================
+    # INTERNET SPEED
+    # =========================
+    if "internet" in text and "speed" in text:
+        return {"intent": "internet_speed", "action": "check_speed"}
+    if "ping" in text and "google" in text:
+        return {"intent": "internet_speed", "action": "ping_google"}
+    if text.startswith("check internet speed"):
+        return {"intent": "internet_speed", "action": "check_speed"}
+    if text.startswith("ping google"):
+        return {"intent": "internet_speed", "action": "ping_google"}
+
+
 
     # =========================
     # AGENTIC TASK

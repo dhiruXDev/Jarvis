@@ -22,3 +22,5 @@ webdriver-manager
 ollama
 rapidfuzz
 python-Levenshtein
+speedtest-cli
+speedtest
