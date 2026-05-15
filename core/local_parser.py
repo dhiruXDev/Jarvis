@@ -126,6 +126,23 @@ def local_parse(command):
             return {"intent": "note", "action": "close"}
 
     # =========================
+    # CODING ON LEETCODE 
+    # =========================
+    if "leetcode" in text:
+        if "potd" in text or "problem of the day" in text or "problem of day" in text: 
+            return {"intent": "leetcode", "action": "potd"} 
+        if "write code" in text:
+            return {"intent": "leetcode", "action": "write_code"}
+        if "analyze result" in text:
+            return {"intent": "leetcode", "action": "analyze_result"}
+        if "extract problem" in text:
+            return {"intent": "leetcode", "action": "extract_problem"}
+        if "submit solution" in text:
+            return {"intent": "leetcode", "action": "submit_solution"}
+        if "solve problem" in text:
+            return {"intent": "leetcode", "action": "solve_problem"}
+
+    # =========================
     # OPEN APP
     # =========================
     if text.startswith("open "):
@@ -252,6 +269,34 @@ def local_parse(command):
         return {"intent": "internet_speed", "action": "ping_google"}
 
 
+
+    # =========================
+    # CLIPBOARD
+    # =========================
+    if "copy " in text:
+        return {"intent": "clipboard", "action": "copy", "text": text.replace("copy ", "").strip()}
+    if "paste" in text or "paset" in text or "paste it" in text or "paste this" in text or "past text" in text:
+        return {"intent": "clipboard", "action": "paste"}
+    if "clear clipboard" in text or "copy clear" in text or "clear clip" in text or "clipboard clear" in text:
+        return {"intent": "clipboard", "action": "clear"}
+
+    # =========================
+    # REMINDER
+    # =========================
+    if "remind me to " in text:
+        cleaned = text.replace("remind me to ", "").strip()
+        parts = cleaned.split(" in ")
+        if len(parts) == 2:
+            message = parts[0].strip()
+            time_info = parts[1].strip()
+            seconds = 0
+            if "minute" in time_info:
+                seconds = int(time_info.replace("minute", "").replace("s", "").strip()) * 60
+            elif "hour" in time_info:
+                seconds = int(time_info.replace("hour", "").replace("s", "").strip()) * 3600
+            elif "second" in time_info:
+                seconds = int(time_info.replace("second", "").replace("s", "").strip())
+            return {"intent": "reminder", "action": "set", "message": message, "seconds": seconds}
 
     # =========================
     # AGENTIC TASK

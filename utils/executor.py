@@ -17,7 +17,6 @@ from commands.system.brightness import brightness, brightness_up, brightness_dow
 from commands.system.DateTime import current_date, current_time
 from commands.system.windows import minimize_window, maximize_window, close_window
 from commands.system.screenshots import take_screenshot, open_screenshot, delete_screenshot
-from commands.coding import open_potd_leetcode, open_potd_gfg
 from core.task_manager import task_manager
 from modules.agent.worker import handle_agentic_task
 from commands.handlers.chat_handler import handle_chat
@@ -26,6 +25,14 @@ from commands.networks.bluetooth import show_bluetooth_devices, connect_bluetoot
 from commands.networks.wifi import turn_on_wifi, turn_off_wifi, show_wifi_password, connect_wifi, show_wifi_networks, connect_wifi_password, show_wifi_settings, disconnect_wifi, check_wifi_status
 from commands.networks.hotspot import turn_on_hotspot, turn_off_hotspot, show_hotspot_password, connect_hotspot, open_hotspot_settings, disconnect_hotspot, check_hotspot_status
 from commands.networks.internet_speed import check_internet_speed, ping_google
+from commands.productivity.clipboard import copy_to_clipboard, paste_from_clipboard, clear_clipboard
+from commands.productivity.reminders import set_reminder
+# from commands.coding_agent.open_potd import open_leetcode_potd
+# from commands.coding_agent.analyze_result import analyze
+# from commands.coding_agent.write_code import write_code 
+# from commands.coding_agent.extract_problem import extract_problem
+# from commands.coding_agent.submit_solution import submit
+# from commands.coding_agent.solve_problem import solve_problem
 
 def execute(intent, lang=None):
     print(f"[EXECUTOR] Intent: {intent}")
@@ -292,6 +299,43 @@ def execute(intent, lang=None):
         elif action == "connect":
             return connect_hotspot(intent.get("ssid", ""), intent.get("password", ""))
 
+
+    # =========================
+    # CLIPBOARD
+    # =========================
+    elif command_type == "clipboard":
+        if action == "copy":
+            return copy_to_clipboard(intent.get("text", ""))
+        elif action == "paste":
+            return paste_from_clipboard()
+        elif action == "clear":
+            return clear_clipboard()   
+
+    # =========================
+    # REMINDER
+    # =========================
+    elif command_type == "reminder":
+        if action == "set":
+            return set_reminder(intent.get("message", ""), intent.get("seconds", 0))
+
+    # =========================
+    # CODING
+    # =========================
+    # elif command_type == "leetcode":
+    #     if action == "potd":
+    #         page, browser, playwright = open_leetcode_potd()
+    #         problem = extract_problem(page)
+    #         if not problem:
+    #             return "Failed to extract problem from LeetCode"
+    #         code = solve_problem(problem["description"])
+    #         success = write_code(page, code)
+    #         if not success:
+    #             return "Failed to write code"
+    #         submit_success = submit(page)
+    #         if not submit_success:
+    #             return "Failed to submit code"
+    #         result = analyze(page)
+    #         return result
 
 
     # =========================
