@@ -1,0 +1,3 @@
+from memory.long_term.manager import LongTermMemoryManager
+
+__all__ = ["LongTermMemoryManager"]

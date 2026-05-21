@@ -293,3 +293,13 @@
 2026-05-14 16:11:11,276 - INFO - goodbye
 2026-05-14 16:11:51,703 - INFO - volume reduce
 2026-05-14 16:12:01,698 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-21 11:23:25,771 - INFO - bye
+2026-05-21 11:23:25,821 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 404 Not Found"
+2026-05-21 11:23:25,825 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 404 Not Found"
+2026-05-21 11:56:50,756 - INFO - what is linked list
+2026-05-21 11:56:50,764 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 404 Not Found"
+2026-05-21 11:56:50,771 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 404 Not Found"
+2026-05-21 12:17:38,380 - INFO - check internet speeed
+2026-05-21 12:17:47,799 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-21 12:18:40,063 - INFO - show wifi
+2026-05-21 12:18:42,408 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
