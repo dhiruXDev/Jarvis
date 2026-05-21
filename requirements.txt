@@ -24,3 +24,4 @@ rapidfuzz
 python-Levenshtein
 speedtest-cli
 speedtest
+pyperclip

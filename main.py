@@ -56,24 +56,32 @@ def process_command(command):
     try:
 
         # -------------------------
-        # LANGUAGE DETECTION
+        # NORMALIZE & FAST PARSE
         # -------------------------
+        normalized = translator.normalize_hinglish(command)
+        from core.local_parser import local_parse
+        intent = local_parse(normalized)
+        lang = "en"
 
-        lang = translator.detect_lang(command)
+        if not intent:
+            # -------------------------
+            # LANGUAGE DETECTION & TRANSLATION
+            # -------------------------
+            lang = translator.detect_lang(normalized)
 
-        # -------------------------
-        # TRANSLATE TO ENGLISH
-        # -------------------------
-        if lang != "EN":
-            text_en = translator.to_english(command)
-            print("Translated:", text_en)
-        # -------------------------
-        # AI INTENT PARSING
-        # -------------------------
+            if lang != "en":
+                text_en = translator.to_english(command)
+                print("Translated:", text_en)
+            else:
+                text_en = normalized
 
-        intent = process(text_en)
-
-        print("Intent:", intent)
+            # -------------------------
+            # AI INTENT PARSING
+            # -------------------------
+            intent = process(text_en)
+            print("Intent:", intent)
+        else:
+            print("Intent (Fast Track):", intent)
 
         # -------------------------
         # EXIT

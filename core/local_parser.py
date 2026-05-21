@@ -128,9 +128,13 @@ def local_parse(command):
     # =========================
     # CODING ON LEETCODE 
     # =========================
-    if "leetcode" in text:
+    if "leetcode" in text or "potd" in text or "problem of the day" in text:
+        if "open" in text and ("potd" in text or "problem of the day" in text):
+            return {"intent": "leetcode", "action": "open_potd"}
+        if "solve" in text and ("potd" in text or "problem of the day" in text):
+            return {"intent": "leetcode", "action": "solve_potd"}
         if "potd" in text or "problem of the day" in text or "problem of day" in text: 
-            return {"intent": "leetcode", "action": "potd"} 
+            return {"intent": "leetcode", "action": "open_potd"} 
         if "write code" in text:
             return {"intent": "leetcode", "action": "write_code"}
         if "analyze result" in text:

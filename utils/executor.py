@@ -27,12 +27,12 @@ from commands.networks.hotspot import turn_on_hotspot, turn_off_hotspot, show_ho
 from commands.networks.internet_speed import check_internet_speed, ping_google
 from commands.productivity.clipboard import copy_to_clipboard, paste_from_clipboard, clear_clipboard
 from commands.productivity.reminders import set_reminder
-# from commands.coding_agent.open_potd import open_leetcode_potd
-# from commands.coding_agent.analyze_result import analyze
-# from commands.coding_agent.write_code import write_code 
-# from commands.coding_agent.extract_problem import extract_problem
-# from commands.coding_agent.submit_solution import submit
-# from commands.coding_agent.solve_problem import solve_problem
+from commands.coding_agent.open_potd import open_leetcode_potd
+from commands.coding_agent.analyze_result import analyze
+from commands.coding_agent.write_code import write_code 
+from commands.coding_agent.extract_problem import extract_problem
+from commands.coding_agent.submit_solution import submit
+from commands.coding_agent.solve_problem import solve_problem
 
 def execute(intent, lang=None):
     print(f"[EXECUTOR] Intent: {intent}")
@@ -321,21 +321,25 @@ def execute(intent, lang=None):
     # =========================
     # CODING
     # =========================
-    # elif command_type == "leetcode":
-    #     if action == "potd":
-    #         page, browser, playwright = open_leetcode_potd()
-    #         problem = extract_problem(page)
-    #         if not problem:
-    #             return "Failed to extract problem from LeetCode"
-    #         code = solve_problem(problem["description"])
-    #         success = write_code(page, code)
-    #         if not success:
-    #             return "Failed to write code"
-    #         submit_success = submit(page)
-    #         if not submit_success:
-    #             return "Failed to submit code"
-    #         result = analyze(page)
-    #         return result
+    elif command_type == "leetcode":
+        if action == "open_potd":
+            page, browser, playwright = open_leetcode_potd()
+            return "LeetCode Problem of the Day opened"
+            
+        elif action == "solve_potd":
+            page, browser, playwright = open_leetcode_potd()
+            problem = extract_problem(page)
+            if not problem:
+                return "Failed to extract problem from LeetCode"
+            code = solve_problem(problem["description"])
+            success = write_code(page, code)
+            if not success:
+                return "Failed to write code"
+            submit_success = submit(page)
+            if not submit_success:
+                return "Failed to submit code"
+            result = analyze(page)
+            return result
 
 
     # =========================
