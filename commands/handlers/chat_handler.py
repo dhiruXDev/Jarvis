@@ -53,6 +53,6 @@ Rules:
 
     except Exception as e:
 
-        print("Chat Error:", e)
+        speak("Chat Error:", e)
 
         return "Sorry, I cannot chat right now."

@@ -100,7 +100,7 @@ def detect_lang(text):
 
         detected = detect(text)
 
-        print(f"[LANG DETECTED] {detected}")
+        speak(f"[LANG DETECTED] {detected}")
 
         return detected
 
@@ -145,7 +145,7 @@ def normalize_hinglish(text):
 
             text = f"play {media}"
 
-    print(f"[NORMALIZED] {text}")
+    speak(f"[NORMALIZED] {text}")
 
     return text
 
@@ -170,13 +170,13 @@ def to_english(text):
             target="en"
         ).translate(text)
 
-        print(f"[TRANSLATED] {translated}")
+        speak(f"[TRANSLATED] {translated}")
 
         return translated
 
     except Exception as e:
 
-        print("Translation Error:", e)
+        speak("Translation Error:", e)
 
         return text
 
@@ -210,7 +210,7 @@ def listen():
 
     with sr.Microphone() as source:
 
-        print("🎤 Listening...")
+        speak("🎤 Listening...")
 
         _recognizer.adjust_for_ambient_noise(
             source,
@@ -230,7 +230,7 @@ def listen():
                 language="hi-IN"
             )
 
-            print(f"🧑 User: {text}")
+            speak(f"🧑 User: {text}")
 
             return text
 
@@ -244,7 +244,7 @@ def listen():
 
         except Exception as e:
 
-            print("Mic Error:", e)
+            speak("Mic Error:", e)
 
             return ""
 
@@ -252,6 +252,7 @@ def listen():
 # SPEAK
 # =========================
 
+<<<<<<< HEAD
 # def speak(text, lang="en"):
 # 
 #     try:
@@ -269,3 +270,22 @@ def listen():
 #     except Exception as e:
 # 
 #         print("Speak Error:", e)
+=======
+def speak(text, lang="en"):
+
+    try:
+
+        final_text = from_english(text, lang)
+
+        speak(f"🤖 Jarvis: {final_text}")
+
+        _engine.stop()
+
+        _engine.say(final_text)
+
+        _engine.runAndWait()
+
+    except Exception as e:
+
+        speak("Speak Error:", e)
+>>>>>>> 215477246292bf6fa7caa533fd02bfc4241891b8

@@ -303,6 +303,7 @@
 2026-05-21 12:17:47,799 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
 2026-05-21 12:18:40,063 - INFO - show wifi
 2026-05-21 12:18:42,408 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+<<<<<<< HEAD
 2026-05-22 12:06:53,488 - INFO - social welfare
 2026-05-22 12:07:21,860 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
 2026-05-22 12:09:07,430 - INFO - society gaya
@@ -404,3 +405,83 @@
 2026-05-22 16:45:33,245 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
 2026-05-23 17:09:42,392 - INFO - hi bro how are you
 2026-05-23 17:10:03,877 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+=======
+2026-05-23 22:38:49,976 - INFO - Imported existing <module 'comtypes.gen' from 'D:\\Regular\\Jarvish\\Jarvis\\venv\\Lib\\site-packages\\comtypes\\gen\\__init__.py'>
+2026-05-23 22:38:49,976 - INFO - Using writeable comtypes cache directory: 'D:\Regular\Jarvish\Jarvis\venv\Lib\site-packages\comtypes\gen'
+2026-05-23 22:38:59,659 - INFO - hello jarvis how are you
+2026-05-23 22:39:08,968 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 22:39:21,882 - INFO - hello
+2026-05-23 22:39:23,490 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 22:39:33,043 - INFO - jarvis can you open calculator
+2026-05-23 22:39:42,472 - INFO - jarvis please close this calculator
+2026-05-23 22:39:49,853 - INFO - please close calculator
+2026-05-23 22:40:16,559 - INFO - i am the father of nation
+2026-05-23 22:40:18,729 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 22:40:30,388 - INFO - screenshot
+2026-05-23 22:40:32,514 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 22:40:40,113 - INFO - can you take screenshot
+2026-05-23 22:40:51,225 - INFO - can you open report pod
+2026-05-23 22:41:03,155 - INFO - play some music
+2026-05-23 22:41:48,210 - INFO - can you play long laachi song
+2026-05-23 22:42:07,863 - INFO - can you close the window
+2026-05-23 22:42:26,644 - INFO - can you whatsapp utkarsh
+2026-05-23 22:42:29,143 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 22:43:09,933 - INFO - can you open download
+2026-05-23 23:00:38,002 - INFO - Imported existing <module 'comtypes.gen' from 'D:\\Regular\\Jarvish\\Jarvis\\venv\\Lib\\site-packages\\comtypes\\gen\\__init__.py'>
+2026-05-23 23:00:38,002 - INFO - Using writeable comtypes cache directory: 'D:\Regular\Jarvish\Jarvis\venv\Lib\site-packages\comtypes\gen'
+2026-05-23 23:00:52,481 - INFO - open downloads
+2026-05-23 23:01:04,064 - INFO - open downloads
+2026-05-23 23:01:37,702 - INFO - ludhiana
+2026-05-23 23:01:47,979 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 23:03:43,957 - INFO - Imported existing <module 'comtypes.gen' from 'D:\\Regular\\Jarvish\\Jarvis\\venv\\Lib\\site-packages\\comtypes\\gen\\__init__.py'>
+2026-05-23 23:03:43,957 - INFO - Using writeable comtypes cache directory: 'D:\Regular\Jarvish\Jarvis\venv\Lib\site-packages\comtypes\gen'
+2026-05-23 23:03:52,575 - INFO - can you create an alarm after
+2026-05-23 23:03:54,829 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 23:04:03,808 - INFO - can you set alarm after 4 minutes
+2026-05-23 23:04:06,148 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 23:04:36,817 - INFO - check my internet speed
+2026-05-23 23:05:02,681 - INFO - set a reminder after 5 minutes
+2026-05-23 23:05:05,326 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 23:05:48,591 - INFO - dell battery percentage
+2026-05-23 23:05:56,844 - INFO - tell the brightness
+2026-05-23 23:05:59,030 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 23:06:09,125 - INFO - oil brightness percentage
+2026-05-23 23:06:11,063 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 23:07:07,880 - INFO - tell the volume
+2026-05-23 23:07:09,936 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 23:07:10,942 - INFO - this is the volume
+2026-05-23 23:07:13,922 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 23:08:16,047 - INFO - set volume
+2026-05-23 23:08:18,013 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 23:16:40,236 - INFO - Imported existing <module 'comtypes.gen' from 'D:\\Regular\\Jarvish\\Jarvis\\venv\\Lib\\site-packages\\comtypes\\gen\\__init__.py'>
+2026-05-23 23:16:40,236 - INFO - Using writeable comtypes cache directory: 'D:\Regular\Jarvish\Jarvis\venv\Lib\site-packages\comtypes\gen'
+2026-05-23 23:16:50,775 - INFO - open downloads
+2026-05-23 23:16:59,042 - INFO - open updated resume file
+2026-05-23 23:17:06,648 - INFO - open deep learning
+2026-05-23 23:17:14,862 - INFO - open deep learning file
+2026-05-23 23:17:27,194 - INFO - close this folder
+2026-05-23 23:40:07,775 - INFO - Imported existing <module 'comtypes.gen' from 'D:\\Regular\\Jarvish\\Jarvis\\venv\\Lib\\site-packages\\comtypes\\gen\\__init__.py'>
+2026-05-23 23:40:07,775 - INFO - Using writeable comtypes cache directory: 'D:\Regular\Jarvish\Jarvis\venv\Lib\site-packages\comtypes\gen'
+2026-05-23 23:40:19,820 - INFO - tell me the latest
+2026-05-23 23:40:26,990 - INFO - news
+2026-05-23 23:40:32,558 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 23:40:34,300 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 23:40:53,208 - INFO - i want
+2026-05-23 23:40:55,072 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 23:44:19,461 - INFO - Imported existing <module 'comtypes.gen' from 'D:\\Regular\\Jarvish\\Jarvis\\venv\\Lib\\site-packages\\comtypes\\gen\\__init__.py'>
+2026-05-23 23:44:19,461 - INFO - Using writeable comtypes cache directory: 'D:\Regular\Jarvish\Jarvis\venv\Lib\site-packages\comtypes\gen'
+2026-05-23 23:44:27,431 - INFO - news headlines
+2026-05-23 23:45:05,930 - INFO - open download
+2026-05-23 23:45:42,919 - INFO - open download
+2026-05-24 10:44:46,134 - INFO - Imported existing <module 'comtypes.gen' from 'D:\\Regular\\Jarvish\\Jarvis\\venv\\Lib\\site-packages\\comtypes\\gen\\__init__.py'>
+2026-05-24 10:44:46,134 - INFO - Using writeable comtypes cache directory: 'D:\Regular\Jarvish\Jarvis\venv\Lib\site-packages\comtypes\gen'
+2026-05-24 10:52:20,729 - INFO - Imported existing <module 'comtypes.gen' from 'D:\\Regular\\Jarvish\\Jarvis\\venv\\Lib\\site-packages\\comtypes\\gen\\__init__.py'>
+2026-05-24 10:52:20,730 - INFO - Using writeable comtypes cache directory: 'D:\Regular\Jarvish\Jarvis\venv\Lib\site-packages\comtypes\gen'
+2026-05-24 10:53:50,960 - INFO - compatibility
+2026-05-24 10:54:02,247 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-24 10:55:36,995 - INFO - 67 episode 5
+2026-05-24 10:55:39,722 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-24 10:56:41,661 - INFO - Imported existing <module 'comtypes.gen' from 'D:\\Regular\\Jarvish\\Jarvis\\venv\\Lib\\site-packages\\comtypes\\gen\\__init__.py'>
+2026-05-24 10:56:41,661 - INFO - Using writeable comtypes cache directory: 'D:\Regular\Jarvish\Jarvis\venv\Lib\site-packages\comtypes\gen'
+2026-05-24 10:57:36,390 - INFO - what is the news headline
+>>>>>>> 215477246292bf6fa7caa533fd02bfc4241891b8

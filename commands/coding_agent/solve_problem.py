@@ -27,7 +27,7 @@ def solve_problem(prompt):
             },
         ],
     )
-    print("Solution generated")
+    speak("Solution generated")
     
     content = response['message']['content']
     import re

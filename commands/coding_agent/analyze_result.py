@@ -9,7 +9,7 @@ def analyze(page):
         result_element = page.locator('.text-green-s, .text-red-s, [data-e2e-locator="submission-result"]')
         if result_element.count() > 0:
             result_text = result_element.first.inner_text()
-            print(f"Result analyzed: {result_text}")
+            speak(f"Result analyzed: {result_text}")
             if "Accepted" in result_text:
                 return "The solution was accepted! Great job!"
             else:
@@ -17,5 +17,5 @@ def analyze(page):
         
         return "Could not determine the result of the submission. You may need to check it manually."
     except Exception as e:
-        print(f"Analyze Error: {e}")
+        speak(f"Analyze Error: {e}")
         return "An error occurred while analyzing the result."

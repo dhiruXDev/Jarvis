@@ -41,7 +41,7 @@ def minimize_window(app_name):
 
     except Exception as e:
 
-        print(f"Minimize Error: {e}")
+        speak(f"Minimize Error: {e}")
 
         return "Unable to minimize window"
 
@@ -84,7 +84,7 @@ def maximize_window(app_name):
 
     except Exception as e:
 
-        print(f"Maximize Error: {e}")
+        speak(f"Maximize Error: {e}")
 
         return "Unable to maximize window"
 
@@ -110,6 +110,6 @@ def close_window(app_name):
 
     except Exception as e:
 
-        print(f"Close Error: {e}")
+        speak(f"Close Error: {e}")
 
         return "Unable to close window"

@@ -23,7 +23,20 @@ def local_parse(command):
         return {"intent": "file", "action": "open", "filename": text.replace("open file ", "").strip()}
     if text.startswith("delete file "):
         return {"intent": "file", "action": "delete", "filename": text.replace("delete file ", "").strip()}
-
+    # =========================
+    # FILE MANAGER - FOLDERS OPEN
+    # =========================
+    if text.startswith("open downloads"):
+        return {"intent": "file", "action": "open_downloads"}
+    if text.startswith("open desktop"):
+        return {"intent": "file", "action": "open_desktop"}
+    if text.startswith("open documents"):
+        return {"intent": "file", "action": "open_documents"}
+    if text.startswith("open drives"):
+        return {"intent": "file", "action": "open_drives"}
+    if text.startswith("open "):
+        return {"intent": "file", "action": "open_folder", "folder_name": text.replace("open ", "").strip()}
+    
     # =========================
     # OPEN WEBSITES
     # =========================
@@ -285,23 +298,60 @@ def local_parse(command):
         return {"intent": "clipboard", "action": "clear"}
 
     # =========================
-    # REMINDER
+    # REMINDER / ALARM / TIMER
     # =========================
-    if "remind me to " in text:
-        cleaned = text.replace("remind me to ", "").strip()
-        parts = cleaned.split(" in ")
-        if len(parts) == 2:
-            message = parts[0].strip()
-            time_info = parts[1].strip()
+    if any(k in text for k in ["remind", "alarm", "timer"]):
+        # Match time patterns like "in 5 minutes", "after 10 seconds", "for 1 hour"
+        time_match = re.search(r"\b(in|after|for)\s+(\d+)\s*(minute|min|second|sec|hour|hr)s?\b", text)
+        if time_match:
+            val = int(time_match.group(2))
+            unit = time_match.group(3).lower()
             seconds = 0
-            if "minute" in time_info:
-                seconds = int(time_info.replace("minute", "").replace("s", "").strip()) * 60
-            elif "hour" in time_info:
-                seconds = int(time_info.replace("hour", "").replace("s", "").strip()) * 3600
-            elif "second" in time_info:
-                seconds = int(time_info.replace("second", "").replace("s", "").strip())
-            return {"intent": "reminder", "action": "set", "message": message, "seconds": seconds}
-
+            if "hour" in unit or "hr" in unit:
+                seconds = val * 3600
+            elif "minute" in unit or "min" in unit:
+                seconds = val * 60
+            else:
+                seconds = val
+                
+            # Extract and clean reminder message
+            msg = text
+            msg = re.sub(r"\b(in|after|for)\s+\d+\s*(minute|min|second|sec|hour|hr)s?\b", "", msg)
+            msg = msg.replace("set a reminder", "").replace("set reminder", "")
+            msg = msg.replace("set an alarm", "").replace("set alarm", "")
+            msg = msg.replace("set a timer", "").replace("set timer", "")
+            msg = msg.replace("remind me to", "").replace("remind me", "")
+            msg = msg.strip()
+            
+            # Remove leading "to " if present
+            if msg.startswith("to "):
+                msg = msg[3:].strip()
+                
+            if not msg:
+                msg = "Timer finished"
+                
+            return {"intent": "reminder", "action": "set", "message": msg, "seconds": seconds}
+            
+        # Fallback to old format if no regex match
+        if "remind me to " in text:
+            cleaned = text.replace("remind me to ", "").strip()
+            parts = cleaned.split(" in ")
+            if len(parts) == 2:
+                message = parts[0].strip()
+                time_info = parts[1].strip()
+                seconds = 0
+                if "minute" in time_info:
+                    seconds = int(time_info.replace("minute", "").replace("s", "").strip()) * 60
+                elif "hour" in time_info:
+                    seconds = int(time_info.replace("hour", "").replace("s", "").strip()) * 3600
+                elif "second" in time_info:
+                    seconds = int(time_info.replace("second", "").replace("s", "").strip())
+                return {"intent": "reminder", "action": "set", "message": message, "seconds": seconds}
+    # ========================
+    # news
+    # ========================
+    if text.startswith("news") or "news" in text:
+        return {"intent": "news", "action": "get_headlines"}
     # =========================
     # AGENTIC TASK
     # =========================

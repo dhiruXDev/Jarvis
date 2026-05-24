@@ -8,7 +8,9 @@ def set_reminder(message, seconds):
 
         time.sleep(seconds)
 
-        print(f"\nREMINDER: {message}")
+        speak(f"\nREMINDER: {message}")
+        from core.speaker import speak
+        speak(f"Reminder: {message}")
 
     thread = threading.Thread(
         target=reminder

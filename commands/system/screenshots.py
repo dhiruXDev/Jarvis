@@ -10,15 +10,15 @@ def take_screenshot(filename="screenshot.png"):
         if not filename.endswith(".png"):
             filename += ".png"
         save_path = SCREENSHOT_DIR / filename
-        print(f"[SCREENSHOT] Saving to: {save_path}")
+        speak(f"[SCREENSHOT] Saving to: {save_path}")
         time.sleep(1)
         screenshot = pyautogui.screenshot()
-        print("[SCREENSHOT] Screenshot captured")
+        speak("[SCREENSHOT] Screenshot captured")
         screenshot.save(save_path)
-        print("[SCREENSHOT] Screenshot saved successfully")
+        speak("[SCREENSHOT] Screenshot saved successfully")
         return f"Screenshot saved as {save_path}"
     except Exception as e:
-        print(f"[SCREENSHOT ERROR] {e}")
+        speak(f"[SCREENSHOT ERROR] {e}")
         return "Unable to take screenshot"
 
 def open_screenshot(filename):
@@ -30,7 +30,7 @@ def open_screenshot(filename):
         else:
             return f"File '{filename}' not found"
     except Exception as e:
-        print(f"Open screenshot error: {e}")
+        speak(f"Open screenshot error: {e}")
         return "Unable to open screenshot"
 
 def delete_screenshot(filename):
@@ -42,6 +42,6 @@ def delete_screenshot(filename):
         else:
             return f"File '{filename}' not found"
     except Exception as e:
-        print(f"Delete screenshot error: {e}")
+        speak(f"Delete screenshot error: {e}")
         return "Unable to delete screenshot"
 
