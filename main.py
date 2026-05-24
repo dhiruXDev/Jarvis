@@ -29,22 +29,15 @@ stop_event = Event()
 # ==========================================
 
 def listener_loop():
-
     while not stop_event.is_set():
-
         try:
-
             command = listen()
-
             if command:
-
-                print(f"\nUser: {command}")
-
+                speak(f"\nUser: {command}")
                 command_queue.put(command)
 
         except Exception as e:
-
-            print("Listener Error:", e)
+            speak("Listener Error:", e)
 
 
 # ==========================================
@@ -123,7 +116,7 @@ def process_command(command):
 
     except Exception as e:
 
-        print("Process Error:", e)
+        speak("Process Error:", e)
 
 
 # ==========================================
@@ -146,7 +139,7 @@ def dispatcher_loop():
 
         except Exception as e:
 
-            print("Dispatcher Error:", e)
+            speak("Dispatcher Error:", e)
 
 
 # ==========================================
@@ -155,7 +148,7 @@ def dispatcher_loop():
 
 def main():
 
-    print("\nStarting Jarvis...\n")
+    speak("\nStarting Jarvis...\n")
 
     speak("Jarvis is ready")
 
@@ -178,7 +171,7 @@ def main():
         daemon=True
     )
     dispatcher_thread.start()
-    print("Jarvis Running...\n")
+    speak("Jarvis Running...\n")
     
     # -------------------------
     # KEEP MAIN THREAD ALIVE

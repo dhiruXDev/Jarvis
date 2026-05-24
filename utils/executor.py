@@ -6,7 +6,7 @@ import ollama
 from commands.apps.open_app import open_application
 from commands.apps.close_app import close_application
 from commands.communication.whatsapp import send_whatsapp_message
-from commands.files.file_manager import find_file, open_file, delete_file
+from commands.files.files_action import find_file, open_file, delete_file
 from commands.media.play_song import play_song
 from commands.web.search_web import search_google
 from commands.web.open_website import open_website
@@ -33,9 +33,10 @@ from commands.coding_agent.write_code import write_code
 from commands.coding_agent.extract_problem import extract_problem
 from commands.coding_agent.submit_solution import submit
 from commands.coding_agent.solve_problem import solve_problem
-
+from commands.files.folder_actions import open_folder, open_downloads, open_desktop, open_documents, open_drives
+from commands.productivity.news import news_headlines
 def execute(intent, lang=None):
-    print(f"[EXECUTOR] Intent: {intent}")
+    speak(f"[EXECUTOR] Intent: {intent}")
     
     command_type = intent.get("intent")
     action = intent.get("action")
@@ -44,7 +45,9 @@ def execute(intent, lang=None):
     # AUDIO
     # =========================
     if command_type == "audio":
-        if action == "set":
+        if action == "get" or "tell":
+            return check_volume()
+        elif action == "set":
             level = intent.get("level", 50)
             volume(level)
             return f"Setting volume to {level}%"
@@ -107,6 +110,12 @@ def execute(intent, lang=None):
             return "Locking PC"
 
     # =========================
+    # NEWS 
+    # =========================
+    elif command_type == "news":
+        if action == "get_headlines":
+            return news_headlines()
+    # =========================
     # SYSTEM INFO
     # =========================
     elif command_type == "system_info":
@@ -130,17 +139,27 @@ def execute(intent, lang=None):
             return close_window(target)
 
     # =========================
-    # FILE MANAGER
+    # FILE MANAGER & FOLDERS
     # =========================
-    elif command_type == "file":
+    elif command_type in ("file", "folder"):
         filename = intent.get("filename", "")
+        folder_name = intent.get("folder_name")
         if action == "find":
             return find_file(filename)
         elif action == "open":
             return open_file(filename)
         elif action == "delete":
             return delete_file(filename)
-
+        elif action == "open_folder":
+            return open_folder(folder_name)
+        elif action == "open_downloads":
+            return open_downloads()
+        elif action == "open_desktop":
+            return open_desktop()
+        elif action == "open_documents":
+            return open_documents()
+        elif action == "open_drives":
+            return open_drives()
     # =========================
     # SCREENSHOT
     # =========================
@@ -312,11 +331,48 @@ def execute(intent, lang=None):
             return clear_clipboard()   
 
     # =========================
-    # REMINDER
+    # REMINDER / TIMER / ALARM / SCHEDULE
     # =========================
-    elif command_type == "reminder":
-        if action == "set":
-            return set_reminder(intent.get("message", ""), intent.get("seconds", 0))
+    elif command_type in ("reminder", "timer", "schedule"):
+        if action in ("set", "set_alarm", "reminder"):
+            import re
+            
+            def parse_duration_to_seconds(duration_str):
+                if not duration_str:
+                    return 0
+                if isinstance(duration_str, (int, float)):
+                    return int(duration_str)
+                    
+                duration_str = str(duration_str).lower().strip()
+                match = re.search(r"(\d+)\s*(hour|hr|minute|min|second|sec|s\b)s?", duration_str)
+                if match:
+                    value = int(match.group(1))
+                    unit = match.group(2)
+                    if "hour" in unit or "hr" in unit:
+                        return value * 3600
+                    elif "minute" in unit or "min" in unit:
+                        return value * 60
+                    elif "second" in unit or "sec" in unit or unit == "s":
+                        return value
+                        
+                # Default fallback (e.g. "5" -> 5 minutes)
+                digits = re.findall(r"\d+", duration_str)
+                if digits:
+                    return int(digits[0]) * 60
+                return 0
+
+            time_val = intent.get("seconds")
+            if time_val is None:
+                time_str = intent.get("time") or intent.get("duration") or ""
+                time_val = parse_duration_to_seconds(time_str)
+            else:
+                time_val = int(time_val)
+                
+            message = intent.get("message") or intent.get("content") or "Timer finished"
+            if not message.strip():
+                message = "Timer finished"
+                
+            return set_reminder(message, time_val)
 
     # =========================
     # CODING

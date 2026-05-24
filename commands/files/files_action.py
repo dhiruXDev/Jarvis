@@ -24,7 +24,7 @@ def find_file(filename):
                         return os.path.join(root, file)
         return None
     except Exception as e:
-        print(f"File search error: {e}")
+        speak(f"File search error: {e}")
         return None
 
 def open_file(filename):
@@ -38,7 +38,7 @@ def open_file(filename):
         else:
             return f"File '{filename}' not found"
     except Exception as e:
-        print(f"Open file error: {e}")
+        speak(f"Open file error: {e}")
         return "Unable to open file"
 
 def delete_file(filename):
@@ -52,5 +52,5 @@ def delete_file(filename):
         else:
             return f"File '{filename}' not found"
     except Exception as e:
-        print(f"Delete file error: {e}")
+        speak(f"Delete file error: {e}")
         return "Unable to delete file"

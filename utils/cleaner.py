@@ -35,6 +35,6 @@ def clean_command(command):
 
     cleaned = " ".join(filtered_words)
 
-    print(f"[CLEANED COMMAND] {cleaned}")
+    speak(f"[CLEANED COMMAND] {cleaned}")
 
     return cleaned

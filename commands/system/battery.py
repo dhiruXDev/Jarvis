@@ -16,5 +16,5 @@ def check_battery():
         return f"Battery is {percent}%"
 
     except Exception as e:
-        print(f"Battery Error: {e}")
+        speak(f"Battery Error: {e}")
         return "Unable to check battery"
