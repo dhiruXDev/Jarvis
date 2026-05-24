@@ -303,3 +303,104 @@
 2026-05-21 12:17:47,799 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
 2026-05-21 12:18:40,063 - INFO - show wifi
 2026-05-21 12:18:42,408 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 12:06:53,488 - INFO - social welfare
+2026-05-22 12:07:21,860 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 12:09:07,430 - INFO - society gaya
+2026-05-22 12:09:11,129 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 12:09:24,569 - INFO - society
+2026-05-22 12:09:29,295 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 12:09:35,330 - INFO - how are you
+2026-05-22 12:09:41,360 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 12:09:50,942 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 12:13:01,650 - INFO - how are you
+2026-05-22 12:13:02,294 - INFO - hello
+2026-05-22 12:13:19,903 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 12:13:24,217 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 12:13:32,863 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 15:52:16,752 - INFO - whatsapp jar
+2026-05-22 15:52:53,465 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 15:53:25,675 - WARNING - Error sending stats to Plausible: error sending request for url (https://plausible.io/api/event)
+2026-05-22 16:03:01,298 - INFO - jarvis
+2026-05-22 16:03:17,117 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:03:47,353 - INFO - jarvis thoda sa brightness decrease kar do
+2026-05-22 16:03:50,409 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:04:40,751 - INFO - Imported existing <module 'comtypes.gen' from 'E:\\Project\\Jarvish\\.venv\\Lib\\site-packages\\comtypes\\gen\\__init__.py'>
+2026-05-22 16:04:40,752 - INFO - Using writeable comtypes cache directory: 'E:\Project\Jarvish\.venv\Lib\site-packages\comtypes\gen'
+2026-05-22 16:05:12,347 - INFO - 599
+2026-05-22 16:05:16,953 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:05:26,343 - INFO - jarvis thoda sa jarvis decrease the volume
+2026-05-22 16:05:30,719 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:06:02,846 - INFO - search
+2026-05-22 16:06:07,801 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:07:16,923 - INFO - you left in just 2 minutes
+2026-05-22 16:07:20,074 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:07:34,381 - INFO - even a little
+2026-05-22 16:07:37,270 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:10:52,226 - INFO - Imported existing <module 'comtypes.gen' from 'E:\\Project\\Jarvish\\.venv\\Lib\\site-packages\\comtypes\\gen\\__init__.py'>
+2026-05-22 16:10:52,226 - INFO - Using writeable comtypes cache directory: 'E:\Project\Jarvish\.venv\Lib\site-packages\comtypes\gen'
+2026-05-22 16:22:14,289 - INFO - application management services over
+2026-05-22 16:22:41,290 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:23:16,281 - INFO - elvis what are you doing
+2026-05-22 16:23:20,360 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:24:13,906 - INFO - photo please please
+2026-05-22 16:24:16,833 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:24:29,169 - INFO - we should not discuss about
+2026-05-22 16:24:33,811 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:24:48,196 - INFO - sudarshan
+2026-05-22 16:24:53,619 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:30:51,449 - INFO - that fight together
+2026-05-22 16:32:38,505 - INFO - rajesh what are
+2026-05-22 16:32:39,597 - INFO - rajesh hotel
+2026-05-22 16:32:44,013 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:32:50,915 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:33:33,364 - INFO - brightness is 20%
+2026-05-22 16:33:33,488 - INFO - brightness is 20%
+2026-05-22 16:33:40,472 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:33:46,505 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:33:48,901 - INFO - decrease the brightness
+2026-05-22 16:33:49,035 - INFO - decrease the brightness of the
+2026-05-22 16:33:55,178 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:34:02,542 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:34:17,760 - INFO - tell me a joke
+2026-05-22 16:34:18,318 - INFO - tell me a joke
+2026-05-22 16:34:24,350 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:34:29,903 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:35:17,240 - INFO - requirement
+2026-05-22 16:35:19,340 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:35:37,016 - INFO - designed to help business
+2026-05-22 16:35:40,199 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:37:59,988 - INFO - ham to jiju dal chuke maar diye
+2026-05-22 16:38:00,135 - INFO - ham to jiju dal chuke maar diye
+2026-05-22 16:38:03,559 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:38:07,489 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:38:08,892 - INFO - has three
+2026-05-22 16:38:12,329 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:38:15,782 - INFO - main india
+2026-05-22 16:38:19,986 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:38:21,828 - INFO - you did not come into my room, what are you doing?
+2026-05-22 16:38:26,579 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:39:57,898 - INFO - space is completed one after another
+2026-05-22 16:40:00,936 - INFO - space is completed one after another
+2026-05-22 16:40:05,783 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:40:10,845 - INFO - in this space the requirement analysis that design is there the phases i am talking about the development
+2026-05-22 16:40:11,419 - INFO - in this case the requirement that is the design is there the phases i am talking about
+2026-05-22 16:40:13,569 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:40:22,389 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:40:32,428 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:40:45,940 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:41:24,448 - INFO - institute
+2026-05-22 16:41:33,523 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:41:39,235 - INFO - 24 dates
+2026-05-22 16:41:58,177 - INFO - no but i have applied karke aage
+2026-05-22 16:42:01,002 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:42:47,878 - INFO - pura
+2026-05-22 16:42:50,621 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:43:57,288 - INFO - said 14th date
+2026-05-22 16:45:14,375 - INFO - human
+2026-05-22 16:45:16,831 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:45:27,561 - INFO - quite for 5minute
+2026-05-22 16:45:29,526 - INFO - which it is going to buy
+2026-05-22 16:45:29,902 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-22 16:45:33,245 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-05-23 17:09:42,392 - INFO - hi bro how are you
+2026-05-23 17:10:03,877 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"

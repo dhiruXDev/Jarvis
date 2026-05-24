@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&family=Fira+Code:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-cyber-deep: #020713;
+  --color-cyber-card: rgba(8, 18, 36, 0.65);
+  --color-cyber-card-hover: rgba(12, 28, 56, 0.8);
+  --color-cyber-blue: #00bbff;
+  --color-cyber-cyan: #00f0ff;
+  --color-cyber-green: #39ff14;
+  --color-cyber-orange: #ff9900;
+  --color-cyber-magenta: #e0a3ff;
+  --color-cyber-purple: #9d4edd;
+  --color-cyber-text: #e2f1ff;
+  --color-cyber-muted: #7da5cc;
+  --color-cyber-dim: #41688f;
+
+  --font-hud: "Orbitron", sans-serif;
+  --font-labels: "Rajdhani", sans-serif;
+  --font-mono: "Fira Code", monospace;
+
+  --shadow-glow: 0 0 15px rgba(0, 187, 255, 0.25);
+  --shadow-glow-strong: 0 0 25px rgba(0, 240, 255, 0.5);
+}
+
+
+/* ==========================================
+   GLOBAL CUSTOM SCIFI GRAPHICS BASE
+   ========================================== */
+
+
+body {
+  background-color: #020713;
+  background-image: 
+    radial-gradient(circle at 50% 10%, rgba(10, 35, 75, 0.4) 0%, transparent 60%),
+    radial-gradient(circle at 10% 80%, rgba(5, 20, 50, 0.3) 0%, transparent 40%),
+    linear-gradient(rgba(0, 0, 0, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.15) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
+  color: #e2f1ff;
+  font-family: 'Rajdhani', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 15, 30, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 187, 255, 0.2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00bbff;
+  box-shadow: 0 0 8px #00bbff;
+}
+
+/* ==========================================
+   KEYFRAME ANIMATIONS
+   ========================================== */
+
+@keyframes rotate-clockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-counter {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes scan-vertical {
+  0% { transform: translateY(-130px); }
+  50% { transform: translateY(130px); }
+  100% { transform: translateY(-130px); }
+}
+
+@keyframes core-breathing {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04); filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.35)); }
+  100% { transform: scale(1); }
+}
+
+@keyframes core-speaking {
+  0% { transform: scale(1.02) translate(1px, -1px); }
+  50% { transform: scale(0.98) translate(-1px, 1px); }
+  100% { transform: scale(1.02) translate(1px, -1px); }
+}
+
+@keyframes mouth-listening {
+  0% { d: path("M170,250 Q200,250 230,250"); }
+  50% { d: path("M170,250 Q200,230 230,250"); }
+  100% { d: path("M170,250 Q200,250 230,250"); }
+}
+
+@keyframes mouth-speaking {
+  0% { d: path("M170,250 Q200,220 230,250"); }
+  25% { d: path("M170,250 Q200,280 230,250"); }
+  50% { d: path("M170,250 Q200,230 230,250"); }
+  75% { d: path("M170,250 Q200,270 230,250"); }
+  100% { d: path("M170,250 Q200,220 230,250"); }
+}
+
+@keyframes blink-eye {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0px rgba(0, 240, 255, 0.4); }
+  100% { box-shadow: 0 0 0 8px rgba(0, 240, 255, 0); }
+}
+
+@keyframes blink-dot {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+@keyframes msg-slide {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin-sun {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================
+   ANIMATION CLASS TRIGGERS
+   ========================================== */
+.animate-rotate-cw {
+  animation: rotate-clockwise 25s linear infinite;
+}
+.animate-rotate-ccw {
+  animation: rotate-counter 20s linear infinite;
+}
+.animate-rotate-cw-fast {
+  animation: rotate-clockwise 15s linear infinite;
+}
+.animate-scan-vertical {
+  animation: scan-vertical 5s ease-in-out infinite;
+}
+.animate-core-listening {
+  animation: core-breathing 1.2s ease-in-out infinite;
+}
+.animate-core-speaking {
+  animation: core-speaking 0.15s linear infinite;
+}
+.animate-mouth-listening {
+  animation: mouth-listening 1s ease-in-out infinite;
+}
+.animate-mouth-speaking {
+  animation: mouth-speaking 0.15s linear infinite;
+}
+.animate-eye-blink {
+  animation: blink-eye 0.8s infinite;
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2s infinite;
+}
+.animate-blink-dot {
+  animation: blink-dot 1s infinite alternate;
+}
+.animate-spin-sun {
+  animation: spin-sun 12s linear infinite;
+}
+.animate-msg-slide {
+  animation: msg-slide 0.3s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+}
