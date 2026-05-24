@@ -1,4 +1,6 @@
 # pyrefly: ignore [missing-import]
+from core.speaker import speak
+# pyrefly: ignore [missing-import]
 import pygetwindow as gw
 import pyautogui
 import time
@@ -30,12 +32,13 @@ def close_application(app_name):
 
                 # close selected window only
                 pyautogui.hotkey("alt", "f4")
-                return f"Closed {title}"
-
-        return f"No open window found for {app_name}"
+                speak(f"Ok boss, closed the app {title}")
+                return 
+        speak(f"No open window found for {app_name}")
+        return 
 
     except Exception as e:
 
-        print(f"Close App Error: {e}")
+        speak(f"Close App Error: {e}")
 
         return "Unable to close application"

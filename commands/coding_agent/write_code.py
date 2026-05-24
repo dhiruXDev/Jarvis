@@ -11,13 +11,13 @@
 #             code
 #         )
 
-#         print("Code written")
+#         speak("Code written")
 
 #         return True
 
 #     except Exception as e:
 
-#         print(f"Write Error: {e}")
+#         speak(f"Write Error: {e}")
 
 #         return False
 def write_code(page, code):
@@ -34,10 +34,10 @@ def write_code(page, code):
             code
         )
 
-        print("Code written")
+        speak("Code written")
 
         return True
 
     except Exception as e:
-        print(f"Write Error: {e}")
+        speak(f"Write Error: {e}")
         return False

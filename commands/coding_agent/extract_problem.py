@@ -14,7 +14,7 @@ def extract_problem(page):
             '[data-track-load="description_content"]'
         ).inner_text()
 
-        print("Problem extracted")
+        speak("Problem extracted")
 
         return {
             "title": title,
@@ -23,32 +23,6 @@ def extract_problem(page):
 
     except Exception as e:
 
-        print(f"Extraction Error: {e}")
+        speak(f"Extraction Error: {e}")
 
         return None
-# def extract_problem(page):
-
-#     try:
-
-#         time.sleep(5)
-
-#         title = page.locator(
-#             '[data-cy="question-title"]'
-#         ).inner_text()
-
-#         description = page.locator(
-#             '.elfjS'
-#         ).inner_text()
-
-#         print("Problem extracted")
-
-#         return {
-#             "title": title,
-#             "description": description
-#         }
-
-#     except Exception as e:
-
-#         print(f"Extraction Error: {e}")
-
-#         return None

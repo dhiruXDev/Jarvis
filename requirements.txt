@@ -27,3 +27,5 @@ speedtest
 pyperclip
 chromadb
 sentence-transformers
+opencv-python
+numpy

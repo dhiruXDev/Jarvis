@@ -1,47 +1,40 @@
-# import pyttsx3
-
-# engine = pyttsx3.init()
-# engine.setProperty('rate', 170)
-
-# def speak(text):
-#     print(f"Jarvis: {text}")
-#     engine.say(text)
-#     engine.runAndWait()
-
-# import pyttsx3
-
-# engine = pyttsx3.init()
-
-# def speak(text):
-#     try:
-#         print("Jarvis:", text)
-#         engine.say(text)
-#         engine.runAndWait()
-#     except:
-#         print("Speech error")
-
+# pyrefly: ignore [missing-import]
 import pyttsx3
 from queue import Queue
-from threading import Thread
+from threading import Thread, Event
 
-engine = pyttsx3.init('sapi5')
-engine.setProperty('rate', 170)
-voices = engine.getProperty('voices')
-if voices:
-    engine.setProperty('voice', voices[0].id)
 speech_queue = Queue()
+is_speaking = Event()
 
 def _speak_worker():
+    # Initialize engine in the background thread for COM safety
+    try:
+        engine = pyttsx3.init('sapi5')
+        engine.setProperty('rate', 170)
+        voices = engine.getProperty('voices')
+        if voices:
+            engine.setProperty('voice', voices[0].id)
+    except Exception as e:
+        speak("Failed to initialize TTS engine:", e)
+        engine = None
+
     while True:
         text = speech_queue.get()
         if text is None:  # stop signal
             break
 
+        if engine is None:
+            continue
+
         try:
+            is_speaking.set()
             engine.say(text)
             engine.runAndWait()
         except Exception as e:
-            print("Speech error:", e)
+            speak("Speech error:", e)
+        finally:
+            if speech_queue.empty():
+                is_speaking.clear()
 
     # clean exit
     try:
@@ -55,5 +48,6 @@ t_worker.start()
 
 
 def speak(text):
-    print("Jarvis:", text)
+    speak("Jarvis:", text)
+    is_speaking.set()
     speech_queue.put(text)

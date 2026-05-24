@@ -7,7 +7,7 @@ def brightness(level):
         return True
 
     except Exception as e:
-        print(f"Brightness Error: {e}")
+        speak(f"Brightness Error: {e}")
         return False
 
 def brightness_up():
@@ -17,7 +17,7 @@ def brightness_up():
         sbc.set_brightness(new_brightness)
         return True
     except Exception as e:
-        print(f"Brightness Error: {e}")
+        speak(f"Brightness Error: {e}")
         return False
 
 def brightness_down():
@@ -27,7 +27,7 @@ def brightness_down():
         sbc.set_brightness(new_brightness)
         return True
     except Exception as e:
-        print(f"Brightness Error: {e}")
+        speak(f"Brightness Error: {e}")
         return False
 
 def get_brightness():
@@ -38,5 +38,5 @@ def get_brightness():
         return f"Brightness is {brightness}%"
 
     except Exception as e:
-        print(f"Brightness Error: {e}")
+        speak(f"Brightness Error: {e}")
         return None

@@ -1,54 +1,4 @@
-# import subprocess
-# import webbrowser
-
-# WEB_FALLBACKS = {
-#     "youtube": "https://youtube.com",
-#     "github": "https://github.com",
-#     "gmail": "https://mail.google.com",
-#     "chatgpt": "https://chat.openai.com",
-#     "leetcode": "https://leetcode.com",
-#     "spotify": "https://spotify.com"
-# }
-# # WINDOWS APP MAPPINGS
-# APP_MAPPINGS = {
-#     "calculator": "calc.exe",
-#     "calc": "calc.exe",
-#     "notepad": "notepad.exe",
-#     "paint": "mspaint.exe",
-#     "cmd": "cmd.exe",
-#     "command prompt": "cmd.exe",
-#     "windows explorer": "explorer.exe",
-#     "wexplorer": "explorer.exe",
-#     "clock": "ms-clock:"
-# }
-# def open_application(app_name):
-
-#     app_name = app_name.lower().strip()
-
-#     try:
-
-#         print(f"[OPEN APP] Trying app: {app_name}")
-
-#         # Try opening as application
-#         executable = APP_MAPPINGS.get(app_name, app_name)
-#         subprocess.Popen(executable, shell=True)
-
-#         return f"Opening {app_name}"
-
-#     except Exception as e:
-
-#         print(f"[APP ERROR] {e}")
-
-#         # =========================
-#         # WEBSITE FALLBACK
-#         # =========================
-#         if app_name in WEB_FALLBACKS:
-#             url = WEB_FALLBACKS[app_name]
-#             print(f"[FALLBACK WEBSITE] {url}")
-#             webbrowser.open(url)
-#             return f"Opening {app_name} website"
-#         return f"Unable to open {app_name}"
-
+from core import speaker
 import subprocess
 import webbrowser
 import os
@@ -80,7 +30,7 @@ def open_application(app_name):
 
     app_name = app_name.lower().strip()
 
-    print(f"[OPEN APP] Trying: {app_name}")
+    speak(f"[OPEN APP] Trying: {app_name}")
 
     # =========================
     # 1. NORMAL EXE APPS
@@ -90,7 +40,7 @@ def open_application(app_name):
             subprocess.run(APP_MAPPINGS[app_name], shell=True, check=True)
             return f"Opening {app_name}"
         except Exception as e:
-            print(f"[EXE ERROR] {e}")
+            speak(f"[EXE ERROR] {e}")
 
     # =========================
     # 2. WINDOWS URI APPS
@@ -100,7 +50,7 @@ def open_application(app_name):
             os.startfile(WINDOWS_URI[app_name])
             return f"Opening {app_name}"
         except Exception as e:
-            print(f"[URI ERROR] {e}")
+            speak(f"[URI ERROR] {e}")
 
     # =========================
     # 3. WEBSITE FALLBACK
