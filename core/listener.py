@@ -1,10 +1,7 @@
 import time
 import speech_recognition as sr
-<<<<<<< HEAD
 from core.server import mic_state, set_hud_status, broadcast_event
-=======
-from core.speaker import is_speaking
->>>>>>> 215477246292bf6fa7caa533fd02bfc4241891b8
+
 
 recognizer = sr.Recognizer()
 recognizer.energy_threshold = 300
@@ -15,7 +12,6 @@ calibrated = False
 
 
 def listen():
-<<<<<<< HEAD
     # If Jarvis is currently speaking, do not open the mic to avoid audio hardware conflict and self-hearing
     from core.server import status_state
     if status_state.get("state") == "speaking":
@@ -76,9 +72,6 @@ def listen():
         # Standard print captures and streams to UI terminal drawer automatically!
         print(f"Microphone: inactive/offline ({str(e)})")
         time.sleep(1.5)
-=======
-    global calibrated
-
     try:
         # Wait for speaker to finish before starting to listen
         if is_speaking.is_set():
@@ -114,5 +107,3 @@ def listen():
 
     except Exception as e:
         speak("Listener Error:", e)
->>>>>>> 215477246292bf6fa7caa533fd02bfc4241891b8
-        return ""

@@ -252,7 +252,6 @@ def listen():
 # SPEAK
 # =========================
 
-<<<<<<< HEAD
 # def speak(text, lang="en"):
 # 
 #     try:
@@ -270,22 +269,4 @@ def listen():
 #     except Exception as e:
 # 
 #         print("Speak Error:", e)
-=======
-def speak(text, lang="en"):
 
-    try:
-
-        final_text = from_english(text, lang)
-
-        speak(f"🤖 Jarvis: {final_text}")
-
-        _engine.stop()
-
-        _engine.say(final_text)
-
-        _engine.runAndWait()
-
-    except Exception as e:
-
-        speak("Speak Error:", e)
->>>>>>> 215477246292bf6fa7caa533fd02bfc4241891b8

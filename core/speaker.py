@@ -7,7 +7,6 @@ speech_queue = Queue()
 is_speaking = Event()
 
 def _speak_worker():
-<<<<<<< HEAD
     from core.server import set_hud_status
     import pythoncom
     import win32com.client
@@ -23,7 +22,6 @@ def _speak_worker():
     except Exception as sapi_init_err:
         print("[SPEAKER WORKER] Failed to initialize SAPI SpVoice:", sapi_init_err)
         
-=======
     # Initialize engine in the background thread for COM safety
     try:
         engine = pyttsx3.init('sapi5')
@@ -35,7 +33,7 @@ def _speak_worker():
         speak("Failed to initialize TTS engine:", e)
         engine = None
 
->>>>>>> 215477246292bf6fa7caa533fd02bfc4241891b8
+
     while True:
         text = speech_queue.get()
         print(f"[SPEAKER WORKER] Received text from queue: '{text}'")
@@ -46,7 +44,6 @@ def _speak_worker():
             continue
 
         try:
-<<<<<<< HEAD
             set_hud_status("speaking")
             success = False
             
@@ -64,7 +61,6 @@ def _speak_worker():
                     success = True
                 except Exception as sapi_err:
                     print("[SPEAKER WORKER] Native SAPI Speak failed:", sapi_err)
-=======
             is_speaking.set()
             engine.say(text)
             engine.runAndWait()
@@ -73,7 +69,7 @@ def _speak_worker():
         finally:
             if speech_queue.empty():
                 is_speaking.clear()
->>>>>>> 215477246292bf6fa7caa533fd02bfc4241891b8
+
 
             # Fallback to pyttsx3 (initialized per request to prevent event loop thread hang)
             if not success:
@@ -106,7 +102,6 @@ t_worker.start()
 
 
 def speak(text):
-<<<<<<< HEAD
     print("Jarvis:", text)
     speech_queue.put(text)
 
@@ -119,8 +114,3 @@ def speak(text):
         "text": text,
         "timestamp": timestamp
     })
-=======
-    speak("Jarvis:", text)
-    is_speaking.set()
-    speech_queue.put(text)
->>>>>>> 215477246292bf6fa7caa533fd02bfc4241891b8
