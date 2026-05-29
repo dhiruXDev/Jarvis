@@ -8,18 +8,18 @@ from langdetect import detect
 from deep_translator import GoogleTranslator
 
 # =========================
-# TTS ENGINE
+# TTS ENGINE (Disabled to prevent duplicate engine conflict with core/speaker.py)
 # =========================
 
-_engine = pyttsx3.init("sapi5")
-
-_engine.setProperty("rate", 165)
-_engine.setProperty("volume", 1.0)
-
-voices = _engine.getProperty("voices")
-
-# English voice
-_engine.setProperty("voice", voices[0].id)
+# _engine = pyttsx3.init("sapi5")
+# 
+# _engine.setProperty("rate", 165)
+# _engine.setProperty("volume", 1.0)
+# 
+# voices = _engine.getProperty("voices")
+# 
+# # English voice
+# _engine.setProperty("voice", voices[0].id)
 
 # =========================
 # SPEECH RECOGNITION
@@ -252,20 +252,21 @@ def listen():
 # SPEAK
 # =========================
 
-def speak(text, lang="en"):
+# def speak(text, lang="en"):
+# 
+#     try:
+# 
+#         final_text = from_english(text, lang)
+# 
+#         print(f"🤖 Jarvis: {final_text}")
+# 
+#         _engine.stop()
+# 
+#         _engine.say(final_text)
+# 
+#         _engine.runAndWait()
+# 
+#     except Exception as e:
+# 
+#         print("Speak Error:", e)
 
-    try:
-
-        final_text = from_english(text, lang)
-
-        speak(f"🤖 Jarvis: {final_text}")
-
-        _engine.stop()
-
-        _engine.say(final_text)
-
-        _engine.runAndWait()
-
-    except Exception as e:
-
-        speak("Speak Error:", e)

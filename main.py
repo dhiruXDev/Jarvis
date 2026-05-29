@@ -1,10 +1,13 @@
 from queue import Queue
 from threading import Thread, Event
+import time
+import webbrowser
 from concurrent.futures import ThreadPoolExecutor
 
 from core.listener import listen
 from core.speaker import speak
 from core.brain import process
+from core.server import run_web_server
 
 from modules.multilang import translator
 from utils.executor import execute
@@ -149,6 +152,25 @@ def dispatcher_loop():
 def main():
 
     speak("\nStarting Jarvis...\n")
+
+    # -------------------------
+    # START WEB SERVER THREAD
+    # -------------------------
+    server_thread = Thread(
+        target=run_web_server,
+        args=(8000, command_queue),
+        daemon=True
+    )
+    server_thread.start()
+
+    # -------------------------
+    # LAUNCH BROWSER THREAD
+    # -------------------------
+    def launch_browser():
+        time.sleep(1.2)
+        webbrowser.open("http://localhost:8000")
+
+    Thread(target=launch_browser, daemon=True).start()
 
     speak("Jarvis is ready")
 
