@@ -2,14 +2,17 @@
 import pyttsx3
 from queue import Queue
 from threading import Thread, Event
+import pythoncom
+import win32com.client
+import builtins
 
 speech_queue = Queue()
 is_speaking = Event()
+t_worker = None
+t_worker_lock = None
 
 def _speak_worker():
     from core.server import set_hud_status
-    import pythoncom
-    import win32com.client
     
     # Initialize COM once for this worker thread
     pythoncom.CoInitialize()
@@ -21,7 +24,7 @@ def _speak_worker():
         print("[SPEAKER WORKER] SAPI SpVoice initialized successfully.")
     except Exception as sapi_init_err:
         print("[SPEAKER WORKER] Failed to initialize SAPI SpVoice:", sapi_init_err)
-        
+                      
     # Initialize engine in the background thread for COM safety
     try:
         engine = pyttsx3.init('sapi5')
@@ -30,78 +33,84 @@ def _speak_worker():
         if voices:
             engine.setProperty('voice', voices[0].id)
     except Exception as e:
-        speak("Failed to initialize TTS engine:", e)
+        print("Failed to initialize TTS engine:", e)
         engine = None
 
-
     while True:
-        text = speech_queue.get()
-        print(f"[SPEAKER WORKER] Received text from queue: '{text}'")
-        if text is None:  # stop signal
-            break
-
-        if engine is None:
-            continue
-
         try:
-            set_hud_status("speaking")
-            success = False
-            
-            if speaker is not None:
-                try:
-                    print(f"[SPEAKER WORKER] Calling SAPI Speak (async) for: '{text}'")
-                    speaker.Speak(text, 1)  # 1 = SVSFlagsAsync
-                    
-                    # Cooperatively wait for speech completion to avoid thread blocks and allow GIL release
-                    import time
-                    while not speaker.WaitUntilDone(100):
-                        time.sleep(0.05)
+            text = speech_queue.get()
+            print(f"[SPEAKER WORKER] Received text from queue: '{text}'")
+            if text is None:  # stop signal
+                break
+
+            try:
+                set_hud_status("speaking")
+                is_speaking.set()
+                success = False
+                
+                if speaker is not None:
+                    try:
+                        print(f"[SPEAKER WORKER] Calling SAPI Speak (async) for: '{text}'")
+                        speaker.Speak(text, 1)  # 1 = SVSFlagsAsync
                         
-                    print(f"[SPEAKER WORKER] SAPI Speak completed for: '{text}'")
-                    success = True
-                except Exception as sapi_err:
-                    print("[SPEAKER WORKER] Native SAPI Speak failed:", sapi_err)
-            is_speaking.set()
-            engine.say(text)
-            engine.runAndWait()
-        except Exception as e:
-            speak("Speech error:", e)
-        finally:
-            if speech_queue.empty():
-                is_speaking.clear()
-
-
-            # Fallback to pyttsx3 (initialized per request to prevent event loop thread hang)
-            if not success:
-                try:
-                    print(f"[SPEAKER WORKER] Calling pyttsx3 fallback for: '{text}'")
-                    engine = pyttsx3.init()
-                    engine.setProperty('rate', 170)
-                    voices = engine.getProperty('voices')
-                    if voices:
-                        engine.setProperty('voice', voices[0].id)
+                        # Cooperatively wait for speech completion to avoid thread blocks and allow GIL release
+                        import time
+                        while not speaker.WaitUntilDone(100):
+                            time.sleep(0.05)
+                            
+                        print(f"[SPEAKER WORKER] SAPI Speak completed for: '{text}'")
+                        success = True
+                    except Exception as sapi_err:
+                        print("[SPEAKER WORKER] Native SAPI Speak failed:", sapi_err)
+                
+                if not success and engine is not None:
                     engine.say(text)
                     engine.runAndWait()
-                    engine.stop()
-                    del engine
-                    print(f"[SPEAKER WORKER] pyttsx3 fallback completed for: '{text}'")
-                except Exception as pyttsx_err:
-                    print("[SPEAKER WORKER] TTS fallback error:", pyttsx_err)
-            
-            set_hud_status("idle")
-            print(f"[SPEAKER WORKER] Finished processing text: '{text}'")
+                    success = True
+            except Exception as e:
+                print("Speech error:", e)
+            finally:
+                if speech_queue.empty():
+                    is_speaking.clear()
+
+                # Fallback to pyttsx3 (initialized per request to prevent event loop thread hang)
+                if not success:
+                    try:
+                        print(f"[SPEAKER WORKER] Calling pyttsx3 fallback for: '{text}'")
+                        fallback_engine = pyttsx3.init()
+                        fallback_engine.setProperty('rate', 170)
+                        voices = fallback_engine.getProperty('voices')
+                        if voices:
+                            fallback_engine.setProperty('voice', voices[0].id)
+                        fallback_engine.say(text)
+                        fallback_engine.runAndWait()
+                        fallback_engine.stop()
+                        del fallback_engine
+                        print(f"[SPEAKER WORKER] pyttsx3 fallback completed for: '{text}'")
+                    except Exception as pyttsx_err:
+                        print("[SPEAKER WORKER] TTS fallback error:", pyttsx_err)
+                
+                set_hud_status("idle")
+                print(f"[SPEAKER WORKER] Finished processing text: '{text}'")
         except Exception as e:
             print("[SPEAKER WORKER] General error:", e)
             set_hud_status("idle")
             
     pythoncom.CoUninitialize()
 
-# Start background thread
-t_worker = Thread(target=_speak_worker, daemon=True)
-t_worker.start()
 
+import threading
+t_worker_lock = threading.Lock()
 
-def speak(text):
+def speak(*args):
+    global t_worker
+    if t_worker is None:
+        with t_worker_lock:
+            if t_worker is None:
+                t_worker = Thread(target=_speak_worker, daemon=True)
+                t_worker.start()
+
+    text = " ".join(str(arg) for arg in args)
     print("Jarvis:", text)
     speech_queue.put(text)
 
@@ -114,3 +123,5 @@ def speak(text):
         "text": text,
         "timestamp": timestamp
     })
+
+builtins.speak = speak

@@ -8,7 +8,7 @@ def shutdown_pc():
         return True
 
     except Exception as e:
-        speak(f"Shutdown Error: {e}")
+        print(f"Shutdown Error: {e}")
         return False
 
 def restart_pc():
@@ -20,7 +20,7 @@ def restart_pc():
         return True
 
     except Exception as e:
-        speak(f"Restart Error: {e}")
+        print(f"Restart Error: {e}")
         return False
 
 def sleep_pc():
@@ -32,7 +32,7 @@ def sleep_pc():
         return True
 
     except Exception as e:
-        speak(f"Sleep Error: {e}")
+        print(f"Sleep Error: {e}")
         return False
 
 def lock():
@@ -44,5 +44,5 @@ def lock():
         return True
 
     except Exception as e:
-        speak(f"Lock Error: {e}")
+        print(f"Lock Error: {e}")
         return False

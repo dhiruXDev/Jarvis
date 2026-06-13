@@ -32,7 +32,7 @@ def send_whatsapp_message(contact, message):
 
         pyautogui.press("enter")
 
-        speak(f"Message sent to {contact}")
+        print(f"Message sent to {contact}")
 
     except Exception as e:
-        speak("WHATSAPP ERROR:", e)
+        print("WHATSAPP ERROR:", e)

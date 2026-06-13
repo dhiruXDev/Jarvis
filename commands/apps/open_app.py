@@ -30,7 +30,7 @@ def open_application(app_name):
 
     app_name = app_name.lower().strip()
 
-    speak(f"[OPEN APP] Trying: {app_name}")
+    print(f"[OPEN APP] Trying: {app_name}")
 
     # =========================
     # 1. NORMAL EXE APPS
@@ -40,7 +40,7 @@ def open_application(app_name):
             subprocess.run(APP_MAPPINGS[app_name], shell=True, check=True)
             return f"Opening {app_name}"
         except Exception as e:
-            speak(f"[EXE ERROR] {e}")
+            print(f"[EXE ERROR] {e}")
 
     # =========================
     # 2. WINDOWS URI APPS
@@ -50,7 +50,7 @@ def open_application(app_name):
             os.startfile(WINDOWS_URI[app_name])
             return f"Opening {app_name}"
         except Exception as e:
-            speak(f"[URI ERROR] {e}")
+            print(f"[URI ERROR] {e}")
 
     # =========================
     # 3. WEBSITE FALLBACK

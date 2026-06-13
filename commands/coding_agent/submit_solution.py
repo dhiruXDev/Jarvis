@@ -16,10 +16,10 @@ def submit(page):
             'button:has-text("Submit")'
         )
 
-        speak("Solution submitted")
+        print("Solution submitted")
         return True
 
     except Exception as e:
 
-        speak(f"Submit Error: {e}")
+        print(f"Submit Error: {e}")
         return False

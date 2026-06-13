@@ -36,7 +36,7 @@ from commands.coding_agent.solve_problem import solve_problem
 from commands.files.folder_actions import open_folder, open_downloads, open_desktop, open_documents, open_drives
 from commands.productivity.news import news_headlines
 def execute(intent, lang=None):
-    speak(f"[EXECUTOR] Intent: {intent}")
+    print(f"[EXECUTOR] Intent: {intent}")
     
     command_type = intent.get("intent")
     action = intent.get("action")
@@ -399,9 +399,13 @@ def execute(intent, lang=None):
 
 
     # =========================
-    # SYSTEM EXIT / UNKNOWN
+    # SYSTEM EXIT / UNKNOWN / FALLBACK
     # =========================
     elif command_type == "system" and action == "exit":
         return "Goodbye"
+        
+    raw_query = intent.get("raw_query")
+    if raw_query:
+        return handle_chat(raw_query)
         
     return "I did not understand the command"

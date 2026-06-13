@@ -2,6 +2,8 @@ from queue import Queue
 from threading import Thread, Event
 import time
 import webbrowser
+import os
+import subprocess
 from concurrent.futures import ThreadPoolExecutor
 
 from core.listener import listen
@@ -36,11 +38,11 @@ def listener_loop():
         try:
             command = listen()
             if command:
-                speak(f"\nUser: {command}")
+                print(f"\nUser: {command}")
                 command_queue.put(command)
 
         except Exception as e:
-            speak("Listener Error:", e)
+            print("Listener Error:", e)
 
 
 # ==========================================
@@ -99,6 +101,8 @@ def process_command(command):
         # -------------------------
         # EXECUTE TASK
         # -------------------------
+        if isinstance(intent, dict):
+            intent["raw_query"] = command
 
         result = execute(intent, lang)
 
@@ -119,7 +123,7 @@ def process_command(command):
 
     except Exception as e:
 
-        speak("Process Error:", e)
+        print("Process Error:", e)
 
 
 # ==========================================
@@ -142,7 +146,7 @@ def dispatcher_loop():
 
         except Exception as e:
 
-            speak("Dispatcher Error:", e)
+            print("Dispatcher Error:", e)
 
 
 # ==========================================
@@ -151,7 +155,22 @@ def dispatcher_loop():
 
 def main():
 
-    speak("\nStarting Jarvis...\n")
+    print("\nStarting Jarvis...\n")
+
+    # -------------------------
+    # VERIFY OLLAMA CONNECTION
+    # -------------------------
+    def verify_ollama():
+        print("[SYSTEM] Verifying Ollama connection in background...")
+        try:
+            import ollama
+            ollama.list()
+            print("[SYSTEM] Ollama connection verified successfully.")
+        except Exception as e:
+            print(f"[SYSTEM] Ollama connection warning: {e}")
+
+    # Verify connection in background thread to prevent startup delay
+    Thread(target=verify_ollama, daemon=True).start()
 
     # -------------------------
     # START WEB SERVER THREAD
@@ -162,17 +181,6 @@ def main():
         daemon=True
     )
     server_thread.start()
-
-    # -------------------------
-    # LAUNCH BROWSER THREAD
-    # -------------------------
-    def launch_browser():
-        time.sleep(1.2)
-        webbrowser.open("http://localhost:8000")
-
-    Thread(target=launch_browser, daemon=True).start()
-
-    speak("Jarvis is ready")
 
     # -------------------------
     # START LISTENER THREAD
@@ -193,11 +201,41 @@ def main():
         daemon=True
     )
     dispatcher_thread.start()
-    speak("Jarvis Running...\n")
+    print("Jarvis Running...\n")
     
     # -------------------------
-    # KEEP MAIN THREAD ALIVE
+    # KEEP MAIN THREAD ALIVE / LAUNCH ELECTRON
     # -------------------------
+    if not os.environ.get("ELECTRON_RUNNING"):
+        from core.server import web_server_ready, web_server_port
+        print("[SYSTEM] Waiting for web server to start...")
+        if web_server_ready.wait(timeout=10):
+            port = web_server_port or 8000
+            print(f"[SYSTEM] Web server ready on port {port}. Launching Electron desktop app...")
+            env = os.environ.copy()
+            env["ELECTRON_RUNNING"] = "1"
+            env["JARVIS_PORT"] = str(port)
+            try:
+                # Spawn Electron subprocess
+                electron_proc = subprocess.Popen(
+                    "npm start",
+                    shell=True,
+                    env=env,
+                    cwd=os.path.dirname(os.path.abspath(__file__))
+                )
+                
+                # Monitor Electron and shut down the backend when Electron exits
+                def monitor_electron():
+                    electron_proc.wait()
+                    print("[SYSTEM] Electron desktop app closed. Stopping Jarvis backend...")
+                    stop_event.set()
+                
+                Thread(target=monitor_electron, daemon=True).start()
+            except Exception as e:
+                print(f"[SYSTEM] Failed to start Electron: {e}")
+        else:
+            print("[SYSTEM] Web server startup timed out. Cannot start Electron.")
+
     stop_event.wait()
 
 

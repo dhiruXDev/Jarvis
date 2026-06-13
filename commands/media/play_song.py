@@ -41,6 +41,6 @@ def play_song(song_name):
 
     except Exception as e:
 
-        speak(f"Play Song Error: {e}")
+        print(f"Play Song Error: {e}")
 
         return "Unable to play song"

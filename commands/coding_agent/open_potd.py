@@ -29,13 +29,13 @@ def open_leetcode_potd():
             ])
             time.sleep(2)  # Give Chrome a couple of seconds to start up
         except Exception as e:
-            speak(f"Failed to launch Chrome via subprocess: {e}")
+            print(f"Failed to launch Chrome via subprocess: {e}")
             raise e
 
     try:
         browser = p.chromium.connect_over_cdp(f"http://localhost:{port}")
     except Exception as e:
-        speak("Failed to connect to Chrome CDP. Make sure Chrome is running with remote debugging enabled.")
+        print("Failed to connect to Chrome CDP. Make sure Chrome is running with remote debugging enabled.")
         raise e
 
 
@@ -44,5 +44,5 @@ def open_leetcode_potd():
     page.goto(
         "https://leetcode.com/problemset/all"
     )
-    speak("LeetCode opened")
+    print("LeetCode opened")
     return page, browser, p

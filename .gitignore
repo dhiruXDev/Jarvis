@@ -12,3 +12,6 @@ build/
 .idea/
 *.pyc
 .vite/deps/
+dist-desktop/
+*.exe
+win-unpacked/

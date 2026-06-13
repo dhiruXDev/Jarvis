@@ -14,7 +14,7 @@ def extract_problem(page):
             '[data-track-load="description_content"]'
         ).inner_text()
 
-        speak("Problem extracted")
+        print("Problem extracted")
 
         return {
             "title": title,
@@ -23,6 +23,6 @@ def extract_problem(page):
 
     except Exception as e:
 
-        speak(f"Extraction Error: {e}")
+        print(f"Extraction Error: {e}")
 
         return None

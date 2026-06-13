@@ -75,8 +75,8 @@ def ai_parse(command):
 
         content = response["message"]["content"]
 
-        speak("[AI RAW RESPONSE]")
-        speak(content)
+        print("[AI RAW RESPONSE]")
+        print(content)
 
         parsed = json.loads(content)
 
@@ -84,6 +84,6 @@ def ai_parse(command):
 
     except Exception as e:
 
-        speak("[AI PARSER ERROR]", e)
+        print("[AI PARSER ERROR]", e)
 
         return None

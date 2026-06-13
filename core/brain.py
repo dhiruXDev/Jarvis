@@ -4,7 +4,7 @@ from core.ai_parser import ai_parse
 
 def process(command):
     cleaned = command.lower().strip()
-    speak("Cleaned Text:", cleaned)
+    print("Cleaned Text:", cleaned)
     log_command(cleaned)
     # ============================================
     # STEP 1 — LOCAL PARSER
@@ -14,9 +14,9 @@ def process(command):
 
     if local_result:
 
-        speak("[LOCAL PARSER USED]")
+        print("[LOCAL PARSER USED]")
 
-        speak(local_result)
+        print(local_result)
 
         return local_result
 
@@ -25,14 +25,14 @@ def process(command):
     # ============================================
     ai_result = ai_parse(cleaned)
     if ai_result:
-        speak("[AI PARSER USED]")
-        speak(ai_result)
+        print("[AI PARSER USED]")
+        print(ai_result)
         return ai_result
     # ============================================
     # STEP 3 — CHAT FALLBACK
     # ============================================
 
-    speak("[CHAT FALLBACK]")
+    print("[CHAT FALLBACK]")
 
     return {
         "intent": "chat",

@@ -13,6 +13,10 @@ event_clients_lock = threading.Lock()
 app_command_queue = None  # Will be mapped to main's command_queue
 mic_state = {"active": True}  # True = listening, False = sleeping
 
+# Web server startup synchronization
+web_server_ready = threading.Event()
+web_server_port = None
+
 # System state tracker for events
 status_state = {"state": "idle", "duration": 0}
 
@@ -51,7 +55,12 @@ class LogRedirector:
         self.lock = threading.Lock()
 
     def write(self, message):
-        self.original_stream.write(message)
+        try:
+            self.original_stream.write(message)
+        except UnicodeEncodeError:
+            encoding = getattr(self.original_stream, "encoding", "utf-8") or "utf-8"
+            safe_message = message.encode(encoding, errors="backslashreplace").decode(encoding)
+            self.original_stream.write(safe_message)
         # Standard prints append a newline at the end. Let's send non-empty segments
         clean_msg = message.strip()
         if clean_msg:
@@ -68,6 +77,18 @@ class LogRedirector:
         if hasattr(self.original_stream, "fileno"):
             return self.original_stream.fileno()
         raise OSError("Stream has no fileno")
+
+# Reconfigure streams to support UTF-8 on Windows console
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding='utf-8', errors='backslashreplace')
+    except Exception:
+        pass
+if hasattr(sys.stderr, "reconfigure"):
+    try:
+        sys.stderr.reconfigure(encoding='utf-8', errors='backslashreplace')
+    except Exception:
+        pass
 
 # Redirect sys.stdout and sys.stderr
 sys.stdout = LogRedirector(sys.stdout)
@@ -140,6 +161,7 @@ def system_stats_worker():
 FRONTEND_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend", "dist")
 
 class JarvisHttpHandler(BaseHTTPRequestHandler):
+    protocol_version = "HTTP/1.1"
     
     def log_message(self, format, *args):
         # Prevent default console prints of GET/POST requests to keep console output clean
@@ -162,14 +184,20 @@ class JarvisHttpHandler(BaseHTTPRequestHandler):
                 
             # Send initial greeting/current status
             self.wfile.write(f"event: status\ndata: {json.dumps(status_state)}\n\n".encode())
+            self.wfile.flush()
             
             # Yield events to client as they arrive
             try:
                 while True:
-                    event_data = client_queue.get(timeout=30)
-                    self.wfile.write(event_data.encode())
-                    self.wfile.flush()
-            except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError, queue.Empty):
+                    try:
+                        event_data = client_queue.get(timeout=15)
+                        self.wfile.write(event_data.encode())
+                        self.wfile.flush()
+                    except queue.Empty:
+                        # Send a keepalive comment line to keep the TCP/HTTP connection open
+                        self.wfile.write(b": keepalive\n\n")
+                        self.wfile.flush()
+            except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
                 pass
             finally:
                 with event_clients_lock:
@@ -186,7 +214,8 @@ class JarvisHttpHandler(BaseHTTPRequestHandler):
         file_path = os.path.normpath(os.path.join(FRONTEND_DIR, safe_rel))
         
         # Ensure request does not traverse out of the frontend dist folder
-        if file_path.startswith(FRONTEND_DIR) and os.path.exists(file_path) and os.path.isfile(file_path):
+        if file_path.lower().startswith(FRONTEND_DIR.lower()) and os.path.exists(file_path) and os.path.isfile(file_path):
+            print(f"[SERVER] Serving static file: {file_path}")
             self.send_response(200)
             
             # Handle mime types
@@ -198,13 +227,18 @@ class JarvisHttpHandler(BaseHTTPRequestHandler):
                 self.send_header("Content-Type", "application/javascript")
             elif file_path.endswith(".svg"):
                 self.send_header("Content-Type", "image/svg+xml")
+            elif file_path.endswith(".mp3"):
+                self.send_header("Content-Type", "audio/mpeg")
             else:
                 self.send_header("Content-Type", "application/octet-stream")
                 
+            file_size = os.path.getsize(file_path)
+            self.send_header("Content-Length", str(file_size))
             self.end_headers()
             
             with open(file_path, "rb") as f:
                 self.wfile.write(f.read())
+            self.wfile.flush()
         else:
             self.send_error(404, "File Not Found")
 
@@ -229,32 +263,61 @@ class JarvisHttpHandler(BaseHTTPRequestHandler):
                     # Enqueue the command into main queue for execution
                     app_command_queue.put(cmd)
                     
+                    response_data = json.dumps({"status": "success"}).encode()
                     self.send_response(200)
                     self.send_header("Content-Type", "application/json")
+                    self.send_header("Content-Length", str(len(response_data)))
                     self.send_header("Access-Control-Allow-Origin", "*")
                     self.end_headers()
-                    self.wfile.write(json.dumps({"status": "success"}).encode())
+                    self.wfile.write(response_data)
+                    self.wfile.flush()
                 else:
+                    response_data = json.dumps({"status": "error", "message": "Empty command"}).encode()
                     self.send_response(400)
+                    self.send_header("Content-Type", "application/json")
+                    self.send_header("Content-Length", str(len(response_data)))
                     self.send_header("Access-Control-Allow-Origin", "*")
                     self.end_headers()
-                    self.wfile.write(json.dumps({"status": "error", "message": "Empty command"}).encode())
+                    self.wfile.write(response_data)
+                    self.wfile.flush()
             except Exception as e:
+                response_data = json.dumps({"status": "error", "message": str(e)}).encode()
                 self.send_response(500)
+                self.send_header("Content-Type", "application/json")
+                self.send_header("Content-Length", str(len(response_data)))
                 self.send_header("Access-Control-Allow-Origin", "*")
                 self.end_headers()
-                self.wfile.write(json.dumps({"status": "error", "message": str(e)}).encode())
+                self.wfile.write(response_data)
+                self.wfile.flush()
             return
             
         # 2. API: TOGGLE MICROPHONE LISTENING STATE
         elif self.path == "/api/toggle-mic":
             mic_state["active"] = not mic_state["active"]
             
+            response_data = json.dumps({"status": "success", "active": mic_state["active"]}).encode()
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(response_data)))
             self.send_header("Access-Control-Allow-Origin", "*")
             self.end_headers()
-            self.wfile.write(json.dumps({"status": "success", "active": mic_state["active"]}).encode())
+            self.wfile.write(response_data)
+            self.wfile.flush()
+            return
+            
+        # 3. API: TRIGGER STARTUP GREETING WHEN FRONTEND IS READY
+        elif self.path == "/api/ready":
+            from core.speaker import speak
+            speak("Hey Boss, I'm ready. I'm Jarvis, your personal AI assistant. All systems are online and waiting for your command.")
+            
+            response_data = json.dumps({"status": "success"}).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(response_data)))
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(response_data)
+            self.wfile.flush()
             return
             
         self.send_error(404, "Not Found")
@@ -274,9 +337,12 @@ def run_web_server(port, command_queue):
     
     # Try finding an available port if 8000 is occupied
     httpd = None
+    global web_server_port
     for current_port in range(port, port + 20):
         try:
             httpd = ThreadingHTTPServer(("", current_port), JarvisHttpHandler)
+            web_server_port = current_port
+            web_server_ready.set()
             # Log the original stdout
             sys.stdout.original_stream.write(f"\n[SYSTEM] Futuristic UI Web Server online at http://localhost:{current_port}\n")
             break

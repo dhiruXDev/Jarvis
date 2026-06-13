@@ -100,7 +100,7 @@ def detect_lang(text):
 
         detected = detect(text)
 
-        speak(f"[LANG DETECTED] {detected}")
+        print(f"[LANG DETECTED] {detected}")
 
         return detected
 
@@ -145,7 +145,7 @@ def normalize_hinglish(text):
 
             text = f"play {media}"
 
-    speak(f"[NORMALIZED] {text}")
+    print(f"[NORMALIZED] {text}")
 
     return text
 
@@ -170,13 +170,13 @@ def to_english(text):
             target="en"
         ).translate(text)
 
-        speak(f"[TRANSLATED] {translated}")
+        print(f"[TRANSLATED] {translated}")
 
         return translated
 
     except Exception as e:
 
-        speak("Translation Error:", e)
+        print("Translation Error:", e)
 
         return text
 
@@ -210,7 +210,7 @@ def listen():
 
     with sr.Microphone() as source:
 
-        speak("🎤 Listening...")
+        print("🎤 Listening...")
 
         _recognizer.adjust_for_ambient_noise(
             source,
@@ -230,7 +230,7 @@ def listen():
                 language="hi-IN"
             )
 
-            speak(f"🧑 User: {text}")
+            print(f"🧑 User: {text}")
 
             return text
 
@@ -244,7 +244,7 @@ def listen():
 
         except Exception as e:
 
-            speak("Mic Error:", e)
+            print("Mic Error:", e)
 
             return ""
 

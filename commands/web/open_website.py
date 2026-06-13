@@ -26,7 +26,7 @@ def open_website(site_name):
         # Remove extra spaces
         site_name = re.sub(r"\s+", " ", site_name)
 
-        speak(f"[OPEN WEBSITE] Requested: {site_name}")
+        print(f"[OPEN WEBSITE] Requested: {site_name}")
 
         # =========================
         # PREDEFINED SITES
@@ -37,7 +37,7 @@ def open_website(site_name):
 
             webbrowser.open(url)
 
-            speak(f"[OPEN WEBSITE] Opening predefined: {url}")
+            print(f"[OPEN WEBSITE] Opening predefined: {url}")
 
             return f"Opening {site_name}"
 
@@ -48,7 +48,7 @@ def open_website(site_name):
 
             webbrowser.open(site_name)
 
-            speak(f"[OPEN WEBSITE] Opening direct URL")
+            print(f"[OPEN WEBSITE] Opening direct URL")
 
             return f"Opening {site_name}"
 
@@ -65,12 +65,12 @@ def open_website(site_name):
 
         webbrowser.open(url)
 
-        speak(f"[OPEN WEBSITE] Opening generic URL: {url}")
+        print(f"[OPEN WEBSITE] Opening generic URL: {url}")
 
         return f"Opening {site_name}"
 
     except Exception as e:
 
-        speak(f"[OPEN WEBSITE ERROR] {e}")
+        print(f"[OPEN WEBSITE ERROR] {e}")
 
         return "Unable to open website"

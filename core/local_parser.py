@@ -34,8 +34,8 @@ def local_parse(command):
         return {"intent": "file", "action": "open_documents"}
     if text.startswith("open drives"):
         return {"intent": "file", "action": "open_drives"}
-    if text.startswith("open "):
-        return {"intent": "file", "action": "open_folder", "folder_name": text.replace("open ", "").strip()}
+    if text.startswith("open folder "):
+        return {"intent": "file", "action": "open_folder", "folder_name": text.replace("open folder ", "").strip()}
     
     # =========================
     # OPEN WEBSITES

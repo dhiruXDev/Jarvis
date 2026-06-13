@@ -1,0 +1,46 @@
+{
+  "name": "jarvis-desktop",
+  "version": "1.0.0",
+  "description": "Futuristic JARVIS Command Center Desktop App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:frontend": "npm run build --prefix frontend",
+    "package": "npm run build:frontend && electron-builder"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.dhiruxdev.jarvis",
+    "productName": "Jarvis",
+    "directories": {
+      "output": "dist-desktop"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "main.js",
+      "error.html",
+      "assets/**/*",
+      "frontend/dist/**/*",
+      ".venv/**/*",
+      "core/**/*",
+      "commands/**/*",
+      "modules/**/*",
+      "utils/**/*",
+      "actions/**/*",
+      "config/**/*",
+      "main.py",
+      "requirements.txt"
+    ]
+  }
+}
