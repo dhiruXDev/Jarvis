@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import AnalysingLoader from './Component/AnalysingLoader';
 
 export default function App() {
   // --- STATE ---
+  const [isAnalyzing, setIsAnalyzing] = useState(true);
   const [time, setTime] = useState('12:00:00 AM');
   const [date, setDate] = useState('May 22, 2026');
   const [uptime, setUptime] = useState(0);
@@ -53,6 +55,16 @@ export default function App() {
   const logEndRef = useRef(null);
   const hologramTimer = useRef(null);
   const sseRef = useRef(null);
+
+  const handleAnalysisFinished = useCallback(() => {
+    setIsAnalyzing(false);
+    fetch('/api/ready', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    }).catch(err => {
+      console.error("Failed to notify ready state:", err);
+    });
+  }, []);
 
   // ==========================================
   // CLOCK, DATE & UPTIME INTERVALLER
@@ -408,6 +420,10 @@ export default function App() {
     if (hologramState === 'processing' || hologramState === 'recognizing') return '#ff9900';
     return '#00bbff';
   };
+
+  if (isAnalyzing) {
+    return <AnalysingLoader onFinished={handleAnalysisFinished} />;
+  }
 
   return (
     <div className="flex flex-col h-screen p-[15px] relative overflow-hidden select-none">

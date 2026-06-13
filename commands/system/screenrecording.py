@@ -36,7 +36,7 @@ class ScreenRecorder:
                     break
                     
         except Exception as e:
-            speak(f"Recorder Error: {e}")
+            print(f"Recorder Error: {e}")
         finally:
             self.recording = False
             if self.out:
@@ -66,7 +66,7 @@ class ScreenRecorder:
             return f"Recording started: {filename}"
             
         except Exception as e:
-            speak(f"Start Error: {e}")
+            print(f"Start Error: {e}")
             return f"Failed to start recording: {e}"
             
     def stop(self):
@@ -103,7 +103,7 @@ def start_screen_recording():
         return result
         
     except Exception as e:
-        speak(f"Error: {e}")
+        print(f"Error: {e}")
         return f"Failed to record screen: {e}"
 
 def stop_screen_recording():
@@ -111,7 +111,7 @@ def stop_screen_recording():
     try:
         return screen_recorder.stop()
     except Exception as e:
-        speak(f"Error: {e}")
+        print(f"Error: {e}")
         return f"Failed to stop recording: {e}"
 
 def check_screen_recording_status():
@@ -136,5 +136,5 @@ def open_screen_recordings_folder():
             
         return f"Opened screen recordings folder: {folder}"
     except Exception as e:
-        speak(f"Error opening folder: {e}")
+        print(f"Error opening folder: {e}")
         return f"Failed to open recordings folder: {e}"

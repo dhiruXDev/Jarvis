@@ -1,7 +1,9 @@
+from core.speaker import is_speaking , speak
 import time
-import speech_recognition as sr
-from core.server import mic_state, set_hud_status, broadcast_event
 
+from core.server import mic_state, set_hud_status, broadcast_event
+# pyrefly: ignore [missing-import]
+import speech_recognition as sr
 
 recognizer = sr.Recognizer()
 recognizer.energy_threshold = 300
@@ -14,7 +16,7 @@ calibrated = False
 def listen():
     # If Jarvis is currently speaking, do not open the mic to avoid audio hardware conflict and self-hearing
     from core.server import status_state
-    if status_state.get("state") == "speaking":
+    if is_speaking.is_set() or status_state.get("state") == "speaking":
         time.sleep(0.2)
         return ""
 
@@ -72,38 +74,4 @@ def listen():
         # Standard print captures and streams to UI terminal drawer automatically!
         print(f"Microphone: inactive/offline ({str(e)})")
         time.sleep(1.5)
-    try:
-        # Wait for speaker to finish before starting to listen
-        if is_speaking.is_set():
-            is_speaking.wait()
-
-        with sr.Microphone() as source:
-            if not calibrated:
-                speak("Calibrating microphone for ambient noise...")
-                recognizer.adjust_for_ambient_noise(source, duration=1)
-                calibrated = True
-                speak("Calibration complete.")
-
-            speak("Listening...")
-            audio = recognizer.listen(
-                source,
-                timeout=10,
-                phrase_time_limit=8
-            )
-
-        # Discard audio if Jarvis started speaking during the audio capture
-        if is_speaking.is_set():
-            return ""
-
-        speak("Recognizing...")
-        command = recognizer.recognize_google(audio, language="hi-IN")
-        return command.lower()
-
-    except sr.WaitTimeoutError:
         return ""
-
-    except sr.UnknownValueError:
-        return ""
-
-    except Exception as e:
-        speak("Listener Error:", e)

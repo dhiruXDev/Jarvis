@@ -26,7 +26,7 @@ def check_volume():
         )
         return current
     except Exception as e:
-        speak(f"Volume Error: {e}")
+        print(f"Volume Error: {e}")
         return None
         
 def volume(level):
@@ -45,7 +45,7 @@ def volume(level):
         volume_obj.SetMasterVolumeLevelScalar(level / 100.0, None)
         return True
     except Exception as e:
-        speak(f"Volume Error: {e}")
+        print(f"Volume Error: {e}")
         return False
 
 def increase_volume(step=10):
@@ -82,7 +82,7 @@ def increase_volume(step=10):
 
     except Exception as e:
 
-        speak(f"Volume Error: {e}")
+        print(f"Volume Error: {e}")
 
         return False
 
@@ -120,7 +120,7 @@ def decrease_volume(step=10):
 
     except Exception as e:
 
-        speak(f"Volume Error: {e}")
+        print(f"Volume Error: {e}")
 
         return False
 
@@ -139,7 +139,7 @@ def mute_volume():
         return True
 
     except Exception as e:
-        speak(f"Mute Error: {e}")
+        print(f"Mute Error: {e}")
         return False
 
 
@@ -158,7 +158,7 @@ def unmute_volume():
         return True
 
     except Exception as e:
-        speak(f"Unmute Error: {e}")
+        print(f"Unmute Error: {e}")
         return False
 
 def keep_quiet(minutes):
@@ -177,7 +177,7 @@ def keep_quiet(minutes):
         current_volume = volume_obj.GetMasterVolumeLevelScalar()
         # Mute
         volume_obj.SetMute(1, None)
-        speak(f"Muted for {minutes} minutes")
+        print(f"Muted for {minutes} minutes")
         # Wait
         time.sleep(minutes * 60)
         # Unmute
@@ -190,5 +190,5 @@ def keep_quiet(minutes):
         return True
 
     except Exception as e:
-        speak(f"Quiet Mode Error: {e}")
+        print(f"Quiet Mode Error: {e}")
         return False

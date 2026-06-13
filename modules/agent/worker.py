@@ -3,7 +3,7 @@ from core.speaker import speak
 
 def handle_agentic_task(message):
     try:
-        speak(f"\n[Agentic Worker] Starting task: {message}\n")
+        print(f"\n[Agentic Worker] Starting task: {message}\n")
         response = ollama.chat(
             model='qwen2.5:3b',
             messages=[
@@ -18,11 +18,11 @@ def handle_agentic_task(message):
             ]
         )
         result = response['message']['content']
-        speak(f"\n====================================\n[Agentic Worker Result]\n{result}\n====================================\n")
+        print(f"\n====================================\n[Agentic Worker Result]\n{result}\n====================================\n")
         
         # Notify the user that the task is complete
         speak("Sir, the background task you requested has been completed. The results are on your screen.")
         
     except Exception as e:
-        speak("Agentic Worker Error:", e)
+        print("Agentic Worker Error:", e)
         speak("Sir, I encountered an error while processing the background task.")

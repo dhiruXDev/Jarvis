@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JARVIS - Connection Error</title>
+  <style>
+    body {
+      background-color: #020713;
+      color: #e2f1ff;
+      font-family: 'Rajdhani', sans-serif;
+      padding: 30px;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 750px;
+      margin: 100px auto;
+      border: 1px solid rgba(0, 187, 255, 0.25);
+      border-radius: 8px;
+      background: rgba(8, 18, 36, 0.85);
+      padding: 30px;
+      box-shadow: 0 0 25px rgba(0, 187, 255, 0.2);
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      color: #ff3366;
+      text-shadow: 0 0 12px rgba(255, 51, 102, 0.6);
+      margin-top: 0;
+      letter-spacing: 2px;
+      font-size: 24px;
+    }
+    p {
+      line-height: 1.6;
+      font-size: 16px;
+      color: #7da5cc;
+    }
+    pre {
+      background: #000206;
+      border: 1px solid rgba(255, 51, 102, 0.2);
+      padding: 15px;
+      border-radius: 4px;
+      overflow: auto;
+      max-height: 250px;
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      color: #ff6688;
+    }
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #00bbff, #0077ff);
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 0 10px rgba(0, 187, 255, 0.3);
+      transition: all 0.3s ease;
+      margin-top: 15px;
+    }
+    .btn:hover {
+      filter: brightness(1.2);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+      transform: translateY(-1px);
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Rajdhani:wght@500;600&family=Fira+Code&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>CORE CONNECTION FAILURE</h1>
+    <p>The Electron desktop wrapper failed to establish a secure link with the Python backend server or the server crashed on startup.</p>
+    
+    <div style="margin: 20px 0;">
+      <span style="font-weight: bold; color: #ff3366;">Error Log:</span>
+      <pre id="error-log">Waiting for logs...</pre>
+    </div>
+    
+    <button class="btn" onclick="relaunch()">Relaunch Application</button>
+  </div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+    ipcRenderer.on('backend-error', (event, errorMsg) => {
+      document.getElementById('error-log').innerText = errorMsg;
+    });
+
+    function relaunch() {
+      ipcRenderer.send('relaunch');
+    }
+  </script>
+</body>
+</html>

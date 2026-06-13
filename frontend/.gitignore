@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+dist-desktop/
+*.exe
+win-unpacked/
+dist-desktop/
+*.exe
