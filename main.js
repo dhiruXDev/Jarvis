@@ -144,6 +144,7 @@ app.whenReady().then(() => {
     .then((url) => {
       console.log(`[Electron] Server is online. Loading frontend from ${url}`);
       createMainWindow(url);
+      setupAutoReload();
     })
     .catch((err) => {
       console.error(`[Electron] Failed to start backend:`, err);
@@ -154,6 +155,7 @@ app.whenReady().then(() => {
     if (BrowserWindow.getAllWindows().length === 0) {
       if (isServerOnline) {
         createMainWindow(`http://localhost:${serverPort}`);
+        setupAutoReload();
       }
     }
   });
@@ -177,3 +179,55 @@ ipcMain.on('relaunch', () => {
   app.relaunch();
   app.exit(0);
 });
+
+// Native FS Watcher for Auto-Reload and Relaunch
+function setupAutoReload() {
+  let reloadTimeout;
+  const distPath = path.join(__dirname, 'frontend', 'dist');
+  if (fs.existsSync(distPath)) {
+    console.log(`[Electron Watcher] Watching frontend assets at ${distPath} for hot reload...`);
+    fs.watch(distPath, { recursive: true }, (eventType, filename) => {
+      if (filename && (filename.endsWith('.js') || filename.endsWith('.css') || filename.endsWith('.html'))) {
+        clearTimeout(reloadTimeout);
+        reloadTimeout = setTimeout(() => {
+          if (mainWindow && !mainWindow.isDestroyed()) {
+            console.log(`[Electron Watcher] Frontend change detected: ${filename}. Reloading mainWindow...`);
+            mainWindow.webContents.reloadIgnoringCache();
+          }
+        }, 500);
+      }
+    });
+  }
+
+  let relaunchTimeout;
+  
+  // Watch backend core python files
+  const corePath = path.join(__dirname, 'core');
+  if (fs.existsSync(corePath)) {
+    console.log(`[Electron Watcher] Watching backend scripts at ${corePath} for auto-restart...`);
+    fs.watch(corePath, { recursive: true }, (eventType, filename) => {
+      if (filename && filename.endsWith('.py')) {
+        clearTimeout(relaunchTimeout);
+        relaunchTimeout = setTimeout(() => {
+          console.log(`[Electron Watcher] Python script change detected: ${filename}. Relaunching Electron...`);
+          app.relaunch();
+          app.exit(0);
+        }, 1000);
+      }
+    });
+  }
+
+  // Watch main process main.js file
+  const mainJsPath = path.join(__dirname, 'main.js');
+  if (fs.existsSync(mainJsPath)) {
+    fs.watch(mainJsPath, (eventType, filename) => {
+      clearTimeout(relaunchTimeout);
+      relaunchTimeout = setTimeout(() => {
+        console.log(`[Electron Watcher] Main script change detected: main.js. Relaunching Electron...`);
+        app.relaunch();
+        app.exit(0);
+      }, 1000);
+    });
+  }
+}
+
