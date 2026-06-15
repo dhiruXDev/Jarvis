@@ -606,3 +606,166 @@
 2026-06-13 10:31:48,298 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
 2026-06-13 10:32:17,795 - INFO - tell me a joke
 2026-06-13 10:32:22,583 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:39:50,692 - INFO - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2026-06-13 11:39:55,759 - INFO - Imported existing <module 'comtypes.gen' from 'E:\\Project\\Jarvish\\.venv\\Lib\\site-packages\\comtypes\\gen\\__init__.py'>
+2026-06-13 11:39:55,759 - INFO - Using writeable comtypes cache directory: 'E:\Project\Jarvish\.venv\Lib\site-packages\comtypes\gen'
+2026-06-13 11:40:19,628 - INFO - what are you doing
+2026-06-13 11:40:45,312 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:40:51,524 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:41:04,647 - INFO - jarvis
+2026-06-13 11:41:10,264 - INFO - today's
+2026-06-13 11:41:32,825 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:41:38,251 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:41:44,640 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:41:47,419 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:47:05,692 - INFO - what is today days
+2026-06-13 11:47:21,780 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:47:26,338 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:49:25,108 - INFO - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2026-06-13 11:49:30,156 - INFO - Imported existing <module 'comtypes.gen' from 'E:\\Project\\Jarvish\\.venv\\Lib\\site-packages\\comtypes\\gen\\__init__.py'>
+2026-06-13 11:49:30,156 - INFO - Using writeable comtypes cache directory: 'E:\Project\Jarvish\.venv\Lib\site-packages\comtypes\gen'
+2026-06-13 11:49:44,281 - INFO - jarvis what is the internet
+2026-06-13 11:50:12,799 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:50:20,306 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:51:53,041 - INFO - ok so you are saying the ping
+2026-06-13 11:52:11,015 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:52:19,601 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:55:11,064 - INFO - browser
+2026-06-13 11:55:34,047 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:56:30,010 - INFO - jarvis volume decrease kar do
+2026-06-13 11:56:32,195 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:56:37,940 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:57:13,586 - INFO - jarvis bye
+2026-06-13 11:57:31,737 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 11:57:39,308 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 12:07:32,351 - INFO - welcome back to
+2026-06-13 12:07:49,818 - INFO - hey jarvis i am thinking to change your language model so what the model i should use
+2026-06-13 12:08:03,727 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 12:08:09,574 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 12:08:16,172 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 12:08:22,434 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 12:09:36,581 - INFO - 2 second ke liye chup ho jao
+2026-06-13 12:10:02,470 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 12:10:08,838 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:02:05,258 - INFO - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2026-06-13 13:02:10,884 - INFO - splendor
+2026-06-13 13:02:34,297 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:02:49,701 - INFO - don't even message veeru
+2026-06-13 13:03:06,834 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:03:08,331 - INFO - 25 degree
+2026-06-13 13:03:33,128 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:03:37,454 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:04:06,093 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:04:13,001 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:04:49,804 - INFO - tell me what is the temperature of india now
+2026-06-13 13:05:14,423 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:05:55,335 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:06:25,354 - INFO - ok jarvis can you laugh
+2026-06-13 13:06:55,853 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:07:28,036 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:09:00,166 - INFO - ok jarvis how are you
+2026-06-13 13:09:26,583 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:10:00,824 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:13:35,527 - INFO - but here what is pink
+2026-06-13 13:14:01,292 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:14:35,715 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:16:00,419 - INFO - ok can you generate essay on cow approx 200 words
+2026-06-13 13:16:20,606 - INFO - bhutan lottery
+2026-06-13 13:16:26,838 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:16:30,813 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:17:05,729 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:18:06,486 - INFO - ok jarvis tell a joke in hindi
+2026-06-13 13:18:14,009 - INFO - slowly slowly
+2026-06-13 13:18:35,404 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:18:41,154 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:19:18,810 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:19:26,051 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:22:50,379 - INFO - ok close this youtube
+2026-06-13 13:23:32,072 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:24:00,579 - INFO - tell a joke in hindi
+2026-06-13 13:24:13,293 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:24:58,392 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:31:15,924 - INFO - hi jarvis what is the english of aadha
+2026-06-13 13:31:43,303 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:32:18,247 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:33:22,752 - INFO - ho gaya which can you tell me a joke
+2026-06-13 13:33:47,039 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:34:18,485 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:35:29,029 - INFO - babu nath
+2026-06-13 13:35:52,071 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:36:21,339 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:36:42,346 - INFO - you sing a song
+2026-06-13 13:37:05,043 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:37:33,803 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:38:02,545 - INFO - abhi main mera hal chaal poochho
+2026-06-13 13:38:24,995 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:38:50,361 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:38:51,576 - INFO - jarvis to sikkim
+2026-06-13 13:39:14,431 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:43:13,823 - INFO - figure out how to water
+2026-06-13 13:43:36,183 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:44:07,669 - INFO - is number
+2026-06-13 13:44:10,382 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:44:36,380 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:46:38,042 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:48:57,040 - INFO - what is the volume level
+2026-06-13 13:49:14,589 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:49:48,780 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:53:47,294 - INFO - my song
+2026-06-13 13:54:15,306 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:54:36,462 - INFO - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2026-06-13 13:54:53,164 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:57:10,026 - INFO - today's match video
+2026-06-13 13:57:46,006 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:58:21,899 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:59:05,615 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 13:59:47,897 - INFO - listen to the song by singing in hindi
+2026-06-13 14:00:17,461 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:00:48,566 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:02:42,526 - INFO - jarvis ka upar write asse tell
+2026-06-13 14:03:27,035 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:14:44,389 - INFO - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2026-06-13 14:15:20,644 - INFO - jarvis who is the prime minister of our country india
+2026-06-13 14:15:48,539 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:16:17,542 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:17:23,174 - INFO - ok jarvis sing a song for me
+2026-06-13 14:17:47,209 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:18:15,388 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:21:11,608 - INFO - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2026-06-13 14:21:35,873 - INFO - now just tell me a joke
+2026-06-13 14:21:37,130 - INFO - now just tell me a joke
+2026-06-13 14:22:06,788 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:22:15,743 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:22:49,262 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:22:57,444 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:23:50,611 - INFO - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2026-06-13 14:24:11,140 - INFO - punjabis who is the prime minister of india
+2026-06-13 14:24:45,816 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:24:58,357 - INFO - narendra modi
+2026-06-13 14:25:01,173 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:26:18,525 - INFO - ok tell me the essay on cow
+2026-06-13 14:26:21,545 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:31:49,885 - INFO - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2026-06-13 14:32:12,115 - INFO - jarvis write down the essay on cow
+2026-06-13 14:32:16,734 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:32:37,661 - INFO - jarvis tell me
+2026-06-13 14:32:43,419 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:33:15,592 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:35:05,234 - INFO - tell me essay on cow
+2026-06-13 14:35:33,093 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:38:55,742 - INFO - HTTP Request: GET http://127.0.0.1:11434/api/tags "HTTP/1.1 200 OK"
+2026-06-13 14:39:15,501 - INFO - essay on cow
+2026-06-13 14:39:19,143 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:40:16,668 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:41:02,424 - INFO - okk now tell me the prime minister of india
+2026-06-13 14:41:24,788 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:41:59,922 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:42:23,942 - INFO - what day is it today
+2026-06-13 14:42:51,742 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:43:30,755 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:43:59,169 - INFO - so today is either sunday monday tuesday or anything else
+2026-06-13 14:44:31,793 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:45:10,959 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:45:28,718 - INFO - check for me
+2026-06-13 14:46:02,659 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2026-06-13 14:46:33,823 - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"

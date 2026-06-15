@@ -32,13 +32,15 @@ def close_application(app_name):
 
                 # close selected window only
                 pyautogui.hotkey("alt", "f4")
-                print(f"Ok boss, closed the app {title}")
-                return 
-        print(f"No open window found for {app_name}")
-        return 
+                msg = f"Closed the application {title}"
+                print(msg)
+                return msg
+        msg = f"No open window found for {app_name}"
+        print(msg)
+        return msg
 
     except Exception as e:
 
         print(f"Close App Error: {e}")
 
-        return "Unable to close application"
+        return f"Unable to close application: {e}"
