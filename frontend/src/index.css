@@ -2,9 +2,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cyber-deep: #020713;
-  --color-cyber-card: rgba(8, 18, 36, 0.65);
-  --color-cyber-card-hover: rgba(12, 28, 56, 0.8);
+  --color-cyber-deep: #000000;
+  --color-cyber-card: rgba(12, 12, 12, 0.7);
+  --color-cyber-card-hover: rgba(22, 22, 22, 0.85);
   --color-cyber-blue: #00bbff;
   --color-cyber-cyan: #00f0ff;
   --color-cyber-green: #39ff14;
@@ -12,8 +12,8 @@
   --color-cyber-magenta: #e0a3ff;
   --color-cyber-purple: #9d4edd;
   --color-cyber-text: #e2f1ff;
-  --color-cyber-muted: #7da5cc;
-  --color-cyber-dim: #41688f;
+  --color-cyber-muted: #9ca3af;
+  --color-cyber-dim: #4b5563;
 
   --font-hud: "Orbitron", sans-serif;
   --font-labels: "Rajdhani", sans-serif;
@@ -30,12 +30,12 @@
 
 
 body {
-  background-color: #020713;
+  background-color: #000000;
   background-image: 
-    radial-gradient(circle at 50% 10%, rgba(10, 35, 75, 0.4) 0%, transparent 60%),
-    radial-gradient(circle at 10% 80%, rgba(5, 20, 50, 0.3) 0%, transparent 40%),
-    linear-gradient(rgba(0, 0, 0, 0.15) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.15) 1px, transparent 1px);
+    radial-gradient(circle at 50% 10%, rgba(30, 30, 30, 0.35) 0%, transparent 60%),
+    radial-gradient(circle at 10% 80%, rgba(20, 20, 20, 0.2) 0%, transparent 40%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
   color: #e2f1ff;
   font-family: 'Rajdhani', sans-serif;
@@ -253,3 +253,130 @@ body {
     transform: rotate(360deg);
   }
 }
+
+@keyframes visualizer-bar-pulse {
+  0% { transform: scaleY(0.15); }
+  100% { transform: scaleY(1.0); }
+}
+
+.animate-vis-bar {
+  animation: visualizer-bar-pulse 0.5s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+
+/* ==========================================
+   SCIFI HUD CUSTOM LAYOUT UTILITIES
+   ========================================== */
+
+/* Trapezoid Clock Bezel */
+.hud-header-bevel {
+  background: linear-gradient(180deg, rgba(20, 20, 20, 0.95) 0%, rgba(5, 5, 5, 0.98) 100%);
+  border-left: 2px solid rgba(0, 187, 255, 0.6);
+  border-right: 2px solid rgba(0, 187, 255, 0.6);
+  border-bottom: 1px solid rgba(0, 187, 255, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 187, 255, 0.15), inset 0 0 15px rgba(0, 187, 255, 0.2);
+  clip-path: polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%);
+}
+
+/* Corner Bracket Borders */
+.scifi-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: rgba(0, 240, 255, 0.7);
+  border-style: solid;
+  pointer-events: none;
+  filter: drop-shadow(0 0 3px rgba(0, 240, 255, 0.5));
+}
+.scifi-corner-tl { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.scifi-corner-tr { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+.scifi-corner-bl { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+.scifi-corner-br { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+/* Scifi Panels */
+.hud-panel {
+  background: rgba(10, 10, 10, 0.75);
+  border: 1px solid rgba(0, 187, 255, 0.18);
+  box-shadow: inset 0 0 10px rgba(0, 187, 255, 0.05), 0 3px 8px rgba(0, 0, 0, 0.6);
+}
+.hud-panel:hover {
+  border-color: rgba(0, 187, 255, 0.35);
+  box-shadow: inset 0 0 12px rgba(0, 187, 255, 0.08), 0 4px 12px rgba(0, 187, 255, 0.15);
+}
+
+/* Collapsible Ticker Animations */
+@keyframes log-ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-log-ticker {
+  animation: log-ticker 40s linear infinite;
+}
+
+.animate-log-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* Custom angled control buttons */
+.hud-btn-left {
+  clip-path: polygon(0% 0%, 90% 0%, 100% 30%, 100% 100%, 0% 100%);
+  background: linear-gradient(135deg, rgba(25, 25, 25, 0.85) 0%, rgba(5, 5, 5, 0.95) 100%);
+}
+.hud-btn-center {
+  clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%);
+  background: linear-gradient(180deg, rgba(25, 25, 25, 0.85) 0%, rgba(5, 5, 5, 0.95) 100%);
+}
+.hud-btn-right {
+  clip-path: polygon(10% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 30%);
+  background: linear-gradient(225deg, rgba(25, 25, 25, 0.85) 0%, rgba(5, 5, 5, 0.95) 100%);
+}
+
+.hud-btn-left:hover, .hud-btn-center:hover, .hud-btn-right:hover {
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+  filter: brightness(1.2);
+}
+
+/* Pulse keyframes for location radar */
+@keyframes radar-pulse {
+  0% { transform: scale(0.5); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.animate-radar-pulse {
+  animation: radar-pulse 2s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+}
+
+/* Scanlines styling */
+.hud-scanline {
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0),
+    rgba(255,255,255,0) 50%,
+    rgba(0, 240, 255, 0.04) 50%,
+    rgba(0, 240, 255, 0.04)
+  );
+  background-size: 100% 4px;
+}
+
+/* Futuristic Tab hover */
+.hud-tab {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(0, 187, 255, 0.15);
+  background: rgba(0, 0, 0, 0.65);
+}
+.hud-tab:hover {
+  border-color: rgba(0, 240, 255, 0.45);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+  color: #00f0ff;
+  text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
+}
+.hud-tab.active {
+  border-color: rgba(0, 240, 255, 0.75);
+  background: rgba(0, 240, 255, 0.12);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.25), inset 0 0 6px rgba(0, 240, 255, 0.12);
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+

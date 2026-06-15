@@ -6,7 +6,7 @@ export default function AnalysingLoader({ onFinished }) {
   const [isFading, setIsFading] = useState(false);
 
   useEffect(() => {
-    // Play startup sound safely
+    // Play startup sound safely at normal speed
     let audio;
     try {
       audio = new Audio(startSound);
@@ -17,7 +17,7 @@ export default function AnalysingLoader({ onFinished }) {
       console.warn("Failed to instantiate Audio player:", audioErr);
     }
 
-    // Cycle through futuristic status messages over 20 seconds
+    // Cycle through futuristic status messages
     const statuses = [
       'Initializing...',
       'Loading Core Processors...',
@@ -32,15 +32,15 @@ export default function AnalysingLoader({ onFinished }) {
         currentStatusIndex++;
         setStatusText(statuses[currentStatusIndex]);
       }
-    }, 800); // 500ms per status message (fits 5 statuses in 3 seconds)
+    }, 600); // Fits 5 status messages in 3 seconds
 
-    // End loading screen after 3 seconds (3000ms)
+    // End loading screen after 3 seconds (totaling 4 seconds with fadeout animation)
     const timeout = setTimeout(() => {
       setIsFading(true);
       setTimeout(() => {
         onFinished();
       }, 1000); // Wait for fadeout animation
-    }, 5000);
+    }, 3000);
 
     return () => {
       clearInterval(interval);
@@ -51,7 +51,7 @@ export default function AnalysingLoader({ onFinished }) {
         } catch (e) {}
       }
     };
-  }, []);
+  }, [onFinished]);
 
   return (
     <div className={`fixed inset-0 z-[9999] bg-black flex flex-col justify-center items-center select-none transition-opacity duration-500 ${isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
