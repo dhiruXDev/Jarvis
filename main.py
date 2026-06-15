@@ -62,6 +62,16 @@ def process_command(command):
         lang = "en"
 
         if not intent:
+            # Speak immediate filler response to user to avoid dead silence while querying LLM
+            import random
+            fillers = [
+                "Just a second, let me check.",
+                "One moment, working on it.",
+                "Let me look into that for you.",
+                "Give me a moment to think."
+            ]
+            speak(random.choice(fillers))
+
             # -------------------------
             # LANGUAGE DETECTION & TRANSLATION
             # -------------------------
@@ -163,6 +173,7 @@ def main():
     def verify_ollama():
         print("[SYSTEM] Verifying Ollama connection in background...")
         try:
+            # pyrefly: ignore [missing-import]
             import ollama
             ollama.list()
             print("[SYSTEM] Ollama connection verified successfully.")

@@ -2,7 +2,10 @@ import speedtest
 import subprocess
 import threading 
 
+from core.speaker import speak
+
 def check_internet_speed():
+    speak("Checking your internet speed, please wait a moment.")
     try:
         st = speedtest.Speedtest()
 
@@ -13,15 +16,18 @@ def check_internet_speed():
         ping = st.results.ping
 
         result = (
-            f"Download Speed: {round(download,2)} Mbps\n"
-            f"Upload Speed: {round(upload,2)} Mbps\n"
-            f"Ping: {round(ping,2)} ms"
+            f"Download Speed: {round(download, 2)} Mbps, "
+            f"Upload Speed: {round(upload, 2)} Mbps, "
+            f"Ping: {round(ping, 2)} ms"
         )
 
         print("\nJarvis:", result)
+        return result
 
     except Exception as e:
-        print("\nJarvis:", e)
+        err_msg = f"Failed to check internet speed: {e}"
+        print("\nJarvis:", err_msg)
+        return err_msg
 
 def run_speed_test():
     print("Jarvis: Checking internet speed in background...")

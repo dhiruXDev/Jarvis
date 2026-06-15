@@ -429,10 +429,9 @@ export default function App() {
     <div className="flex flex-col h-screen p-[15px] relative overflow-hidden select-none">
       
       {/* --- TOP HEADER BAR --- */}
-      <header className="flex justify-between items-center px-5 py-[10px] mb-[15px] bg-cyber-card border border-cyber-blue/20 rounded-lg backdrop-blur-xl shadow-glow relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:height-[1px] before:bg-gradient-to-r before:from-transparent before:via-cyber-blue before:to-transparent">
+      <header className="flex justify-between items-center px-5 py-[10px] mt-10 mb-[15px] bg-cyber-card border border-cyber-blue/20 rounded-lg backdrop-blur-xl shadow-glow relative overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:height-[1px] before:bg-gradient-to-r before:from-transparent before:via-cyber-blue before:to-transparent">
         <div className="flex items-center gap-[15px]">
-          <span className="font-hud text-[28px] font-black text-white [text-shadow:0_0_10px_#00bbff] tracking-wider">06</span>
-          <span className="font-hud text-[22px] font-bold tracking-[4px] bg-gradient-to-r from-white to-cyber-blue bg-clip-text text-transparent filter drop-shadow-[0_0_5px_rgba(0,187,255,0.5)]">JARVIS</span>
+           <span className="font-hud text-[22px] font-bold tracking-[4px] bg-gradient-to-r from-white to-cyber-blue bg-clip-text text-transparent filter drop-shadow-[0_0_5px_rgba(0,187,255,0.5)]">JARVIS</span>
           <div className={`flex items-center gap-[6px] px-[10px] py-[3px] rounded-full font-hud text-[10px] tracking-wider border bg-cyber-cyan/5 border-cyber-cyan/20 text-cyber-cyan`}>
             <span className={`w-[6px] height-[6px] rounded-full bg-cyber-cyan shadow-[0_0_8px_#00f0ff] ${backendStatus === 'Online' ? 'animate-ping' : ''}`}></span>
             <span>{backendStatus}</span>

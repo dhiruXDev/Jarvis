@@ -45,8 +45,9 @@ def execute(intent, lang=None):
     # AUDIO
     # =========================
     if command_type == "audio":
-        if action == "get" or "tell":
-            return check_volume()
+        if action in ("get", "tell", "check"):
+            vol = check_volume()
+            return f"Volume is at {vol}%" if vol is not None else "Unable to check volume"
         elif action == "set":
             level = intent.get("level", 50)
             volume(level)
@@ -67,9 +68,6 @@ def execute(intent, lang=None):
         elif action == "unmute":
             unmute_volume()
             return "Volume unmuted"
-        elif action == "get":
-            vol = check_volume()
-            return f"Volume is at {vol}%" if vol else "Unable to check volume"
         elif action == "keep_quiet":
             minutes = intent.get("minutes", 1)
             keep_quiet(minutes)

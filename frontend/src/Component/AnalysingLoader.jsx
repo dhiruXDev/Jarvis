@@ -32,15 +32,15 @@ export default function AnalysingLoader({ onFinished }) {
         currentStatusIndex++;
         setStatusText(statuses[currentStatusIndex]);
       }
-    }, 500); // 500ms per status message (fits 5 statuses in 3 seconds)
+    }, 800); // 500ms per status message (fits 5 statuses in 3 seconds)
 
     // End loading screen after 3 seconds (3000ms)
     const timeout = setTimeout(() => {
       setIsFading(true);
       setTimeout(() => {
         onFinished();
-      }, 500); // Wait for fadeout animation
-    }, 3000);
+      }, 1000); // Wait for fadeout animation
+    }, 5000);
 
     return () => {
       clearInterval(interval);
