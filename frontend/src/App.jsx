@@ -239,7 +239,7 @@ export default function App() {
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      
+
       const cx = x - canvas.width / 2;
       const cy = y - canvas.height / 2;
 
@@ -267,7 +267,7 @@ export default function App() {
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      
+
       // Spawn ripple
       ripplesRef.current.push({
         x,
@@ -460,13 +460,13 @@ export default function App() {
             ctx.lineWidth = 0.8;
             ctx.beginPath();
             ctx.moveTo(p1.px, p1.py);
-            
+
             const mx = (p1.px + p2.px) / 2;
             const my = (p1.py + p2.py) / 2;
             const offsetAmt = 8;
             const ox = mx + (Math.random() - 0.5) * offsetAmt;
             const oy = my + (Math.random() - 0.5) * offsetAmt;
-            
+
             ctx.lineTo(ox, oy);
             ctx.lineTo(p2.px, p2.py);
             ctx.stroke();
@@ -481,27 +481,27 @@ export default function App() {
           ctx.lineWidth = 1.0;
           ctx.strokeStyle = `rgba(${rgb}, 0.28)`;
           if (dashPattern.length) ctx.setLineDash(dashPattern);
-          
+
           for (let i = 0; i <= pointsCount; i++) {
             const theta = (i / pointsCount) * Math.PI * 2 + ringAngle;
             let rx = Math.cos(theta) * radius;
             let ry = Math.sin(theta) * radius;
             let rz = 0;
-            
+
             const cosY = Math.cos(tiltY);
             const sinY = Math.sin(tiltY);
             const rx1 = rx * cosY - rz * sinY;
             const rz1 = rz * cosY + rx * sinY;
-            
+
             const cosX = Math.cos(tiltX);
             const sinX = Math.sin(tiltX);
             const ry2 = ry * cosX - rz1 * sinX;
             const rz2 = rz1 * cosX + ry * sinX;
-            
+
             const scale = fov / (fov + rz2 * radius * 0.003);
             const px = cx + rx1 * scale;
             const py = cy + ry2 * scale;
-            
+
             if (i === 0) ctx.moveTo(px, py);
             else ctx.lineTo(px, py);
           }
@@ -518,41 +518,41 @@ export default function App() {
           let rx = Math.cos(theta) * radius;
           let ry = Math.sin(theta) * radius;
           let rz = 0;
-          
+
           const cosY = Math.cos(tiltY);
           const sinY = Math.sin(tiltY);
           const rx1 = rx * cosY - rz * sinY;
           const rz1 = rz * cosY + rx * sinY;
-          
+
           const cosX = Math.cos(tiltX);
           const sinX = Math.sin(tiltX);
           const ry2 = ry * cosX - rz1 * sinX;
           const rz2 = rz1 * cosX + ry * sinX;
-          
+
           const scale = fov / (fov + rz2 * radius * 0.003);
           const px = cx + rx1 * scale;
           const py = cy + ry2 * scale;
-          
+
           ctx.fillStyle = `rgba(${rgb}, ${rz2 > 0 ? 0.35 : 0.95})`;
           ctx.beginPath();
           ctx.arc(px, py, size, 0, Math.PI * 2);
           ctx.fill();
-          
+
           for (let t = 1; t <= 5; t++) {
             const trailTheta = theta - t * 0.04 * (speed > 0 ? 1 : -1);
             let trx = Math.cos(trailTheta) * radius;
             let try_ = Math.sin(trailTheta) * radius;
             let trz = 0;
-            
+
             const tr_rx1 = trx * cosY - trz * sinY;
             const tr_rz1 = trz * cosY + trx * sinY;
             const tr_ry2 = try_ * cosX - tr_rz1 * sinX;
             const tr_rz2 = tr_rz1 * cosX + try_ * sinX;
-            
+
             const tr_scale = fov / (fov + tr_rz2 * radius * 0.003);
             const tr_px = cx + tr_rx1 * tr_scale;
             const tr_py = cy + tr_ry2 * tr_scale;
-            
+
             ctx.fillStyle = `rgba(${rgb}, ${0.15 / t})`;
             ctx.beginPath();
             ctx.arc(tr_px, tr_py, size * 0.7, 0, Math.PI * 2);
@@ -567,7 +567,7 @@ export default function App() {
         const ringRadius = 78;
         const barsCount = 64;
         ctx.lineWidth = 1.8;
-        
+
         for (let i = 0; i < barsCount; i++) {
           const angle = (i / barsCount) * Math.PI * 2 + wavePhase * 0.15;
           let barHeight = 2;
@@ -580,12 +580,12 @@ export default function App() {
           } else {
             barHeight = 2 + Math.abs(Math.sin(i * 0.1 + wavePhase * 0.5)) * 2;
           }
-          
+
           const startX = cx + Math.cos(angle) * ringRadius;
           const startY = cy + Math.sin(angle) * ringRadius;
           const endX = cx + Math.cos(angle) * (ringRadius + barHeight);
           const endY = cy + Math.sin(angle) * (ringRadius + barHeight);
-          
+
           ctx.strokeStyle = `rgba(${rgb}, ${0.3 + (barHeight / (waveAmp + 2)) * 0.7})`;
           ctx.beginPath();
           ctx.moveTo(startX, startY);
@@ -622,17 +622,17 @@ export default function App() {
           { freq: 0.025, amp: waveAmp * 0.8, speed: 0.12, opacity: 0.2, lineW: 1.0 },
           { freq: 0.004, amp: waveAmp * 3.2, speed: 0.02, opacity: 0.15, lineW: 0.8 }
         ];
-        
+
         waveLayers.forEach((w) => {
           ctx.strokeStyle = `rgba(${rgb}, ${w.opacity})`;
           ctx.lineWidth = w.lineW;
           ctx.beginPath();
-          
+
           for (let x = 0; x < width; x += 3) {
             const t = x / width;
             const env = Math.exp(-Math.pow((t - 0.5) / 0.38, 2));
             let y = cy + Math.sin(x * w.freq + wavePhase * w.speed) * w.amp * env;
-            
+
             if (mousePosRef.current.isHovered) {
               const mx = mousePosRef.current.x;
               const dx = x - mx;
@@ -642,7 +642,7 @@ export default function App() {
                 y += Math.sin(x * 0.15 + wavePhase * 0.4) * 25 * influence;
               }
             }
-            
+
             if (x === 0) ctx.moveTo(x, y);
             else ctx.lineTo(x, y);
           }
@@ -654,23 +654,23 @@ export default function App() {
         const gap = 2;
         const barCount = Math.floor(width / (barW + gap));
         ctx.fillStyle = `rgba(${rgb}, 0.22)`;
-        
+
         for (let i = 0; i < barCount; i++) {
           const t = i / barCount;
           const env = Math.exp(-Math.pow((t - 0.5) / 0.45, 2));
           let barH = 5 + Math.sin(i * 0.15 + wavePhase) * 15 * env;
           barH += Math.cos(i * 0.4 - wavePhase * 1.5) * 8 * env;
           barH = Math.max(3, barH);
-          
+
           if (state === 'speaking') barH *= 1.8;
           else if (state === 'listening') barH *= 2.2;
           else if (state === 'processing') barH *= 1.4;
-          
+
           const bx = i * (barW + gap);
           const by = height - barH - 22;
-          
+
           ctx.fillRect(bx, by, barW, barH);
-          
+
           ctx.fillStyle = `rgba(${rgb}, 0.65)`;
           ctx.fillRect(bx, by - 3, barW, 1.5);
           ctx.fillStyle = `rgba(${rgb}, 0.22)`;
@@ -689,7 +689,7 @@ export default function App() {
           ctx.beginPath();
           ctx.arc(cx, cy, r, 0, Math.PI * 2);
           ctx.stroke();
-          
+
           ctx.strokeStyle = `rgba(${rgb}, 0.05)`;
           ctx.beginPath();
           ctx.moveTo(cx - r, cy); ctx.lineTo(cx + r, cy);
@@ -703,7 +703,7 @@ export default function App() {
         const sweepLen = 250;
         const sx = cx + Math.cos(sweepAngle) * sweepLen;
         const sy = cy + Math.sin(sweepAngle) * sweepLen;
-        
+
         ctx.strokeStyle = `rgba(${rgb}, 0.85)`;
         ctx.lineWidth = 1.6;
         ctx.beginPath();
@@ -728,22 +728,22 @@ export default function App() {
         radarNodes.forEach((node) => {
           const nx = cx + Math.cos(node.angle) * node.dist;
           const ny = cy + Math.sin(node.angle) * node.dist;
-          
+
           // Radar proximity check
           const angleDiff = Math.abs((sweepAngle - node.angle + Math.PI * 4) % (Math.PI * 2) - Math.PI);
           const sweepProx = Math.exp(-Math.pow((angleDiff - Math.PI) / 0.15, 2));
           const alpha = Math.max(0.18, sweepProx * 0.95);
-          
+
           ctx.strokeStyle = node.active ? `rgba(${rgb}, ${alpha})` : `rgba(239, 68, 68, ${alpha})`;
           ctx.fillStyle = node.active ? `rgba(${rgb}, ${alpha * 0.2})` : `rgba(239, 68, 68, ${alpha * 0.2})`;
           ctx.lineWidth = 1.0;
-          
+
           const size = 5;
           ctx.beginPath();
           ctx.arc(nx, ny, size, 0, Math.PI * 2);
           ctx.fill();
           ctx.stroke();
-          
+
           if (sweepProx > 0.6) {
             ctx.strokeStyle = `rgba(${rgb}, ${sweepProx * 0.15})`;
             ctx.beginPath();
@@ -751,11 +751,11 @@ export default function App() {
             ctx.lineTo(nx, ny);
             ctx.stroke();
           }
-          
+
           ctx.font = "bold 8px Orbitron";
           ctx.fillStyle = node.active ? `rgba(${rgb}, ${alpha})` : `rgba(239, 68, 68, ${alpha})`;
           ctx.fillText(node.label, nx + 10, ny + 3);
-          
+
           ctx.font = "500 7px Rajdhani";
           ctx.fillStyle = `rgba(156, 163, 175, ${alpha})`;
           ctx.fillText(`D:${node.dist}m // A:${node.angle.toFixed(2)}r`, nx + 10, ny + 11);
@@ -774,33 +774,33 @@ export default function App() {
             col.x = (Math.random() - 0.5) * 600;
             col.y = (Math.random() - 0.5) * 600;
           }
-          
+
           const fov = 200;
           const scale = fov / (fov + col.z);
           const px = cx + col.x * scale;
           const py = cy + col.y * scale;
-          
+
           col.chars.forEach((char, idx) => {
             const charOffset = idx * 12 * scale;
             const cpy = py + charOffset;
-            
+
             if (px < 0 || px > width || cpy < 0 || cpy > height) return;
             const depthOpacity = Math.max(0, Math.min(1.0, 1 - col.z / 800));
-            
+
             let fillStyle;
             if (idx === 0) fillStyle = `rgba(255, 255, 255, ${depthOpacity * 0.95})`;
             else if (idx < 4) fillStyle = `rgba(${rgb}, ${depthOpacity * 0.85})`;
             else fillStyle = `rgba(0, 119, 255, ${depthOpacity * (0.6 - idx * 0.04)})`;
-            
+
             ctx.fillStyle = fillStyle;
             ctx.font = `bold ${Math.max(6, 11 * scale)}px Orbitron`;
-            
+
             if (Math.random() < 0.05) {
-              col.chars[idx] = Math.random() > 0.6 
-                ? (Math.random() > 0.5 ? '1' : '0') 
+              col.chars[idx] = Math.random() > 0.6
+                ? (Math.random() > 0.5 ? '1' : '0')
                 : String.fromCharCode(33 + Math.floor(Math.random() * 40));
             }
-            
+
             ctx.fillText(char, px, cpy);
           });
         });
@@ -813,12 +813,12 @@ export default function App() {
       if (mPos.isHovered) {
         ctx.strokeStyle = `rgba(${rgb}, 0.85)`;
         ctx.lineWidth = 1.0;
-        
+
         const rx = mPos.x;
         const ry = mPos.y;
         const size = 8;
         const gap = 4;
-        
+
         ctx.beginPath();
         ctx.moveTo(rx - size, ry - gap); ctx.lineTo(rx - gap, ry - gap); ctx.lineTo(rx - gap, ry - size);
         ctx.stroke();
@@ -831,22 +831,22 @@ export default function App() {
         ctx.beginPath();
         ctx.moveTo(rx + size, ry + gap); ctx.lineTo(rx + gap, ry + gap); ctx.lineTo(rx + gap, ry + size);
         ctx.stroke();
-        
+
         ctx.fillStyle = `rgba(${rgb}, 0.9)`;
         ctx.beginPath();
         ctx.arc(rx, ry, 1.5, 0, Math.PI * 2);
         ctx.fill();
-        
+
         ctx.font = "bold 8px Fira Code";
         ctx.fillStyle = `rgba(${rgb}, 0.8)`;
         const coordX = Math.round(mPos.cx);
         const coordY = Math.round(-mPos.cy);
         ctx.fillText(`X:${coordX} Y:${coordY}`, rx + 14, ry - 4);
-        
+
         ctx.font = "500 7px Rajdhani";
         ctx.fillStyle = "rgba(156, 163, 175, 0.75)";
         ctx.fillText("GRID_LOCK // SEC:D", rx + 14, ry + 6);
-        
+
         if (mode === 'core') {
           ctx.strokeStyle = `rgba(${rgb}, 0.18)`;
           ctx.setLineDash([2, 4]);
@@ -865,22 +865,22 @@ export default function App() {
       ripplesRef.current = activeRipples.filter((ripple) => {
         ripple.radius += ripple.speed;
         ripple.alpha = 1 - ripple.radius / ripple.maxRadius;
-        
+
         if (ripple.alpha <= 0) return false;
-        
+
         ctx.strokeStyle = `rgba(${rgb}, ${ripple.alpha})`;
         ctx.lineWidth = 1.2;
         ctx.beginPath();
         ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
         ctx.stroke();
-        
+
         ctx.strokeStyle = `rgba(${rgb}, ${ripple.alpha * 0.4})`;
         ctx.setLineDash([4, 8]);
         ctx.beginPath();
         ctx.arc(ripple.x, ripple.y, ripple.radius * 1.2, 0, Math.PI * 2);
         ctx.stroke();
         ctx.setLineDash([]);
-        
+
         return true;
       });
 
@@ -1144,7 +1144,7 @@ export default function App() {
         // Modulated speech energy simulation (speech waveforms are dynamic)
         const targetAmp = 22 + Math.sin(wavePhase * 0.15) * 18 + Math.cos(wavePhase * 0.06) * 12;
         speechAmp = speechAmp * 0.75 + targetAmp * 0.25;
-        
+
         // Let's add occasional speech pauses
         const isPausing = Math.sin(wavePhase * 0.05) < -0.85;
         waveAmp = isPausing ? 4 : speechAmp;
@@ -1210,7 +1210,7 @@ export default function App() {
       edges.forEach(([i, j]) => {
         const pi = points[i];
         const pj = points[j];
-        
+
         // Depth test (fade out mesh connections at the back)
         const avgZ = (pi.rz + pj.rz) / 2;
         if (avgZ > 0.6) return; // clip very back connections for visual clarity
@@ -1227,7 +1227,7 @@ export default function App() {
       points.forEach((p, idx) => {
         // Opacity based on depth Z: front is bright, back is dim
         const opacity = Math.max(0.08, 1 - (p.rz + 0.8) / 1.8) * 0.75;
-        
+
         // Highlight about 8% of the nodes with extra glow & size
         const isHighlight = idx % 12 === 0;
         let size = (1.5 - p.rz) * 0.85;
@@ -1258,9 +1258,9 @@ export default function App() {
 
         // Combined multi-frequency wave formula
         const waveVal = Math.sin(x * 0.024 * scaleFreq + wavePhase) * 0.55 +
-                        Math.cos(x * 0.012 * scaleFreq - wavePhase * 0.7) * 0.30 +
-                        Math.sin(x * 0.048 * scaleFreq + wavePhase * 1.4) * 0.15;
-        
+          Math.cos(x * 0.012 * scaleFreq - wavePhase * 0.7) * 0.30 +
+          Math.sin(x * 0.048 * scaleFreq + wavePhase * 1.4) * 0.15;
+
         // Calculate symmetrical wave height
         const h = Math.max(1.5, Math.abs(waveVal) * waveAmp * env);
 
@@ -1277,17 +1277,17 @@ export default function App() {
       // B) Continuous boundary curves (top/bottom)
       ctx.lineWidth = 1.5;
       ctx.strokeStyle = `rgba(${rgb}, 0.85)`;
-      
+
       // Top boundary path
       ctx.beginPath();
       for (let x = width * 0.05; x <= width * 0.95; x += 2) {
         const t = x / width;
         const env = Math.exp(-Math.pow((t - 0.5) / 0.28, 2));
         const waveVal = Math.sin(x * 0.024 * scaleFreq + wavePhase) * 0.55 +
-                        Math.cos(x * 0.012 * scaleFreq - wavePhase * 0.7) * 0.30 +
-                        Math.sin(x * 0.048 * scaleFreq + wavePhase * 1.4) * 0.15;
+          Math.cos(x * 0.012 * scaleFreq - wavePhase * 0.7) * 0.30 +
+          Math.sin(x * 0.048 * scaleFreq + wavePhase * 1.4) * 0.15;
         const h = Math.abs(waveVal) * waveAmp * env;
-        
+
         if (x === width * 0.05) ctx.moveTo(x, cy - h);
         else ctx.lineTo(x, cy - h);
       }
@@ -1299,8 +1299,8 @@ export default function App() {
         const t = x / width;
         const env = Math.exp(-Math.pow((t - 0.5) / 0.28, 2));
         const waveVal = Math.sin(x * 0.024 * scaleFreq + wavePhase) * 0.55 +
-                        Math.cos(x * 0.012 * scaleFreq - wavePhase * 0.7) * 0.30 +
-                        Math.sin(x * 0.048 * scaleFreq + wavePhase * 1.4) * 0.15;
+          Math.cos(x * 0.012 * scaleFreq - wavePhase * 0.7) * 0.30 +
+          Math.sin(x * 0.048 * scaleFreq + wavePhase * 1.4) * 0.15;
         const h = Math.abs(waveVal) * waveAmp * env;
 
         if (x === width * 0.05) ctx.moveTo(x, cy + h);
@@ -1318,7 +1318,7 @@ export default function App() {
         const env = Math.exp(-Math.pow((t - 0.5) / 0.28, 2));
         // Cross weave math
         const waveVal2 = Math.sin(x * 0.035 * scaleFreq - wavePhase * 1.3) * 0.7 +
-                         Math.cos(x * 0.018 * scaleFreq + wavePhase * 0.9) * 0.3;
+          Math.cos(x * 0.018 * scaleFreq + wavePhase * 0.9) * 0.3;
         const yOffset = waveVal2 * waveAmp * 0.75 * env;
 
         if (x === width * 0.05) ctx.moveTo(x, cy + yOffset);
@@ -1758,9 +1758,8 @@ export default function App() {
                   key={tab.id}
                   type="button"
                   onClick={() => setHologramMode(tab.id)}
-                  className={`hud-tab px-3 py-1 rounded text-[9px] font-hud tracking-widest transition-all duration-200 cursor-pointer font-bold ${
-                    hologramMode === tab.id ? 'active' : 'text-cyber-muted'
-                  }`}
+                  className={`hud-tab px-3 py-1 rounded text-[9px] font-hud tracking-widest transition-all duration-200 cursor-pointer font-bold ${hologramMode === tab.id ? 'active' : 'text-cyber-muted'
+                    }`}
                 >
                   {tab.label}
                 </button>
@@ -1902,7 +1901,7 @@ export default function App() {
                           key={geo.rsmKey}
                           geography={geo}
                           fill="rgba(0, 187, 255, 0.08)"
-                          stroke="rgba(0, 187, 255, 0.28)"
+                          stroke="rgba(13, 160, 213, 0.76)"
                           strokeWidth={0.5}
                           style={{
                             default: { outline: "none" },
@@ -1917,20 +1916,20 @@ export default function App() {
                     <Marker coordinates={[location.lng, location.lat]}>
                       <g className="overflow-visible">
                         {/* Outer pulsing radar wave */}
-                        <circle r={12} className="stroke-cyber-cyan fill-none opacity-20 animate-radar-pulse" strokeWidth={1} style={{ transformOrigin: "0px 0px" }} />
+                        <circle r={12} stroke="#00f0ff" fill="none" className="opacity-90 animate-radar-pulse" strokeWidth={1} style={{ transformOrigin: "0px 0px" }} />
 
                         {/* Outer dotted target ring */}
-                        <circle r={9} className="stroke-cyber-cyan fill-none opacity-50" strokeWidth={0.8} strokeDasharray="1.5, 1.5" />
+                        <circle r={9} stroke="#00f0ff" fill="none" className="opacity-90" strokeWidth={0.8} strokeDasharray="1.5, 1.5" />
 
                         {/* Inner solid ring */}
-                        <circle r={5} className="stroke-cyber-cyan fill-none opacity-75" strokeWidth={0.8} />
+                        <circle r={5} stroke="#00f0ff" fill="none" className="opacity-100" strokeWidth={0.8} />
 
                         {/* Center active coordinate indicator */}
-                        <circle r={2.2} className="fill-cyber-cyan animate-pulse" />
+                        <circle r={2.2} fill="#00f0ff" className="animate-pulse" />
 
                         {/* Crosshair lines */}
-                        <line x1={-13} y1={0} x2={13} y2={0} className="stroke-cyber-cyan opacity-60" strokeWidth={0.8} />
-                        <line x1={0} y1={-13} x2={0} y2={13} className="stroke-cyber-cyan opacity-60" strokeWidth={0.8} />
+                        <line x1={-13} y1={0} x2={13} y2={0} stroke="#00f0ff" className="opacity-80" strokeWidth={0.8} />
+                        <line x1={0} y1={-13} x2={0} y2={13} stroke="#00f0ff" className="opacity-80" strokeWidth={0.8} />
                       </g>
                     </Marker>
                   )}
