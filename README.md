@@ -278,26 +278,14 @@ Contributions, issues, and feature requests are welcome.
 
 This project is licensed under the MIT License.
 
----
- 
-## 👨‍💻 Developer
 
-**Dhiraj Kumar**
-
-- MERN Stack Developer
-- AI Enthusiast
-- Exploring Agentic AI
-
-GitHub: https://github.com/dhiruXDev
- 
-
----
 ## 👥 Contributors
 
 | Name | Role |
 |------|------|
-| **Dhiraj Kumar** | MERN Stack Developer • AI Enthusiast • Exploring Agentic AI |
 | **Urshitaa** | AI/ML Developer • Web Developer |
+| **Dhiraj Kumar** | MERN Stack Developer • AI Enthusiast • Exploring Agentic AI |
+
 
 GitHub: https://github.com/dhiruXDev
 
