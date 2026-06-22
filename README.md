@@ -286,6 +286,14 @@ This project is licensed under the MIT License.
 - Exploring Agentic AI
 
 GitHub: https://github.com/dhiruXDev
+## 👥 Contributors
+
+| Name | Role |
+|------|------|
+| **Dhiraj Kumar** | MERN Stack Developer • AI Enthusiast • Exploring Agentic AI |
+| **Urshitaa** | AI/ML Developer • Web Developer |
+
+GitHub: https://github.com/dhiruXDev
 
 ---
 
