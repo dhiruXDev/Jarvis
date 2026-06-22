@@ -276,7 +276,7 @@ Contributions, issues, and feature requests are welcome.
 This project is licensed under the MIT License.
 
 ---
-
+ 
 ## 👨‍💻 Developer
 
 **Dhiraj Kumar**
@@ -286,6 +286,9 @@ This project is licensed under the MIT License.
 - Exploring Agentic AI
 
 GitHub: https://github.com/dhiruXDev
+ 
+
+---
 ## 👥 Contributors
 
 | Name | Role |
@@ -294,7 +297,5 @@ GitHub: https://github.com/dhiruXDev
 | **Urshitaa** | AI/ML Developer • Web Developer |
 
 GitHub: https://github.com/dhiruXDev
-
----
 
 ⭐ If you like Jarvish, consider giving the repository a star.
