@@ -5,6 +5,9 @@
 Jarvish is an AI-powered desktop assistant designed to simplify everyday tasks through voice commands, intelligent automation, and natural conversations. It combines local AI models, web capabilities, system controls, and multilingual communication into a single desktop experience.
 
 ---
+## 🖥️ Jarvish UI
+
+![Jarvish UI](https://raw.githubusercontent.com/dhiruXDev/Jarvis/JarvisUI.png)
 
 ## 🚀 Overview
 
